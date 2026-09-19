@@ -850,8 +850,8 @@ PlayerSettings:
   editorAssembliesCompatibilityLevel: 1
   m_RenderingPath: 1
   m_MobileRenderingPath: 1
-  metroPackageName: Wand Game (Place-holder)
-  metroPackageVersion: 
+  metroPackageName: WandGamePlace-holder
+  metroPackageVersion: 1.0.0.0
   metroCertificatePath: 
   metroCertificatePassword: 
   metroCertificateSubject: 
@@ -859,7 +859,7 @@ PlayerSettings:
   metroCertificateNotAfter: 0000000000000000
   metroApplicationDescription: Wand Game (Place-holder)
   wsaImages: {}
-  metroTileShortName: 
+  metroTileShortName: Wand Game (Place-holder)
   metroTileShowName: 0
   metroMediumTileShowName: 0
   metroLargeTileShowName: 0
