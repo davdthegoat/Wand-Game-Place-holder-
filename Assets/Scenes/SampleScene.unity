@@ -346,7 +346,8 @@ MonoBehaviour:
   m_RequiresDepthTextureOption: 2
   m_RequiresOpaqueTextureOption: 2
   m_CameraType: 0
-  m_Cameras: []
+  m_Cameras:
+  - {fileID: 888548679}
   m_RendererIndex: -1
   m_VolumeLayerMask:
     serializedVersion: 2
@@ -1144,7 +1145,7 @@ GameObject:
   - component: {fileID: 808400314}
   - component: {fileID: 808400313}
   - component: {fileID: 808400316}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Cube
   m_TagString: canPickUp
   m_Icon: {fileID: 0}
