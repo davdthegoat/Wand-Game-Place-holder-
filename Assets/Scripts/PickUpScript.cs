@@ -18,7 +18,8 @@ public class PickUpScript : MonoBehaviour
     //Reference to script which includes mouse movement of player (looking around)
     //we want to disable the player looking around when rotating the object
     //example below 
-    //MouseLookScript mouseLookScript;
+    //public Movement mouseLookScript;
+
     void Start()
     {
         LayerNumber = LayerMask.NameToLayer("holdLayer"); //if your holdLayer is named differently make sure to change this ""
