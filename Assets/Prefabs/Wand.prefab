@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4138286925713464056}
   - component: {fileID: 607463944509136856}
   - component: {fileID: 6657549105401720599}
+  - component: {fileID: -3286594394893149397}
   m_Layer: 8
   m_Name: Wand
   m_TagString: canPickUp
@@ -140,3 +141,15 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 0
   m_CollisionDetection: 1
+--- !u!114 &-3286594394893149397
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8583238787488274419}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dea991a067e43834394b356dd9bdc325, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ItemPositionReset
