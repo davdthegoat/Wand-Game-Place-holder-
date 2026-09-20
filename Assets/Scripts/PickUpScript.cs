@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Animations;
+using UnityEngine.LowLevelPhysics;
 
 public class PickUpScript : MonoBehaviour
 {
@@ -14,8 +16,9 @@ public class PickUpScript : MonoBehaviour
     private Rigidbody heldObjRb; //rigidbody of object we pick up
     private bool canDrop = true; //this is needed so we don't throw/drop object when rotating the object
     private int LayerNumber; //layer index
-    
-    
+    private int LayerNumStore;
+    private GameObject shelfObj;
+    private bool inShelf;
     
     //Reference to script which includes mouse movement of player (looking around)
     //we want to disable the player looking around when rotating the object
@@ -25,11 +28,14 @@ public class PickUpScript : MonoBehaviour
     void Start()
     {
         LayerNumber = LayerMask.NameToLayer("holdLayer"); //if your holdLayer is named differently make sure to change this ""
-
+        LayerNumStore = LayerMask.NameToLayer("storeLayer");
         //mouseLookScript = player.GetComponent<MouseLookScript>();
     }
     void Update()
-    {
+    {   
+
+        
+        
         if (Input.GetKeyDown(KeyCode.E)) //change E to whichever key you want to press to pick up
         {
             
@@ -37,7 +43,7 @@ public class PickUpScript : MonoBehaviour
             {
                 //perform raycast to check if player is looking at object within pickuprange
                 RaycastHit hit;
-                if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit))//, pickUpRange))
+                if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, pickUpRange))
                 {
                     
                     //make sure pickup tag is attached
@@ -57,10 +63,12 @@ public class PickUpScript : MonoBehaviour
                     StopClipping(); //prevents object from clipping through walls
                     DropObject();
                 }
+
             }
         }
         if (heldObj != null) //if player is holding object
         {
+            
             MoveObject(); //keep object position at holdPos
             RotateObject();
             if (Input.GetKeyDown(KeyCode.Mouse0) && canDrop == true) //Mous0 (leftclick) is used to throw, change this if you want another button to be used)
@@ -68,13 +76,27 @@ public class PickUpScript : MonoBehaviour
                 StopClipping();
                 ThrowObject();
             }
-
+            if (Input.GetKeyDown(KeyCode.F)){
+                //storing obj in shelf
+                RaycastHit hit;
+                if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, pickUpRange))
+                {
+                    
+                    //make sure pickup tag is attached
+                    if (hit.transform.gameObject.tag == "canStore")
+                    {
+                        //pass in object hit into the store obj function
+                        StoreInShelf(hit.transform.gameObject);
+                    }
+                }
+            }
         }
     }
     void PickUpObject(GameObject pickUpObj)
     {
         if (pickUpObj.GetComponent<Rigidbody>()) //make sure the object has a RigidBody
         {
+            inShelf = false;
             heldObj = pickUpObj; //assign heldObj to the object that was hit by the raycast (no longer == null)
             heldObjRb = pickUpObj.GetComponent<Rigidbody>(); //assign Rigidbody
             heldObjRb.isKinematic = true;
@@ -147,4 +169,33 @@ public class PickUpScript : MonoBehaviour
             //if your player is small, change the -0.5f to a smaller number (in magnitude) ie: -0.1f
         }
     }
+
+    void StoreInShelf(GameObject StoreObj)
+    {
+        //Pos of held obj
+        //set the shelf as ParentConstraint of held obj
+        // shelfObj = StoreObj;
+        // heldObjRb.transform.parent  = shelfObj.transform;
+        // heldObj.layer = LayerNumStore;
+        // Physics.IgnoreCollision(heldObj.GetComponent<Collider>(), StoreObj.GetComponent<Collider>(), true);
+        canDrop = false;
+        //inShelf = true;//should be accessed from shelf
+        shelfObj = StoreObj;
+        Physics.IgnoreCollision(heldObj.GetComponent<Collider>(), player.GetComponent<Collider>(), false);
+        heldObj.layer = LayerNumStore; //object assigned back to default layer
+        heldObjRb.isKinematic = true;
+        heldObj.transform.parent = null; //unparent object
+        heldObj.transform.parent  = shelfObj.transform;
+        heldObj.transform.localPosition = Vector3.zero;
+        heldObj.transform.rotation = Quaternion.identity;
+        heldObj = null;
+        
+        
+        
+
+    }
+
+    
+        
+    
 }
