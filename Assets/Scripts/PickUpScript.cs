@@ -179,7 +179,7 @@ public class PickUpScript : MonoBehaviour
         // heldObj.layer = LayerNumStore;
         // Physics.IgnoreCollision(heldObj.GetComponent<Collider>(), StoreObj.GetComponent<Collider>(), true);
         canDrop = false;
-        inShelf = true;//should be accessed 
+        //inShelf = true;//should be accessed from shelf
         shelfObj = StoreObj;
         Physics.IgnoreCollision(heldObj.GetComponent<Collider>(), player.GetComponent<Collider>(), false);
         heldObj.layer = LayerNumStore; //object assigned back to default layer
@@ -187,6 +187,7 @@ public class PickUpScript : MonoBehaviour
         heldObj.transform.parent = null; //unparent object
         heldObj.transform.parent  = shelfObj.transform;
         heldObj.transform.localPosition = Vector3.zero;
+        heldObj.transform.rotation = Quaternion.identity;
         heldObj = null;
         
         

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7549841819642211091}
   - component: {fileID: 2198155244320173012}
   - component: {fileID: 4118952871197618389}
-  - component: {fileID: -2435115863866163124}
+  - component: {fileID: 4516224615410627696}
   m_Layer: 9
   m_Name: Shelf
   m_TagString: canStore
@@ -29,7 +29,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1823494734748236857}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 12.909889, y: 2.54, z: 14.56702}
   m_LocalScale: {x: 1.2612, y: 1.3069, z: 1.591}
   m_ConstrainProportionsScale: 0
@@ -141,7 +141,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &-2435115863866163124
+--- !u!114 &4516224615410627696
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -150,6 +150,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 1823494734748236857}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7da4b36aa4bc11c47b321a2738365e56, type: 3}
+  m_Script: {fileID: 11500000, guid: 43dff9611b617ce469f51b68ef2bff60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ShelfScript
