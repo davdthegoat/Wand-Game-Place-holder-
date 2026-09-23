@@ -19,7 +19,7 @@ public class ShelfScript : MonoBehaviour
         {
             storedObj = transform.GetChild(0).gameObject;
             storedObj.transform.position = transform.position;
-            storedObj.transform.rotation = quaternion.identity;
+            //storedObj.transform.rotation = quaternion.identity; testing purposes -DVD.
         }
 
         
