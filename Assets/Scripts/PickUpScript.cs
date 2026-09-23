@@ -17,8 +17,6 @@ public class PickUpScript : MonoBehaviour
     private bool canDrop = true; //this is needed so we don't throw/drop object when rotating the object
     private int LayerNumber; //layer index
     private int LayerNumStore;
-    private GameObject shelfObj;
-    private bool inShelf;
     
     //Reference to script which includes mouse movement of player (looking around)
     //we want to disable the player looking around when rotating the object
@@ -75,20 +73,6 @@ public class PickUpScript : MonoBehaviour
             {
                 StopClipping();
                 ThrowObject();
-            }
-            if (Input.GetKeyDown(KeyCode.F)){
-                //storing obj in shelf
-                RaycastHit hit;
-                if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, pickUpRange))
-                {
-                    
-                    //make sure pickup tag is attached
-                    if (hit.transform.gameObject.tag == "canStore")
-                    {
-                        //pass in object hit into the store obj function
-                        StoreInShelf(hit.transform.gameObject);
-                    }
-                }
             }
         }
     }
@@ -195,7 +179,15 @@ public class PickUpScript : MonoBehaviour
 
     }
 
-    
+    public GameObject GetHeldObject()
+    {
+        return heldObj;
+    }
+
+    public RigidBody GetHeldObjectRigidBody()
+    {
+        return heldObj;
+    }
         
     
 }

@@ -8,7 +8,7 @@ public class ShelfScript : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
     {
-        
+
 
     }
 
@@ -19,11 +19,11 @@ public class ShelfScript : MonoBehaviour
         {
             storedObj = transform.GetChild(0).gameObject;
             storedObj.transform.position = transform.position;
-            //storedObj.transform.rotation = quaternion.identity; testing purposes -DVD.
+            storedObj.transform.rotation = quaternion.identity;
         }
 
-        
+
     }
 
-    
+
 }
