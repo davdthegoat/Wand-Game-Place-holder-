@@ -59,10 +59,12 @@ public class StoreInShelfScript : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.F))
         {
-            Debug.Log("F was pressed");
-            Debug.Log("PickUpScript reference " + pickUpScript);
-
             GameObject heldObj = pickUpScript.GetHeldObject();
+            Rigidbody heldObjRb = pickUpScript.GetHeldObjectRigidbody();
+            Debug.Log("F was pressed");
+            Debug.Log("PickUpScript reference " + pickUpScript); 
+            Debug.Log("heldObj immediately after pickup: " + heldObj);
+            Debug.Log("heldObjRb immediately after pickup: " + heldObjRb);
 
             if (heldObj == null)
             {

@@ -40,14 +40,11 @@ public class PickUpScript : MonoBehaviour
                 RaycastHit hit;
                 if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, pickUpRange))
                 {
-                    //make sure pickup tag is attached
+                    //make sure item is of a type that can be picked up
                     if (hit.transform.gameObject.tag == "canPickUp")
                     {
                         //pass in object hit into the PickUpObject function
                         PickUpObject(hit.transform.gameObject);
-                        Debug.Log("Function should have run by now");
-                        Debug.Log("heldObj instantly after pickup" + heldObj);
-                        Debug.Log("heldObjRb instantly after pickup" + heldObjRb);
                     }
                 }
             }
