@@ -80,7 +80,6 @@ public class PickUpScript : MonoBehaviour
     {
         if (pickUpObj.GetComponent<Rigidbody>()) //make sure the object has a RigidBody
         {
-            inShelf = false;
             heldObj = pickUpObj; //assign heldObj to the object that was hit by the raycast (no longer == null)
             heldObjRb = pickUpObj.GetComponent<Rigidbody>(); //assign Rigidbody
             heldObjRb.isKinematic = true;
@@ -164,12 +163,10 @@ public class PickUpScript : MonoBehaviour
         // Physics.IgnoreCollision(heldObj.GetComponent<Collider>(), StoreObj.GetComponent<Collider>(), true);
         canDrop = false;
         //inShelf = true;//should be accessed from shelf
-        shelfObj = StoreObj;
         Physics.IgnoreCollision(heldObj.GetComponent<Collider>(), player.GetComponent<Collider>(), false);
         heldObj.layer = LayerNumStore; //object assigned back to default layer
         heldObjRb.isKinematic = true;
         heldObj.transform.parent = null; //unparent object
-        heldObj.transform.parent  = shelfObj.transform;
         heldObj.transform.localPosition = Vector3.zero;
         heldObj.transform.rotation = Quaternion.identity;
         heldObj = null;
@@ -184,10 +181,15 @@ public class PickUpScript : MonoBehaviour
         return heldObj;
     }
 
-    public RigidBody GetHeldObjectRigidBody()
+    public Rigidbody GetHeldObjectRigidbody()
     {
-        return heldObj;
+        return heldObjRb;
     }
-        
+
+    public void ClearHeldObject()
+    {
+        heldObj = null;
+        heldObjRb = null;
+    }
     
 }
