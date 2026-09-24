@@ -121,7 +121,7 @@ public class StoreInShelfScript : MonoBehaviour
 
         //p[ace the item in the shelf
         heldObj.transform.parent = shelfObj.transform;
-        heldObj.transform.localPosition = Vector3.zero;
+        heldObj.transform.localPosition = Vector3.zero;  //might have to replace with global if we want more uniformity in the placement of the wands
         heldObj.transform.localRotation = Quaternion.identity;
 
         //remove item from player's hand
