@@ -14,10 +14,12 @@ public class StoreInShelfScript : MonoBehaviour
     void Start()
     {
         LayerNumStore = LayerMask.NameToLayer("storeLayer");
-
         pickUpScript = GetComponent<PickUpScript>();
+
+        Debug.Log("StoreInShelfScript has found pickUpScript " + (pickUpScript != null));
     }
 
+    /*
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.F))
@@ -31,16 +33,60 @@ public class StoreInShelfScript : MonoBehaviour
 
             RaycastHit hit;
 
-            if (Physics.Raycast(
-                transform.position,
-                transform.TransformDirection(Vector3.forward),
-                out hit,
-                pickUpRange))
+             disabled temporarily for testing purposes. 
+            if (Physics.Raycast(transform.position,transform.TransformDirection(Vector3.forward),out hit,pickUpRange))
             {
                 if (hit.transform.gameObject.tag == "canStore")
                 {
                     StoreInShelf(hit.transform.gameObject);
                 }
+            }
+            
+            if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, pickUpRange))
+            {
+                Debug.Log("F raycast hit " + hit.transform.gameObject.name);
+                Debug.Log("F raycast hit " + hit.transform.gameObject.tag);
+
+                if (hit.transform.gameObject.tag == "canStore")
+                {
+                    StoreInShelf(hit.transform.gameObject);
+                }
+            }
+        }
+    } */
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            Debug.Log("F was pressed");
+            Debug.Log("PickUpScript reference " + pickUpScript);
+
+            GameObject heldObj = pickUpScript.GetHeldObject();
+
+            if (heldObj == null)
+            {
+                Debug.Log("F pressed, but heldObj is NULL");
+                return;
+            }
+
+            Debug.Log("F pressed, held object is: " + heldObj.name);
+
+            RaycastHit hit;
+
+            if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, pickUpRange))
+            {
+                Debug.Log("F raycast hit: " + hit.transform.gameObject.name);
+                Debug.Log("F raycast tag: " + hit.transform.gameObject.tag);
+
+                if (hit.transform.gameObject.tag == "canStore")
+                {
+                    StoreInShelf(hit.transform.gameObject);
+                }
+            }
+            else
+            {
+                Debug.Log("F raycast hit nothing");
             }
         }
     }

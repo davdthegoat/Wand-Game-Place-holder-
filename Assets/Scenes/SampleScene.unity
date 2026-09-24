@@ -392,6 +392,8 @@ GameObject:
   - component: {fileID: 330585544}
   - component: {fileID: 330585547}
   - component: {fileID: 330585548}
+  - component: {fileID: 330585550}
+  - component: {fileID: 330585549}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -526,7 +528,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5083124e74e78c94bb54e371edb56782, type: 3}
   m_Name: 
@@ -535,6 +537,36 @@ MonoBehaviour:
   holdPos: {fileID: 1355648523}
   throwForce: 500
   pickUpRange: 1000
+--- !u!114 &330585549
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 330585543}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27c5a9799a257ab419595bd2f9b0d245, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::StoreInShelfScript
+  player: {fileID: 1344990572}
+  pickUpRange: 500
+--- !u!114 &330585550
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 330585543}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5083124e74e78c94bb54e371edb56782, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PickUpScript
+  player: {fileID: 1344990572}
+  holdPos: {fileID: 1355648523}
+  throwForce: 500
+  pickUpRange: 500
 --- !u!1 &346945117
 GameObject:
   m_ObjectHideFlags: 0
@@ -1691,7 +1723,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 866827741}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 43dff9611b617ce469f51b68ef2bff60, type: 3}
   m_Name: 
@@ -3348,6 +3380,10 @@ PrefabInstance:
       propertyPath: m_IsKinematic
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4516224615410627696, guid: 33767653053f0ae4ea5026a88bd61110, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 4118952871197618389, guid: 33767653053f0ae4ea5026a88bd61110, type: 3}
     m_RemovedGameObjects: []
@@ -3370,7 +3406,7 @@ GameObject:
   - component: {fileID: 1776993110}
   - component: {fileID: 1776993109}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: Cursor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
