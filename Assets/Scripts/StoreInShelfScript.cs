@@ -53,6 +53,7 @@ public class StoreInShelfScript : MonoBehaviour
                 }
             }
         }
+    REMOVE FOR DEBUGGING, RESTORE IN FINAL VERSION OF GAME
     } */
 
     void Update()
@@ -81,7 +82,7 @@ public class StoreInShelfScript : MonoBehaviour
                 Debug.Log("F raycast hit: " + hit.transform.gameObject.name);
                 Debug.Log("F raycast tag: " + hit.transform.gameObject.tag);
 
-                if (hit.transform.gameObject.tag == "canStore")
+                if (hit.transform.gameObject.tag == "canStore" && hit.transform.gameObject.layer == LayerMask.NameToLayer("storeLayer"))
                 {
                     StoreInShelf(hit.transform.gameObject);
                 }
