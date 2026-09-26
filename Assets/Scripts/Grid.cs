@@ -36,27 +36,35 @@ public class Grid
         SetGridValue(2, 1, 56); //Cordinate, and value set within cordinate. 
     }
 
+
+    //Get's world position from grid position
     private Vector3 GetWorldPosition(int x, int y) //get's global position based on x,y cords of the grid.
     {
         return new Vector3(x, y) * cellSize; //I believe if we want to change where the grid is, for example the grid should span x-y or z-y, we change this here, as Vector3 has (x,y,z). Or we could try rotating through inspector
         //Also, we could probably add slanted shelves like in the real olivander's store with this with 1,1,1.
     }
-    private void GetXYPosition(Vector3 worldPosition, out int x, out int y) //Get's the x,y cords based on world position.
+
+
+    //Get's grid position from world position. 
+    private void GetXYCordinate(Vector3 worldPosition, out int x, out int y) //Get's the x,y cords based on world position.
     {
-        //Mathf
+        x = Mathf.FloorToInt(worldPosition.x / cellSize); //Calculates in which grid does the current cordinate lay.
+        y = Mathf.FloorToInt(worldPosition.y / cellSize);
     }
     
     private void SetGridValue(int x, int y, int targetValue)
     {
-        if (x >= 0 && y >= 0 && x <= width && y <= height) //Will have to change for three dimensions. This is validating the values that the grid can take.
+        if (x >= 0 && y >= 0 && x < width && y < height) //Will have to change for three dimensions. This is validating the values that the grid can take.
         {
             gridArray[x, y] = targetValue;
             gridDebuggingArray[x, y].text = gridArray[x, y].ToString();
         }
     }
 
-    private void SetGridValue(Vector3 worldPosition, int value) //Set value to grid cords by itself instead of having to do it manually.
+    public void SetGridValue(Vector3 worldPosition, int value) //Set value to grid cords by itself instead of having to do it manually.
     {
-
+        int x, y;
+        GetXYCordinate(worldPosition, out x, out y);
+        SetGridValue(x, y, value);
     }
 }
