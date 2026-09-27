@@ -6,7 +6,7 @@ public class Wand : ScriptableObject
 
     public string id;
 
-    public string test;
+    
 
     
     public enum CoreType {Unicorn_Hair,Phoenix_Tail_Feather,Dragon_Heartstring}
