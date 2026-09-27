@@ -35,12 +35,14 @@ public class Inventory : MonoBehaviour
 
     
     //script to pick up a dropped item on trigger enter
-    //modify to work with your other script
+    //modify to work with your other script of raycast
 
     
     /// <summary>
     /// Store Item in Inventory
     /// </summary>
+    /// 
+    /// Shift to pickup script pls pls pls pls pls pls pls pls pls pls pls
     
     public void OnTriggerEnter(Collider other)
     {

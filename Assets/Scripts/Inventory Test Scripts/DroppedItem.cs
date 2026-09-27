@@ -6,9 +6,9 @@ public class DroppedItem : MonoBehaviour
 {
 
     /// <summary>
-    /// Decides whether to start on scene loading
+    /// Decides whether to place item on scene loading
     /// checks if its been picked up(bool)
-    /// Instantiates Item at the coordinates of the Dropped Item\
+    /// can Instantiates Item at the coordinates of the Dropped Item
     /// 
     /// Try to make this into the shelf storage thing
     /// </summary>
@@ -23,6 +23,7 @@ public class DroppedItem : MonoBehaviour
     [Header("State")]
     public Item item; 
     public bool pickedUp = false; //whether object is picked up
+    
 
     void Start()
     {
