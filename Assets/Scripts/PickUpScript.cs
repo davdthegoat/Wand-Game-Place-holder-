@@ -28,6 +28,9 @@ public class PickUpScript : MonoBehaviour
         LayerNumber = LayerMask.NameToLayer("holdLayer"); //if your holdLayer is named differently make sure to change this ""
         LayerNumStore = LayerMask.NameToLayer("storeLayer");
         //mouseLookScript = player.GetComponent<MouseLookScript>();
+
+        
+        
     }
 
     void Update()
