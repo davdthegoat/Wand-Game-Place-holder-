@@ -7,14 +7,16 @@ public class Grid
     [SerializeField] int width;
     [SerializeField] int height;
     [SerializeField] float cellSize;
+    [SerializeField] Vector3 originPositionOfGrid;
     private int[,] gridArray; //Apparently this is how to declare a 2D array
     private TextMesh[,] gridDebuggingArray;
 
-    public Grid(int width, int height, float cellSize) //We might need an additional variable called depth depending on how we want to go about things
+    public Grid(int width, int height, float cellSize, Vector3 originPositionOfGrid) //We might need an additional variable called depth depending on how we want to go about things
     {
         this.width = width;
         this.height = height;
         this.cellSize = cellSize;
+        this.originPositionOfGrid = originPositionOfGrid;
 
         // Debug.Log(width + " " + height); Array working (verified)
         gridArray = new int[width, height];
@@ -40,16 +42,17 @@ public class Grid
     //Get's world position from grid position
     private Vector3 GetWorldPosition(int x, int y) //get's global position based on x,y cords of the grid.
     {
-        return new Vector3(x, y) * cellSize; //I believe if we want to change where the grid is, for example the grid should span x-y or z-y, we change this here, as Vector3 has (x,y,z). Or we could try rotating through inspector
+        return new Vector3(x, y) * cellSize + originPositionOfGrid; //I believe if we want to change where the grid is, for example the grid should span x-y or z-y, we change this here, as Vector3 has (x,y,z). Or we could try rotating through inspector
         //Also, we could probably add slanted shelves like in the real olivander's store with this with 1,1,1.
+        //"+ originPositionOfGrid" helps calculate wherer exactly the world position is on global coordinates.
     }
 
 
     //Get's grid position from world position. 
     private void GetXYCordinate(Vector3 worldPosition, out int x, out int y) //Get's the x,y cords based on world position.
     {
-        x = Mathf.FloorToInt(worldPosition.x / cellSize); //Calculates in which grid does the current cordinate lay.
-        y = Mathf.FloorToInt(worldPosition.y / cellSize);
+        x = Mathf.FloorToInt((worldPosition-originPositionOfGrid).x / cellSize); //Calculates in which grid does the current cordinate lay.
+        y = Mathf.FloorToInt((worldPosition-originPositionOfGrid).y / cellSize);
     }
     
     private void SetGridValue(int x, int y, int targetValue)
@@ -66,5 +69,24 @@ public class Grid
         int x, y;
         GetXYCordinate(worldPosition, out x, out y);
         SetGridValue(x, y, value);
+    }
+
+    public int GetValue(int x, int y) //Read value stored inside a grid
+    {
+        if (x >= 0 && y >= 0 && x < width && y < height)
+        {
+            return gridArray[x, y];
+        }
+        else
+        {
+            return 0;
+        }
+    }
+
+    public int GetValue(Vector3 worldPosition) //Read value stored inside a grid, the sequel
+    {
+        int x, y;
+        GetXYCordinate(worldPosition, out x, out y);
+        return GetValue(x, y);
     }
 }
