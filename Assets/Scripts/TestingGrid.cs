@@ -8,7 +8,7 @@ public class TestingGrid : MonoBehaviour
     void Awake() //So that grid is initialized before StoreInShelfScript everytime.
     {
         //Use this to change size, shape, position of grid on the world
-        grid = new Grid(3, 5, 0.8f, new Vector3(-5,0)); //the third parameter here is cellSize, change it to change how many units apart each grid should be.
+        grid = new Grid(3, 3, 0.8f, new Vector3(-5,2,0)); //the third parameter here is cellSize, change it to change how many units apart each grid should be.
     }
     public Grid GetGrid()
     {

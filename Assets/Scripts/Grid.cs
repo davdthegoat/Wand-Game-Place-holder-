@@ -42,9 +42,11 @@ public class Grid
     //Get's world position from grid position
     public Vector3 GetWorldPosition(int x, int y) //get's global position based on x,y cords of the grid.
     {
-        return new Vector3(x, y) * cellSize + originPositionOfGrid; //I believe if we want to change where the grid is, for example the grid should span x-y or z-y, we change this here, as Vector3 has (x,y,z). Or we could try rotating through inspector
+        return new Vector3(x, y) * cellSize + originPositionOfGrid; 
+        //I believe if we want to change where the grid is, for example the grid should span x-y or z-y, we change this here, as Vector3 has (x,y,z). Or we could try rotating through inspector
         //Also, we could probably add slanted shelves like in the real olivander's store with this with 1,1,1.
         //"+ originPositionOfGrid" helps calculate wherer exactly the world position is on global coordinates.
+        //"new Vector3 (cellSize, cellSize)*0.5f" adjusts coorindates to be in the exact center of the grid instead of a corner.
     }
 
 

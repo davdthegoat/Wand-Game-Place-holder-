@@ -84,8 +84,8 @@ public class StoreInShelfScript : MonoBehaviour
             Debug.Log("F pressed, held object is: " + heldObj.name);
 
             RaycastHit hit;
-
-            if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, storeRange))
+            Debug.DrawRay(transform.position, transform.forward * storeRange, Color.red,2f); // To test colider/rb info.
+            if (Physics.Raycast(transform.position, transform.forward, out hit, storeRange))
             {
                 Debug.Log("F raycast hit: " + hit.transform.gameObject.name);
                 Debug.Log("F raycast tag: " + hit.transform.gameObject.tag);
@@ -100,7 +100,8 @@ public class StoreInShelfScript : MonoBehaviour
 
                 if (hit.transform.gameObject.tag == "canStore" && hit.transform.gameObject.layer == LayerMask.NameToLayer("storeLayer")) //Verifies if the object is being placed in a "storable" area (BOTH REQUIRED) 
                 {
-                    StoreInShelf(hit.transform.gameObject);
+                    //StoreInShelf(hit.transform.gameObject); Previous system: currently trying to overhaul with grid system.
+                    StoreInShelf(hit.transform.gameObject, gridX, gridY);
                 }
             }
             else
@@ -110,7 +111,7 @@ public class StoreInShelfScript : MonoBehaviour
         }
     }
 
-    void StoreInShelf(GameObject StoreObj)
+    void StoreInShelf(GameObject StoreObj, int gridX, int gridY)
     {
         GameObject heldObj = pickUpScript.GetHeldObject();
         Rigidbody heldObjRb = pickUpScript.GetHeldObjectRigidbody();
@@ -123,11 +124,7 @@ public class StoreInShelfScript : MonoBehaviour
         inShelf_ = true;
         shelfObj = StoreObj;
 
-        Physics.IgnoreCollision(
-            heldObj.GetComponent<Collider>(),
-            shelfObj.GetComponent<Collider>(),
-            false
-        );
+        Physics.IgnoreCollision(heldObj.GetComponent<Collider>(),shelfObj.GetComponent<Collider>(),false);
 
         heldObj.layer = LayerNumStore;
 
@@ -136,12 +133,14 @@ public class StoreInShelfScript : MonoBehaviour
         heldObjRb.linearVelocity = Vector3.zero;
         heldObjRb.angularVelocity = Vector3.zero;
 
-        //p[ace the item in the shelf
+        //place the item in the shelf
         heldObj.transform.parent = shelfObj.transform;
 
-        // heldObj.transform.localPosition = Vector3.zero;  //might have to replace with global if we want more uniformity in the placement of the wands
-        // heldObj.transform.localRotation = Quaternion.identity;
+        Vector3 gridWorldPosition = grid.GetWorldPosition(gridX, gridY); //gridX and gridY should be global.
+        heldObj.transform.position = gridWorldPosition;
+        heldObj.transform.rotation = Quaternion.identity;
 
+        // heldObj.transform.localPosition = Vector3.zero;  //might have to replace with global if we want more uniformity in the placement of the wands
         //Function is more efficient + better
         //Replaces setting position and transfrom seperately
         heldObj.transform.SetLocalPositionAndRotation( Vector3.zero, Quaternion.identity);
