@@ -4,6 +4,15 @@ using UnityEngine;
 [RequireComponent(typeof(Collider))]
 public class DroppedItem : MonoBehaviour
 {
+
+    /// <summary>
+    /// Decides whether to start on scene loading
+    /// checks if its been picked up(bool)
+    /// Instantiates Item at the coordinates of the Dropped Item\
+    /// 
+    /// Try to make this into the shelf storage thing
+    /// </summary>
+
     [Header("Settings")]
     [SerializeField]
     bool autoStart; //controls whether item is auto initialised when game starts i.e auto loaded into scene 
@@ -32,6 +41,7 @@ public class DroppedItem : MonoBehaviour
 
     }
 
+    //define what to do delay seconds after being picked
     IEnumerator EnablePickup(float dealy)//dealy is just delay rearranged
     {
         yield return new WaitForSeconds(dealy); // delay before enabling the trigger collider so it can be picked up again 

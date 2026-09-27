@@ -3,7 +3,10 @@ using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.UI;
 public class InventoryUI : MonoBehaviour
+
 {
+
+    // just remove the whole thing vro
     [Header("Prefabs")]
     [SerializeField]
     GameObject uiItemPrefab;
