@@ -1059,10 +1059,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f2f7cb64da43f046979f9cebe29ac03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Inventory
-  audioSource: {fileID: 0}
-  droppedItemPrefab: {fileID: 1125586138498165851, guid: f00bc553ea150954ba5982f4b51fdc73, type: 3}
-  pickUpItemAudio: {fileID: 0}
-  dropItemAudio: {fileID: 0}
   inventory:
     m_Keys: []
     m_Values: []

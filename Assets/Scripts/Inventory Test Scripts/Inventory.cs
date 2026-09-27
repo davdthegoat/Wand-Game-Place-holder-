@@ -17,7 +17,7 @@ public class Inventory : MonoBehaviour
 
     [Header("State")]
     [SerializeField]
-    SerializedDictionary<string, Item> inventory = new();
+    SerializedDictionary<string, Wand> inventory = new();
 
 
     
@@ -35,7 +35,7 @@ public class Inventory : MonoBehaviour
     
 
     //The actual Good stuff is here : look below
-    void AddItem(Item item)
+    void AddItem(Wand item)
     {
         var inventoryId = Guid.NewGuid().ToString();//generate new id to allow for multiple instaces of a single item
         inventory.Add(inventoryId, item); //add it to inventory dictionary along with its ID as key

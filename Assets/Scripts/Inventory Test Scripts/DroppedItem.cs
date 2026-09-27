@@ -29,7 +29,7 @@ public class DroppedItem : MonoBehaviour
     float enabledPickupDelay = 3.0f; //delay before it can be picked up to prevent glitches and stuff ig
 
     [Header("State")]
-    public Item item; 
+    public Wand item; 
     public bool pickedUp = false; //whether object is picked up
     
 
@@ -41,7 +41,7 @@ public class DroppedItem : MonoBehaviour
         }
     }
 
-    public void Initialize(Item item)
+    public void Initialize(Wand item)
     {
         this.item = item;
         var droppedItem = Instantiate(item.prefab, transform);
