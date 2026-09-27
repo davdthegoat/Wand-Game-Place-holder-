@@ -5,6 +5,14 @@ using UnityEngine;
 public class DroppedItem : MonoBehaviour
 {
 
+    ///IGNORE YAP for understanding
+    ///Better explanation is 
+    /// this script is a container that displays the mesh and collider of the Item(item class)
+    /// it just has to retrieve the data from the item class and show it on screen and be able to give it a body etc etc
+    /// in order to make a wand for example you need a specific class like item which has specific data that helps the dropped item or similar containers to render this into the scenne and allow it to be interacted with
+    /// ensure you seperate all logic that is not inventory logic to a seperate script and use references wisely
+
+
     /// <summary>
     /// Decides whether to place item on scene loading
     /// checks if its been picked up(bool)
