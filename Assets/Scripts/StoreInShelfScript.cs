@@ -1,9 +1,11 @@
+using Unity.Properties;
 using UnityEngine;
 
 public class StoreInShelfScript : MonoBehaviour
 {
-    [SerializeField] GameObject player;
-    [SerializeField] float pickUpRange = 5f;
+    //Dont need player collision to be disabled when storing in shelf
+    //[SerializeField] GameObject player;
+    [SerializeField] float storeRange = 5f;
 
     private int LayerNumStore;
     private GameObject shelfObj;
@@ -77,7 +79,7 @@ public class StoreInShelfScript : MonoBehaviour
 
             RaycastHit hit;
 
-            if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, pickUpRange))
+            if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, storeRange))
             {
                 Debug.Log("F raycast hit: " + hit.transform.gameObject.name);
                 Debug.Log("F raycast tag: " + hit.transform.gameObject.tag);
@@ -109,7 +111,7 @@ public class StoreInShelfScript : MonoBehaviour
 
         Physics.IgnoreCollision(
             heldObj.GetComponent<Collider>(),
-            player.GetComponent<Collider>(),
+            shelfObj.GetComponent<Collider>(),
             false
         );
 
@@ -122,8 +124,13 @@ public class StoreInShelfScript : MonoBehaviour
 
         //p[ace the item in the shelf
         heldObj.transform.parent = shelfObj.transform;
-        heldObj.transform.localPosition = Vector3.zero;  //might have to replace with global if we want more uniformity in the placement of the wands
-        heldObj.transform.localRotation = Quaternion.identity;
+
+        // heldObj.transform.localPosition = Vector3.zero;  //might have to replace with global if we want more uniformity in the placement of the wands
+        // heldObj.transform.localRotation = Quaternion.identity;
+
+        //Function is more efficient + better
+        //Replaces setting position and transfrom seperately
+        heldObj.transform.SetLocalPositionAndRotation( Vector3.zero, Quaternion.identity);
 
         //remove item from player's hand
         pickUpScript.ClearHeldObject();

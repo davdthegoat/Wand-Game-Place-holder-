@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 607463944509136856}
   - component: {fileID: 6657549105401720599}
   - component: {fileID: -3286594394893149397}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Wand
   m_TagString: canPickUp
   m_Icon: {fileID: 0}
