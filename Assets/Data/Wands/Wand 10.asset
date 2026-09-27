@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c6a54f7e2b0e9c4194e64564cb23642, type: 3}
   m_Name: Wand 10
   m_EditorClassIdentifier: Assembly-CSharp::Wand
-  id: 
-  core: 0
+  id: 10
+  length: 8
+  core: 1
   wood: 0
   CorrectStorageLocation: 
   AttributeText: 
