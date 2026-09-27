@@ -232,10 +232,21 @@ namespace CodeMonkey.Utils {
 
 
         // Get Mouse Position in World with Z = 0f
+        /*
         public static Vector3 GetMouseWorldPosition() {
             Vector3 vec = GetMouseWorldPositionWithZ(Input.mousePosition, Camera.main);
             vec.z = 0f;
             return vec;
+        }
+        */
+        public static Vector3 GetMouseWorldPosition() //Code obtained from Unity discord server by a helper.
+        {
+            Vector3 screenPosition = Input.mousePosition;
+            screenPosition.z = -Camera.main.transform.position.z;
+
+            Vector3 worldPosition = Camera.main.ScreenToWorldPoint(screenPosition);
+
+            return worldPosition;
         }
 
         public static Vector3 GetMouseWorldPositionWithZ() {
