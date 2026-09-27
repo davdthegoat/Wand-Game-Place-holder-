@@ -1,11 +1,8 @@
-using UnityEditor;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Item", menuName  = "NetherportaCode/Item", order =  1)]
-public class Item : ScriptableObject
+[CreateAssetMenu(fileName = "Wand", menuName = "NetherportaCode/Wand", order = 2)]
+public class Wand : ScriptableObject
 {
-
-    
 
     public string id;
 
@@ -26,3 +23,4 @@ public class Item : ScriptableObject
 
     public GameObject prefab;
 }
+
