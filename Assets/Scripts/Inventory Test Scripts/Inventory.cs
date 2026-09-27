@@ -2,8 +2,8 @@ using UnityEngine;
 using System.Collections.Generic;
 using System;
 using UnityEngine.Rendering;
-using UnityEditor.Compilation;
-using Unity.VisualScripting;
+
+
 
 //[RequireComponent(typeof(Collider))]
 public class Inventory : MonoBehaviour
