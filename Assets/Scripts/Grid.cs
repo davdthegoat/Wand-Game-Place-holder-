@@ -26,7 +26,7 @@ public class Grid
         {
             for (int y = 0; y < gridArray.GetLength(1); y++) //This one is height, x is width.
             {
-                gridDebuggingArray[x,y] = UtilsClass.CreateWorldText(gridArray[x, y].ToString(), null, GetWorldPosition(x, y) + new Vector3(cellSize,cellSize) * 0.5f, 20, Color.white, TextAnchor.MiddleCenter); //"GetWorldPosition(x, y) + new Vector3(cellSize,cellSize)" controls where in a grid are objects/text shown
+                gridDebuggingArray[x,y] = UtilsClass.CreateWorldText(gridArray[x, y].ToString(), null, GetWorldPosition(x, y) + new Vector3(cellSize,cellSize) * 0.5f, 10, Color.white, TextAnchor.MiddleCenter); //"GetWorldPosition(x, y) + new Vector3(cellSize,cellSize)" controls where in a grid are objects/text shown
                 //The following two lines are to help visualize what the grid looks like and are not necessary as our grid will be invisible in the final product.
                 Debug.DrawLine(GetWorldPosition(x, y), GetWorldPosition(x, y + 1),Color.white, 100f);
                 Debug.DrawLine(GetWorldPosition(x, y), GetWorldPosition(x+1, y), Color.white, 100f);
@@ -35,12 +35,12 @@ public class Grid
         Debug.DrawLine(GetWorldPosition(0, height), GetWorldPosition(width, height), Color.white, 100f); //Draw horizontal line from (0,maxHeight) - (maxWidth,maxHeight)
         Debug.DrawLine(GetWorldPosition(width, 0), GetWorldPosition(width, height), Color.white, 100f); //Same thing but vertical
 
-        SetGridValue(2, 1, 56); //Cordinate, and value set within cordinate. 
+        //SetGridValue(2, 1, 56); //Cordinate, and value set within cordinate.
     }
 
 
     //Get's world position from grid position
-    private Vector3 GetWorldPosition(int x, int y) //get's global position based on x,y cords of the grid.
+    public Vector3 GetWorldPosition(int x, int y) //get's global position based on x,y cords of the grid.
     {
         return new Vector3(x, y) * cellSize + originPositionOfGrid; //I believe if we want to change where the grid is, for example the grid should span x-y or z-y, we change this here, as Vector3 has (x,y,z). Or we could try rotating through inspector
         //Also, we could probably add slanted shelves like in the real olivander's store with this with 1,1,1.
@@ -49,12 +49,16 @@ public class Grid
 
 
     //Get's grid position from world position. 
-    private void GetXYCordinate(Vector3 worldPosition, out int x, out int y) //Get's the x,y cords based on world position.
+    public void GetXYCoordinates(Vector3 worldPosition, out int x, out int y) //Get's the x,y cords based on world position.
     {
         x = Mathf.FloorToInt((worldPosition-originPositionOfGrid).x / cellSize); //Calculates in which grid does the current cordinate lay.
         y = Mathf.FloorToInt((worldPosition-originPositionOfGrid).y / cellSize);
     }
-    
+
+    public void GetGridCoords(Vector3 worldPosition, out int x, out int y)
+    {
+        GetXYCoordinates(worldPosition, out x, out y); //Although this is the same as the method above this provides controlled access to which scripts can and can't see this calculation (I think...)
+    }
     private void SetGridValue(int x, int y, int targetValue)
     {
         if (x >= 0 && y >= 0 && x < width && y < height) //Will have to change for three dimensions. This is validating the values that the grid can take.
@@ -67,7 +71,7 @@ public class Grid
     public void SetGridValue(Vector3 worldPosition, int value) //Set value to grid cords by itself instead of having to do it manually.
     {
         int x, y;
-        GetXYCordinate(worldPosition, out x, out y);
+        GetXYCoordinates(worldPosition, out x, out y);
         SetGridValue(x, y, value);
     }
 
@@ -86,7 +90,7 @@ public class Grid
     public int GetValue(Vector3 worldPosition) //Read value stored inside a grid, the sequel
     {
         int x, y;
-        GetXYCordinate(worldPosition, out x, out y);
+        GetXYCoordinates(worldPosition, out x, out y);
         return GetValue(x, y);
     }
 }

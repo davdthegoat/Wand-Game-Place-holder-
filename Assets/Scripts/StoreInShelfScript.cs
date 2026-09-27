@@ -11,6 +11,9 @@ public class StoreInShelfScript : MonoBehaviour
     private GameObject shelfObj;
     private bool inShelf_;
     private PickUpScript pickUpScript;
+    private TestingGrid testingGrid;
+    private Grid grid; 
+
 
 
     void Start()
@@ -18,7 +21,10 @@ public class StoreInShelfScript : MonoBehaviour
         LayerNumStore = LayerMask.NameToLayer("storeLayer");
         pickUpScript = GetComponent<PickUpScript>();
 
-        Debug.Log("StoreInShelfScript has found pickUpScript " + (pickUpScript != null));
+        //Debug.Log("StoreInShelfScript has found pickUpScript " + (pickUpScript != null)); No longer useful, code works.
+
+        testingGrid = FindFirstObjectByType<TestingGrid>();
+        grid = testingGrid.GetGrid();
     }
 
     /*
@@ -84,7 +90,15 @@ public class StoreInShelfScript : MonoBehaviour
                 Debug.Log("F raycast hit: " + hit.transform.gameObject.name);
                 Debug.Log("F raycast tag: " + hit.transform.gameObject.tag);
 
-                if (hit.transform.gameObject.tag == "canStore" && hit.transform.gameObject.layer == LayerMask.NameToLayer("storeLayer"))
+                int gridX;
+                int gridY;
+
+                grid.GetGridCoords(hit.point, out gridX, out gridY);
+                Debug.Log("World position: " + hit.point); //Tells the position where the coordinate has hit in the world
+                Debug.Log("Gird coords: " + gridX + " " + gridY); //Tells the position of which grid-coordinate does that position corespond to.
+
+
+                if (hit.transform.gameObject.tag == "canStore" && hit.transform.gameObject.layer == LayerMask.NameToLayer("storeLayer")) //Verifies if the object is being placed in a "storable" area (BOTH REQUIRED) 
                 {
                     StoreInShelf(hit.transform.gameObject);
                 }
