@@ -4,7 +4,19 @@ using UnityEngine;
 public class Item : ScriptableObject
 {
     public string id;
-    public string description;
-    public Sprite icon;
+
+    
+    public enum CoreType {Unicorn_Hair,Phoenix_Tail_Feather,Dragon_Heartstring}
+    
+    public CoreType core;
+
+    public enum WoodType {BeechWood,Willow,Mahogany,Yew,Maple,Ebony,Holly}
+
+    public WoodType wood;
+
+    public string CorrectStorageLocation;
+
+    public string AttributeText;
+
     public GameObject prefab;
 }
