@@ -4,11 +4,15 @@ using CodeMonkey.Utils;
 public class TestingGrid : MonoBehaviour
 {
     private Grid grid;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+
+    void Awake() //So that grid is initialized before StoreInShelfScript everytime.
     {
         //Use this to change size, shape, position of grid on the world
-        grid = new Grid(10, 10, 10f, new Vector3(-60,-40)); //the third parameter here is cellSize, change it to change how many units apart each grid should be.
+        grid = new Grid(3, 3, 0.8f, new Vector3(-5,2,0)); //the third parameter here is cellSize, change it to change how many units apart each grid should be.
+    }
+    public Grid GetGrid()
+    {
+        return grid;
     }
 
     private void Update()
@@ -17,7 +21,7 @@ public class TestingGrid : MonoBehaviour
         {
             Vector3 mouseWorldPosition = UtilsClass.GetMouseWorldPosition();
             Debug.Log(mouseWorldPosition);
-            grid.SetGridValue(UtilsClass.GetMouseWorldPosition(), 56);
+            grid.SetGridValue(UtilsClass.GetMouseWorldPosition(), 1);
 
 
         }
