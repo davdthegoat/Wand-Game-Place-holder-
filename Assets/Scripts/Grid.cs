@@ -1,6 +1,6 @@
 using Unity.VisualScripting;
 using UnityEngine;
-using CodeMonkey.Utils;
+//using CodeMonkey.Utils; UNCOMMENT TO RESTORE GRID DEBUG FUNCTIONALITY
 
 public class Grid
 {
@@ -9,7 +9,7 @@ public class Grid
     [SerializeField] float cellSize;
     [SerializeField] Vector3 originPositionOfGrid;
     private int[,] gridArray; //Apparently this is how to declare a 2D array
-    private TextMesh[,] gridDebuggingArray;
+    //private TextMesh[,] gridDebuggingArray; No longer need debug, grid works.
 
     public Grid(int width, int height, float cellSize, Vector3 originPositionOfGrid) //We might need an additional variable called depth depending on how we want to go about things
     {
@@ -20,13 +20,14 @@ public class Grid
 
         // Debug.Log(width + " " + height); Array working (verified)
         gridArray = new int[width, height];
-        gridDebuggingArray = new TextMesh[width, height];
+        //gridDebuggingArray = new TextMesh[width, height]; No longer debugging
 
         for (int x = 0; x < gridArray.GetLength(0); x++) //This here cycles through the first dimension or x-cordinate or "collumns" of the array, here 0 means the first dimension and 1 means 2nd dimension
         {
             for (int y = 0; y < gridArray.GetLength(1); y++) //This one is height, x is width.
             {
-                gridDebuggingArray[x,y] = UtilsClass.CreateWorldText(gridArray[x, y].ToString(), null, GetWorldPositionCenter(x, y), 10, Color.white, TextAnchor.MiddleCenter); //"GetWorldPosition(x, y) + new Vector3(cellSize,cellSize)" controls where in a grid are objects/text shown
+                //UN-COMMENT NEXT LINE TO RESTORE GRID DEBUG.
+                //gridDebuggingArray[x,y] = UtilsClass.CreateWorldText(gridArray[x, y].ToString(), null, GetWorldPositionCenter(x, y), 10, Color.white, TextAnchor.MiddleCenter); //"GetWorldPosition(x, y) + new Vector3(cellSize,cellSize)" controls where in a grid are objects/text shown
                 //The following two lines are to help visualize what the grid looks like and are not necessary as our grid will be invisible in the final product.
                 //GetWorldPositionCenter(x,y) is meant to replace GetWorldPosition(x,y) + new Vector3(cellSize,cellSize)*0.5f
                 Debug.DrawLine(GetWorldPosition(x, y), GetWorldPosition(x, y + 1),Color.white, 100f);
@@ -71,7 +72,7 @@ public class Grid
         if (x >= 0 && y >= 0 && x < width && y < height) //Will have to change for three dimensions. This is validating the values that the grid can take.
         {
             gridArray[x, y] = targetValue;
-            gridDebuggingArray[x, y].text = gridArray[x, y].ToString();
+            //gridDebuggingArray[x, y].text = gridArray[x, y].ToString();
         }
     }
 

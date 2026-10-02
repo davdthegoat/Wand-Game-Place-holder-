@@ -125,7 +125,7 @@ public class StoreInShelfScript : MonoBehaviour
         inShelf_ = true;
         shelfObj = StoreObj;
 
-        Physics.IgnoreCollision(heldObj.GetComponent<Collider>(),shelfObj.GetComponent<Collider>(),false);
+        Physics.IgnoreCollision(heldObj.GetComponent<Collider>(),shelfObj.GetComponent<Collider>(),true); //Setting to true for debugging
 
         heldObj.layer = LayerNumStore;
 
@@ -134,20 +134,24 @@ public class StoreInShelfScript : MonoBehaviour
         heldObjRb.linearVelocity = Vector3.zero;
         heldObjRb.angularVelocity = Vector3.zero;
 
+        //remove item from player's hand
+        //Testing, seeing if this fixes the weird angles/inconsistencies while placing an item.
+        pickUpScript.ClearHeldObject();
+
         //place the item in the shelf
         //heldObj.transform.parent = shelfObj.transform; According to the Unity discord server, this is the root cause of placed-item's being deformed in unexpected angles
         heldObj.transform.SetParent(null);
 
         Vector3 gridWorldPosition = grid.GetWorldPositionCenter(gridX, gridY); //gridX and gridY should (in theory) be global.
+        /*
         heldObj.transform.position = gridWorldPosition;
         heldObj.transform.rotation = Quaternion.identity;
+        */
+        heldObj.transform.SetPositionAndRotation(gridWorldPosition, Quaternion.identity); //Someone on Unity discord said this would be better with less inconsistencies, because both operation would happen simultaneously instead of line-by-line
 
         //heldObj.transform.localPosition = Vector3.zero;  //might have to replace with global if we want more uniformity in the placement of the wands
         //Function is more efficient + better
         //Replaces setting position and transfrom seperately
         //heldObj.transform.SetLocalPositionAndRotation( Vector3.zero, Quaternion.identity); I think this is causing the problem in the new system
-
-        //remove item from player's hand
-        pickUpScript.ClearHeldObject();
     }
 }

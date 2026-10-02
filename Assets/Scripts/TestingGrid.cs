@@ -1,5 +1,5 @@
 using UnityEngine;
-using CodeMonkey.Utils;
+//using CodeMonkey.Utils; UN-COMMENT TO RESTORE GRIDE DEBUG FUNCTIONALITY
 
 public class TestingGrid : MonoBehaviour
 {
@@ -9,6 +9,7 @@ public class TestingGrid : MonoBehaviour
     {
         //Use this to change size, shape, position of grid on the world
         grid = new Grid(3, 3, 0.8f, new Vector3(-5,2,0)); //the third parameter here is cellSize, change it to change how many units apart each grid should be.
+        //new Vector3 decides position of the grid, in GLOBAL coords.
     }
     public Grid GetGrid()
     {
@@ -17,7 +18,7 @@ public class TestingGrid : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0)) //If left click is pressed while mouse is over grid, change value of grid using "SetGridValue" method defined in Grid script.
+        /*if (Input.GetMouseButtonDown(0)) //If left click is pressed while mouse is over grid, change value of grid using "SetGridValue" method defined in Grid script.
         {
             Vector3 mouseWorldPosition = UtilsClass.GetMouseWorldPosition();
             Debug.Log(mouseWorldPosition);
@@ -29,6 +30,6 @@ public class TestingGrid : MonoBehaviour
         if (Input.GetMouseButtonDown(1)) //Button to get the value stored inside a grid
         {
             Debug.Log(grid.GetValue(UtilsClass.GetMouseWorldPosition()));
-        }
+        } */
     }
 }
