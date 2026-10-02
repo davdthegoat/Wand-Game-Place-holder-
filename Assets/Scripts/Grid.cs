@@ -26,8 +26,9 @@ public class Grid
         {
             for (int y = 0; y < gridArray.GetLength(1); y++) //This one is height, x is width.
             {
-                gridDebuggingArray[x,y] = UtilsClass.CreateWorldText(gridArray[x, y].ToString(), null, GetWorldPosition(x, y) + new Vector3(cellSize,cellSize) * 0.5f, 10, Color.white, TextAnchor.MiddleCenter); //"GetWorldPosition(x, y) + new Vector3(cellSize,cellSize)" controls where in a grid are objects/text shown
+                gridDebuggingArray[x,y] = UtilsClass.CreateWorldText(gridArray[x, y].ToString(), null, GetWorldPositionCenter(x, y), 10, Color.white, TextAnchor.MiddleCenter); //"GetWorldPosition(x, y) + new Vector3(cellSize,cellSize)" controls where in a grid are objects/text shown
                 //The following two lines are to help visualize what the grid looks like and are not necessary as our grid will be invisible in the final product.
+                //GetWorldPositionCenter(x,y) is meant to replace GetWorldPosition(x,y) + new Vector3(cellSize,cellSize)*0.5f
                 Debug.DrawLine(GetWorldPosition(x, y), GetWorldPosition(x, y + 1),Color.white, 100f);
                 Debug.DrawLine(GetWorldPosition(x, y), GetWorldPosition(x+1, y), Color.white, 100f);
             }
@@ -46,9 +47,13 @@ public class Grid
         //I believe if we want to change where the grid is, for example the grid should span x-y or z-y, we change this here, as Vector3 has (x,y,z). Or we could try rotating through inspector
         //Also, we could probably add slanted shelves like in the real olivander's store with this with 1,1,1.
         //"+ originPositionOfGrid" helps calculate wherer exactly the world position is on global coordinates.
-        //"new Vector3 (cellSize, cellSize)*0.5f" adjusts coorindates to be in the exact center of the grid instead of a corner.
+        //"new Vector3 (cellSize, cellSize)*0.5f" adjusts coorindates to be in the exact center of the grid instead of a corner: Future DVD here, removed because gird-lines are drawn from this method. Offsetting it means offsetting the lines, which is worse for visual representation
     }
 
+    public Vector3 GetWorldPositionCenter(int x, int y) //This returns the center of a grid
+    {
+        return GetWorldPosition(x, y) + new Vector3(cellSize, cellSize) * 0.5f;
+    }
 
     //Get's grid position from world position. 
     public void GetXYCoordinates(Vector3 worldPosition, out int x, out int y) //Get's the x,y cords based on world position.
@@ -95,4 +100,5 @@ public class Grid
         GetXYCoordinates(worldPosition, out x, out y);
         return GetValue(x, y);
     }
+
 }

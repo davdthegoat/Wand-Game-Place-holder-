@@ -98,7 +98,8 @@ public class StoreInShelfScript : MonoBehaviour
                 Debug.Log("Gird coords: " + gridX + " " + gridY); //Tells the position of which grid-coordinate does that position corespond to.
 
 
-                if (hit.transform.gameObject.tag == "canStore" && hit.transform.gameObject.layer == LayerMask.NameToLayer("storeLayer")) //Verifies if the object is being placed in a "storable" area (BOTH REQUIRED) 
+                if (hit.transform.gameObject.tag == "canStore") //Verifies if the object is being placed in a "storable" area (BOTH REQUIRED)
+                //&& hit.transform.gameObject.layer == LayerMask.NameToLayer("storeLayer"), trying without tag. Future DVD here, tag removed for redundancy.
                 {
                     //StoreInShelf(hit.transform.gameObject); Previous system: currently trying to overhaul with grid system.
                     StoreInShelf(hit.transform.gameObject, gridX, gridY);
@@ -134,16 +135,17 @@ public class StoreInShelfScript : MonoBehaviour
         heldObjRb.angularVelocity = Vector3.zero;
 
         //place the item in the shelf
-        heldObj.transform.parent = shelfObj.transform;
+        //heldObj.transform.parent = shelfObj.transform; According to the Unity discord server, this is the root cause of placed-item's being deformed in unexpected angles
+        heldObj.transform.SetParent(null);
 
-        Vector3 gridWorldPosition = grid.GetWorldPosition(gridX, gridY); //gridX and gridY should be global.
+        Vector3 gridWorldPosition = grid.GetWorldPositionCenter(gridX, gridY); //gridX and gridY should (in theory) be global.
         heldObj.transform.position = gridWorldPosition;
         heldObj.transform.rotation = Quaternion.identity;
 
-        // heldObj.transform.localPosition = Vector3.zero;  //might have to replace with global if we want more uniformity in the placement of the wands
+        //heldObj.transform.localPosition = Vector3.zero;  //might have to replace with global if we want more uniformity in the placement of the wands
         //Function is more efficient + better
         //Replaces setting position and transfrom seperately
-        heldObj.transform.SetLocalPositionAndRotation( Vector3.zero, Quaternion.identity);
+        //heldObj.transform.SetLocalPositionAndRotation( Vector3.zero, Quaternion.identity); I think this is causing the problem in the new system
 
         //remove item from player's hand
         pickUpScript.ClearHeldObject();
