@@ -70,10 +70,12 @@ public class StoreInShelfScript : MonoBehaviour
         {
             GameObject heldObj = pickUpScript.GetHeldObject();
             Rigidbody heldObjRb = pickUpScript.GetHeldObjectRigidbody();
+            /*
             Debug.Log("F was pressed");
             Debug.Log("PickUpScript reference " + pickUpScript); 
             Debug.Log("heldObj immediately after pickup: " + heldObj);
             Debug.Log("heldObjRb immediately after pickup: " + heldObjRb);
+            */
 
             if (heldObj == null)
             {
@@ -98,11 +100,20 @@ public class StoreInShelfScript : MonoBehaviour
                 Debug.Log("Gird coords: " + gridX + " " + gridY); //Tells the position of which grid-coordinate does that position corespond to.
 
 
-                if (hit.transform.gameObject.tag == "canStore") //Verifies if the object is being placed in a "storable" area (BOTH REQUIRED)
+                if (hit.transform.gameObject.tag == "canStore" && hit.transform.gameObject.layer == LayerMask.NameToLayer("storeLayer")) //Verifies if the object is being placed in a "storable" area (BOTH REQUIRED)
                 //&& hit.transform.gameObject.layer == LayerMask.NameToLayer("storeLayer"), trying without tag. Future DVD here, tag removed for redundancy.
                 {
-                    //StoreInShelf(hit.transform.gameObject); Previous system: currently trying to overhaul with grid system.
-                    StoreInShelf(hit.transform.gameObject, gridX, gridY);
+                    if (grid.GetValue(gridX, gridY) == 0)
+                    { 
+                        StoreInShelf(hit.transform.gameObject, gridX, gridY);
+                        grid.SetGridValue(gridX, gridY, 1);
+                    }
+                    /* Code working, no need for this debug.
+                    else
+                    {
+                        Debug.Log("That grid is occupied by an object");
+                    }
+                    */
                 }
             }
             else
@@ -125,7 +136,7 @@ public class StoreInShelfScript : MonoBehaviour
         inShelf_ = true;
         shelfObj = StoreObj;
 
-        Physics.IgnoreCollision(heldObj.GetComponent<Collider>(),shelfObj.GetComponent<Collider>(),true); //Setting to true for debugging
+        Physics.IgnoreCollision(heldObj.GetComponent<Collider>(),shelfObj.GetComponent<Collider>(),false); //Setting to true for debugging
 
         heldObj.layer = LayerNumStore;
 

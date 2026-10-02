@@ -67,7 +67,7 @@ public class Grid
     {
         GetXYCoordinates(worldPosition, out x, out y); //Although this is the same as the method above this provides controlled access to which scripts can and can't see this calculation (I think...)
     }
-    private void SetGridValue(int x, int y, int targetValue)
+    public void SetGridValue(int x, int y, int targetValue)
     {
         if (x >= 0 && y >= 0 && x < width && y < height) //Will have to change for three dimensions. This is validating the values that the grid can take.
         {

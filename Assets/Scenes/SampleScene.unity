@@ -323,7 +323,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3886295377113106041, guid: d4995a85c42c39a4f8e56ffb1dcbdf37, type: 3}
       propertyPath: m_Layer
-      value: 0
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 4514073173819497667, guid: d4995a85c42c39a4f8e56ffb1dcbdf37, type: 3}
       propertyPath: m_LocalScale.x
@@ -383,11 +383,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4754111639493262136, guid: d4995a85c42c39a4f8e56ffb1dcbdf37, type: 3}
       propertyPath: m_Layer
-      value: 0
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 5612353832367307469, guid: d4995a85c42c39a4f8e56ffb1dcbdf37, type: 3}
       propertyPath: m_Layer
-      value: 0
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
@@ -2885,6 +2885,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WandSpawner
   wandPrefab: {fileID: 8583238787488274419, guid: 51ce47cf4c8bea74fbaedfb9816e5707, type: 3}
+  wandCount: 5
   spawnPosition: {fileID: 1988484348}
 --- !u!1 &2146256738
 GameObject:
@@ -3072,11 +3073,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6671891743021588533, guid: 28ce48b2c6dad3d46b9373039ed74b07, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.598
+      value: -0.188
       objectReference: {fileID: 0}
     - target: {fileID: 6671891743021588533, guid: 28ce48b2c6dad3d46b9373039ed74b07, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1.03
+      value: 1.187
       objectReference: {fileID: 0}
     - target: {fileID: 8707502996643971259, guid: 28ce48b2c6dad3d46b9373039ed74b07, type: 3}
       propertyPath: m_Name
