@@ -70,7 +70,15 @@ public class Grid
 
     public Vector3 GetWorldPositionCenter(int x, int y) //This returns the center of a grid
     {
-        return GetWorldPosition(x, y) + new Vector3(cellSize, cellSize) * 0.5f;
+        //return GetWorldPosition(x, y) + new Vector3(cellSize, cellSize) * 0.5f;
+        if (gridPlane == GridPlane.XY)
+        {
+            return GetWorldPosition(x, y) + new Vector3(cellSize, cellSize) * 0.5f;
+        }
+        else
+        {
+            return GetWorldPosition(x, y) + new Vector3(cellSize, cellSize) * 0.5f;
+        }
     }
 
     //Get's grid position from world position. 

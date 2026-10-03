@@ -6,4 +6,14 @@ public class StoredGridItem : MonoBehaviour
     public TestingGrid testingGrid;
     public int gridX;
     public int gridY;
+
+    public Transform faceA;
+    public Transform faceB;
+
+    public enum AnchorFace
+    {
+        FaceA,
+        FaceB
+    }
+    public AnchorFace anchorFace;
 }

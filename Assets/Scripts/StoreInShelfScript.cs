@@ -79,6 +79,9 @@ public class StoreInShelfScript : MonoBehaviour
                 grid.GetGridCoords(hit.point, out gridX, out gridY);
                 Debug.Log("World position: " + hit.point); //Tells the position where the coordinate has hit in the world
                 Debug.Log("Gird coords: " + gridX + " " + gridY); //Tells the position of which grid-coordinate does that position corespond to.
+                //Further debugging for ZY axis.
+                Debug.Log("Hit Object: " + hit.transform.gameObject.name);
+                Debug.Log("Tag: " + hit.transform.gameObject.tag + "Layer: " + LayerMask.NameToLayer("storeLayer"));
 
 
                 if (hit.transform.gameObject.tag == "canStore" && hit.transform.gameObject.layer == LayerMask.NameToLayer("storeLayer")) //Verifies if the object is being placed in a "storable" area (BOTH REQUIRED)
@@ -137,11 +140,31 @@ public class StoreInShelfScript : MonoBehaviour
 
         Grid grid = hitTestingGrid.GetGrid();
         Vector3 gridWorldPosition = grid.GetWorldPositionCenter(gridX, gridY);
+        Quaternion itemRotation = hitTestingGrid.GetItemRotation();
+        heldObj.transform.rotation = itemRotation;
+        StoredGridItem storedGridItem = heldObj.GetComponent<StoredGridItem>();
+        if (storedGridItem == null)
+        {
+            storedGridItem = heldObj.AddComponent<StoredGridItem>();
+        }
+
+        Transform anchor;
+        if (storedGridItem.anchorFace == StoredGridItem.AnchorFace.FaceA)
+        {
+            anchor = storedGridItem.faceA;
+        }
+        else
+        {
+            anchor = storedGridItem.faceB;
+        }
+
+        Vector3 anchorLocalPosition = anchor.localPosition;
+        heldObj.transform.position = gridWorldPosition - heldObj.transform.rotation * anchorLocalPosition;
         /*
         heldObj.transform.position = gridWorldPosition;
         heldObj.transform.rotation = Quaternion.identity;
         */
-        heldObj.transform.SetPositionAndRotation(gridWorldPosition, Quaternion.identity); //Someone on Unity discord said this would be better with less inconsistencies, because both operation would happen simultaneously instead of line-by-line
+        //heldObj.transform.SetPositionAndRotation(gridWorldPosition, Quaternion.identity); //Someone on Unity discord said this would be better with less inconsistencies, because both operation would happen simultaneously instead of line-by-line
 
         //heldObj.transform.localPosition = Vector3.zero;  //might have to replace with global if we want more uniformity in the placement of the wands
         //Function is more efficient + better
@@ -149,12 +172,6 @@ public class StoreInShelfScript : MonoBehaviour
         //heldObj.transform.SetLocalPositionAndRotation( Vector3.zero, Quaternion.identity); I think this is causing the problem in the new system
 
         //Stores where on the grid the item is stored, can be retrieved/overwritten when item is taken out
-        StoredGridItem storedGridItem = heldObj.GetComponent<StoredGridItem>();
-        if (storedGridItem == null)
-        {
-            storedGridItem = heldObj.AddComponent<StoredGridItem>();
-        }
-
         storedGridItem.testingGrid = hitTestingGrid;
         storedGridItem.gridX = gridX;
         storedGridItem.gridY = gridY;

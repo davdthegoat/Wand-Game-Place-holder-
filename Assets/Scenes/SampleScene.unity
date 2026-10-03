@@ -903,9 +903,10 @@ GameObject:
   m_Component:
   - component: {fileID: 560248659}
   - component: {fileID: 560248660}
-  m_Layer: 0
+  - component: {fileID: 560248661}
+  m_Layer: 9
   m_Name: TestingGrid ZY
-  m_TagString: Untagged
+  m_TagString: canStore
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -919,8 +920,8 @@ Transform:
   m_GameObject: {fileID: 560248658}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 19.19895, y: 0, z: -10.08325}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -1.8, y: 1.85, z: -5.247}
+  m_LocalScale: {x: 0.29812, y: 2.03869, z: 2.093911}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 339981939}
@@ -940,11 +941,33 @@ MonoBehaviour:
   width: 3
   height: 3
   gridSize: 0.6
-  xPos: 0
-  yPos: 0
+  xPos: 2
+  yPos: 1
   zPos: 0
   gridPlane: 1
-  gridCollider: {fileID: 0}
+  gridCollider: {fileID: 560248661}
+  itemRotation: {x: 0, y: 0, z: 0}
+--- !u!65 &560248661
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 560248658}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &610014199
 GameObject:
   m_ObjectHideFlags: 0
@@ -1220,6 +1243,7 @@ GameObject:
   - component: {fileID: 808400313}
   - component: {fileID: 808400316}
   - component: {fileID: 808400317}
+  - component: {fileID: 808400318}
   m_Layer: 0
   m_Name: Cube
   m_TagString: canPickUp
@@ -1359,6 +1383,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dea991a067e43834394b356dd9bdc325, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ItemPositionReset
+--- !u!114 &808400318
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 808400311}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 332c4c5cbce544d4a9e3b4d628eec2cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::StoredGridItem
+  testingGrid: {fileID: 0}
+  gridX: 0
+  gridY: 0
+  faceA: {fileID: 0}
+  faceB: {fileID: 0}
+  anchorFace: 0
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0
@@ -1647,14 +1689,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ada0ea1dd0df1d4798e38ce34783424, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TestingGrid
-  width: 3
-  height: 3
+  width: 5
+  height: 5
   gridSize: 0.6
   xPos: -4.6
   yPos: 1.5
   zPos: 0
   gridPlane: 0
   gridCollider: {fileID: 1070140596}
+  itemRotation: {x: 0, y: 0, z: 0}
 --- !u!4 &1070140595
 Transform:
   m_ObjectHideFlags: 0

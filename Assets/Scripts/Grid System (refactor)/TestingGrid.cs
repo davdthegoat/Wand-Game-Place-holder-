@@ -12,6 +12,7 @@ public class TestingGrid : MonoBehaviour
     [SerializeField] float zPos;
     [SerializeField] Grid.GridPlane gridPlane;
     [SerializeField] private Collider gridCollider; //Will help to uniquely identify a grid.
+    [SerializeField] private Vector3 itemRotation;
     private Grid grid;
 
     void Awake() //So that grid is initialized before StoreInShelfScript everytime.
@@ -23,6 +24,11 @@ public class TestingGrid : MonoBehaviour
     public Grid GetGrid()
     {
         return grid;
+    }
+
+    public Quaternion GetItemRotation()
+    {
+        return Quaternion.Euler(itemRotation);
     }
 
     private void Update()

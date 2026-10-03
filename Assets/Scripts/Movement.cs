@@ -18,12 +18,14 @@ public class Movement : MonoBehaviour
     float velocityY;
     bool isGrounded;
     float cameraCap;
+    bool cameraLocked;
     Vector2 currentMouseDelta;
     Vector2 currentMouseDeltaVelocity;
     CharacterController controller;
     Vector2 currentDir;
     Vector2 currentDirVelocity;
     Vector3 velocity;
+
 
 
     void Start()
@@ -48,6 +50,10 @@ public class Movement : MonoBehaviour
     }
     void UpdateMouse()
     {
+        if (cameraLocked)
+        {
+            return;
+        }
         Vector2 targetMouseDelta = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
         currentMouseDelta = Vector2.SmoothDamp(currentMouseDelta, targetMouseDelta, ref currentMouseDeltaVelocity, mouseSmoothTime);
         cameraCap -= currentMouseDelta.y * mouseSensitivity;
@@ -78,5 +84,11 @@ public class Movement : MonoBehaviour
         {
             velocityY = -8f;
         }
+    }
+
+    //Camera locked method
+    public void SetCameraLocked(bool locked)
+    {
+        cameraLocked = locked;
     }
 }
