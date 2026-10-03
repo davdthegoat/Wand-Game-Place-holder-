@@ -1561,6 +1561,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ada0ea1dd0df1d4798e38ce34783424, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TestingGrid
+  width: 3
+  height: 3
+  gridSize: 0.6
+  xPos: -4.6
+  yPos: 1.8
+  zPos: 0
 --- !u!4 &1070140595
 Transform:
   m_ObjectHideFlags: 0
@@ -3079,6 +3085,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 1.187
       objectReference: {fileID: 0}
+    - target: {fileID: 7108556316494594470, guid: 28ce48b2c6dad3d46b9373039ed74b07, type: 3}
+      propertyPath: testinggrid
+      value: 
+      objectReference: {fileID: 1070140594}
     - target: {fileID: 8707502996643971259, guid: 28ce48b2c6dad3d46b9373039ed74b07, type: 3}
       propertyPath: m_Name
       value: Mr. Bean

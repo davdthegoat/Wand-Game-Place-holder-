@@ -102,4 +102,17 @@ public class Grid
         return GetValue(x, y);
     }
 
+    public int GetLowestFreeGrid(int x)
+    //Passed the x-coord, search the y-coord starting from 0, all the way to height, returning first y-coord which has the value "0", which means "unoccupied"
+    {
+        for (int y =0; y < height; y++) 
+        {
+            if (gridArray[x,y] == 0)
+            {
+                return y;
+            }
+        }
+        return -1; //If the whole collumn is full, then returns -1
+    }
+
 }

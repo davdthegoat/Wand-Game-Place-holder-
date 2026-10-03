@@ -6,13 +6,13 @@ public class StoreInShelfScript : MonoBehaviour
     //Dont need player collision to be disabled when storing in shelf
     //[SerializeField] GameObject player;
     [SerializeField] float storeRange = 5f;
-
+    [SerializeField] private TestingGrid testinggrid; //Might have to think of a smarter solution. This is attacthed to main camera, would have to add atleast 20 of these otherwise.
     private int LayerNumStore;
     private GameObject shelfObj;
-    private bool inShelf_;
+    //private bool inShelf_; Worked around using Gird script
     private PickUpScript pickUpScript;
-    private TestingGrid testingGrid;
-    private Grid grid; 
+    //private TestingGrid testingGrid;
+    //private Grid grid; 
 
 
 
@@ -22,9 +22,6 @@ public class StoreInShelfScript : MonoBehaviour
         pickUpScript = GetComponent<PickUpScript>();
 
         //Debug.Log("StoreInShelfScript has found pickUpScript " + (pickUpScript != null)); No longer useful, code works.
-
-        testingGrid = FindFirstObjectByType<TestingGrid>();
-        grid = testingGrid.GetGrid();
     }
 
     /*
@@ -89,9 +86,9 @@ public class StoreInShelfScript : MonoBehaviour
             Debug.DrawRay(transform.position, transform.forward * storeRange, Color.red,2f); // To test colider/rb info.
             if (Physics.Raycast(transform.position, transform.forward, out hit, storeRange))
             {
-                Debug.Log("F raycast hit: " + hit.transform.gameObject.name);
-                Debug.Log("F raycast tag: " + hit.transform.gameObject.tag);
-
+                //Debug.Log("F raycast hit: " + hit.transform.gameObject.name);
+                //Debug.Log("F raycast tag: " + hit.transform.gameObject.tag);
+                Grid grid = testinggrid.GetGrid();
                 int gridX;
                 int gridY;
 
@@ -103,10 +100,11 @@ public class StoreInShelfScript : MonoBehaviour
                 if (hit.transform.gameObject.tag == "canStore" && hit.transform.gameObject.layer == LayerMask.NameToLayer("storeLayer")) //Verifies if the object is being placed in a "storable" area (BOTH REQUIRED)
                 //&& hit.transform.gameObject.layer == LayerMask.NameToLayer("storeLayer"), trying without tag. Future DVD here, tag removed for redundancy.
                 {
-                    if (grid.GetValue(gridX, gridY) == 0)
+                    int lowestFreeY = grid.GetLowestFreeGrid(gridX);
+                    if (lowestFreeY != -1)
                     { 
-                        StoreInShelf(hit.transform.gameObject, gridX, gridY);
-                        grid.SetGridValue(gridX, gridY, 1);
+                        StoreInShelf(hit.transform.gameObject, gridX, lowestFreeY);
+                        grid.SetGridValue(gridX, lowestFreeY, 1);
                     }
                     /* Code working, no need for this debug.
                     else
@@ -133,7 +131,7 @@ public class StoreInShelfScript : MonoBehaviour
             return;
         }
 
-        inShelf_ = true;
+        
         shelfObj = StoreObj;
 
         Physics.IgnoreCollision(heldObj.GetComponent<Collider>(),shelfObj.GetComponent<Collider>(),false); //Setting to true for debugging
@@ -153,7 +151,8 @@ public class StoreInShelfScript : MonoBehaviour
         //heldObj.transform.parent = shelfObj.transform; According to the Unity discord server, this is the root cause of placed-item's being deformed in unexpected angles
         heldObj.transform.SetParent(null);
 
-        Vector3 gridWorldPosition = grid.GetWorldPositionCenter(gridX, gridY); //gridX and gridY should (in theory) be global.
+        Grid grid = testinggrid.GetGrid();
+        Vector3 gridWorldPosition = grid.GetWorldPositionCenter(gridX, gridY);
         /*
         heldObj.transform.position = gridWorldPosition;
         heldObj.transform.rotation = Quaternion.identity;
@@ -164,5 +163,16 @@ public class StoreInShelfScript : MonoBehaviour
         //Function is more efficient + better
         //Replaces setting position and transfrom seperately
         //heldObj.transform.SetLocalPositionAndRotation( Vector3.zero, Quaternion.identity); I think this is causing the problem in the new system
+
+        //Stores where on the grid the item is stored, can be retrieved/overwritten when item is taken out
+        StoredGridItem storedGridItem = heldObj.GetComponent<StoredGridItem>();
+        if (storedGridItem == null)
+        {
+            storedGridItem = heldObj.AddComponent<StoredGridItem>();
+        }
+
+        storedGridItem.testingGrid = testinggrid;
+        storedGridItem.gridX = gridX;
+        storedGridItem.gridY = gridY;
     }
 }

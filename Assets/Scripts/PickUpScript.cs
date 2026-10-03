@@ -86,6 +86,12 @@ public class PickUpScript : MonoBehaviour
 
             //make sure object doesnt collide with player, it can cause weird bugs
             Physics.IgnoreCollision(heldObj.GetComponent<Collider>(), player.GetComponent<Collider>(), true);
+            StoredGridItem storedGridItem = pickUpObj.GetComponent<StoredGridItem>();
+            if (storedGridItem != null)
+            {
+                storedGridItem.testingGrid.GetGrid().SetGridValue(storedGridItem.gridX, storedGridItem.gridY, 0);
+                Destroy(storedGridItem);
+            }
         }
     }
 
