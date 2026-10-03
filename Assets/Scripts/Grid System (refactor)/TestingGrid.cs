@@ -10,12 +10,14 @@ public class TestingGrid : MonoBehaviour
     [SerializeField] float xPos;
     [SerializeField] float yPos;
     [SerializeField] float zPos;
+    [SerializeField] Grid.GridPlane gridPlane;
+    [SerializeField] private Collider gridCollider; //Will help to uniquely identify a grid.
     private Grid grid;
 
     void Awake() //So that grid is initialized before StoreInShelfScript everytime.
     {
         //Use this to change size, shape, position of grid on the world
-        grid = new Grid(width, height, gridSize,new Vector3(xPos,yPos,zPos)); //the third parameter here is cellSize, change it to change how many units apart each grid should be.
+        grid = new Grid(width, height, gridSize,new Vector3(xPos,yPos,zPos), gridPlane); //the third parameter here is cellSize, change it to change how many units apart each grid should be.
         //new Vector3 decides position of the grid, in GLOBAL coords.
     }
     public Grid GetGrid()
@@ -40,5 +42,10 @@ public class TestingGrid : MonoBehaviour
         {
             Debug.Log(grid.GetValue(UtilsClass.GetMouseWorldPosition()));
         } 
+    }
+
+    public bool WasHitByRay(RaycastHit hit)
+    {
+        return hit.collider == gridCollider;
     }
 }

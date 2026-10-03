@@ -11,12 +11,21 @@ public class Grid
     private int[,] gridArray; //Apparently this is how to declare a 2D array
     //private TextMesh[,] gridDebuggingArray; No longer need debug, grid works.
 
-    public Grid(int width, int height, float cellSize, Vector3 originPositionOfGrid) //We might need an additional variable called depth depending on how we want to go about things
+    private GridPlane gridPlane;
+    //Enum will be used to seperate a grid which is on the X-Y axis from a grid placed on the Z-Y axis: This approach was suggested by Unity discord server.
+    public enum GridPlane
+    {
+        XY,
+        ZY
+    }
+
+    public Grid(int width, int height, float cellSize, Vector3 originPositionOfGrid, GridPlane gridPlane) //"GridPlane gridPlane" is what always XY and ZY grids.
     {
         this.width = width;
         this.height = height;
         this.cellSize = cellSize;
         this.originPositionOfGrid = originPositionOfGrid;
+        this.gridPlane = gridPlane;
 
         // Debug.Log(width + " " + height); Array working (verified)
         gridArray = new int[width, height];
@@ -44,7 +53,15 @@ public class Grid
     //Get's world position from grid position
     public Vector3 GetWorldPosition(int x, int y) //get's global position based on x,y cords of the grid.
     {
-        return new Vector3(x, y) * cellSize + originPositionOfGrid; 
+        //Parameter x is used to represent x in a 2D graph, as that makes it easier for me to mathematically visualize. I could make a variable called z but I'm too lazy, it would do the same thing.
+        if (gridPlane == GridPlane.XY)
+        {
+            return new Vector3(x, y, 0) * cellSize + originPositionOfGrid;
+        }
+        else
+        {
+            return new Vector3(0, y,x) * cellSize + originPositionOfGrid;
+        } 
         //I believe if we want to change where the grid is, for example the grid should span x-y or z-y, we change this here, as Vector3 has (x,y,z). Or we could try rotating through inspector
         //Also, we could probably add slanted shelves like in the real olivander's store with this with 1,1,1.
         //"+ originPositionOfGrid" helps calculate wherer exactly the world position is on global coordinates.
@@ -57,10 +74,18 @@ public class Grid
     }
 
     //Get's grid position from world position. 
-    public void GetXYCoordinates(Vector3 worldPosition, out int x, out int y) //Get's the x,y cords based on world position.
+    public void GetXYCoordinates(Vector3 worldPosition, out int x, out int y) //Get's the (x,y) cords of grid based on world position.
     {
-        x = Mathf.FloorToInt((worldPosition-originPositionOfGrid).x / cellSize); //Calculates in which grid does the current cordinate lay.
-        y = Mathf.FloorToInt((worldPosition-originPositionOfGrid).y / cellSize);
+        Vector3 localPosition = worldPosition - originPositionOfGrid; //Calculates where raycast hits with respect to the origin of the grid.
+        if (gridPlane == GridPlane.XY)
+        {
+            x = Mathf.FloorToInt(localPosition.x / cellSize); //Calculates in which grid does the current cordinate lay.
+        }
+        else
+        {
+            x = Mathf.FloorToInt(localPosition.z / cellSize);
+        }
+        y = Mathf.FloorToInt(localPosition.y / cellSize);
     }
 
     public void GetGridCoords(Vector3 worldPosition, out int x, out int y)
@@ -113,6 +138,10 @@ public class Grid
             }
         }
         return -1; //If the whole collumn is full, then returns -1
+    }
+    public bool IsWithinGrid(int x, int y)
+    {
+        return x >= 0 && y >= 0 && x < width && y < height;
     }
 
 }

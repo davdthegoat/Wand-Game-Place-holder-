@@ -6,13 +6,16 @@ public class StoreInShelfScript : MonoBehaviour
     //Dont need player collision to be disabled when storing in shelf
     //[SerializeField] GameObject player;
     [SerializeField] float storeRange = 5f;
-    [SerializeField] private TestingGrid testinggrid; //Might have to think of a smarter solution. This is attacthed to main camera, would have to add atleast 20 of these otherwise.
+    //[SerializeField] private TestingGrid testinggrid; //Might have to think of a smarter solution. This is attacthed to main camera, would have to add atleast 20 of these otherwise.
     private int LayerNumStore;
     private GameObject shelfObj;
     //private bool inShelf_; Worked around using Gird script
     private PickUpScript pickUpScript;
     //private TestingGrid testingGrid;
     //private Grid grid; 
+
+    //An attempt to search through multiple grids, using an Array in order to be able to identify which one was called.
+    private TestingGrid[] testingGrids;
 
 
 
@@ -21,45 +24,10 @@ public class StoreInShelfScript : MonoBehaviour
         LayerNumStore = LayerMask.NameToLayer("storeLayer");
         pickUpScript = GetComponent<PickUpScript>();
 
+        testingGrids= FindObjectsByType<TestingGrid>(FindObjectsSortMode.None);
+
         //Debug.Log("StoreInShelfScript has found pickUpScript " + (pickUpScript != null)); No longer useful, code works.
     }
-
-    /*
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.F))
-        {
-            GameObject heldObj = pickUpScript.GetHeldObject();
-
-            if (heldObj == null)
-            {
-                return;
-            }
-
-            RaycastHit hit;
-
-             disabled temporarily for testing purposes. 
-            if (Physics.Raycast(transform.position,transform.TransformDirection(Vector3.forward),out hit,pickUpRange))
-            {
-                if (hit.transform.gameObject.tag == "canStore")
-                {
-                    StoreInShelf(hit.transform.gameObject);
-                }
-            }
-            
-            if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, pickUpRange))
-            {
-                Debug.Log("F raycast hit " + hit.transform.gameObject.name);
-                Debug.Log("F raycast hit " + hit.transform.gameObject.tag);
-
-                if (hit.transform.gameObject.tag == "canStore")
-                {
-                    StoreInShelf(hit.transform.gameObject);
-                }
-            }
-        }
-    REMOVE FOR DEBUGGING, RESTORE IN FINAL VERSION OF GAME
-    } */
 
     void Update()
     {
@@ -88,7 +56,23 @@ public class StoreInShelfScript : MonoBehaviour
             {
                 //Debug.Log("F raycast hit: " + hit.transform.gameObject.name);
                 //Debug.Log("F raycast tag: " + hit.transform.gameObject.tag);
-                Grid grid = testinggrid.GetGrid();
+                TestingGrid hitTestingGrid = null;
+
+                foreach (TestingGrid testingGrid in testingGrids)
+                { 
+                    if (testingGrid.WasHitByRay(hit))
+                    {
+                        hitTestingGrid = testingGrid;
+                        break; //Exits for loop if the correct grid is found by cycling through the TestingGrid array
+                    }
+                }
+                
+                if (hitTestingGrid == null)
+                {
+                    Debug.Log("Raycast hit something which doesn't belong to testing grid");
+                    return;
+                }
+                Grid grid = hitTestingGrid.GetGrid();
                 int gridX;
                 int gridY;
 
@@ -103,7 +87,7 @@ public class StoreInShelfScript : MonoBehaviour
                     int lowestFreeY = grid.GetLowestFreeGrid(gridX);
                     if (lowestFreeY != -1)
                     { 
-                        StoreInShelf(hit.transform.gameObject, gridX, lowestFreeY);
+                        StoreInShelf(hit.transform.gameObject, gridX, lowestFreeY, hitTestingGrid);
                         grid.SetGridValue(gridX, lowestFreeY, 1);
                     }
                     /* Code working, no need for this debug.
@@ -121,7 +105,7 @@ public class StoreInShelfScript : MonoBehaviour
         }
     }
 
-    void StoreInShelf(GameObject StoreObj, int gridX, int gridY)
+    void StoreInShelf(GameObject StoreObj, int gridX, int gridY, TestingGrid hitTestingGrid)
     {
         GameObject heldObj = pickUpScript.GetHeldObject();
         Rigidbody heldObjRb = pickUpScript.GetHeldObjectRigidbody();
@@ -151,7 +135,7 @@ public class StoreInShelfScript : MonoBehaviour
         //heldObj.transform.parent = shelfObj.transform; According to the Unity discord server, this is the root cause of placed-item's being deformed in unexpected angles
         heldObj.transform.SetParent(null);
 
-        Grid grid = testinggrid.GetGrid();
+        Grid grid = hitTestingGrid.GetGrid();
         Vector3 gridWorldPosition = grid.GetWorldPositionCenter(gridX, gridY);
         /*
         heldObj.transform.position = gridWorldPosition;
@@ -171,7 +155,7 @@ public class StoreInShelfScript : MonoBehaviour
             storedGridItem = heldObj.AddComponent<StoredGridItem>();
         }
 
-        storedGridItem.testingGrid = testinggrid;
+        storedGridItem.testingGrid = hitTestingGrid;
         storedGridItem.gridX = gridX;
         storedGridItem.gridY = gridY;
     }
