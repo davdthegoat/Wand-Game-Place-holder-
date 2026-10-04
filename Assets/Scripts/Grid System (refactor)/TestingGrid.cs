@@ -13,6 +13,10 @@ public class TestingGrid : MonoBehaviour
     [SerializeField] Grid.GridPlane gridPlane;
     [SerializeField] private Collider gridCollider; //Will help to uniquely identify a grid.
     [SerializeField] private Vector3 itemRotation;
+    //INVENTORY
+    public Inventory inventory;
+    //INVENTORY
+
     private Grid grid;
 
     void Awake() //So that grid is initialized before StoreInShelfScript everytime.
@@ -57,5 +61,10 @@ public class TestingGrid : MonoBehaviour
     public bool WasHitByRay(RaycastHit hit)
     {
         return hit.collider == gridCollider;
+    }
+
+    public Inventory ReturnInventory()
+    {
+        return inventory;
     }
 }

@@ -11,9 +11,9 @@ public class Inventory : MonoBehaviour
 
     
     
-    [Header("Prefabs")]
-    [SerializeField]
-    GameObject droppedItemPrefab;
+    // [Header("Prefabs")]
+    // [SerializeField]
+    // GameObject droppedItemPrefab;
 
     
 
