@@ -9,7 +9,9 @@ using UnityEngine.Rendering;
 public class Inventory : MonoBehaviour
 {
     
-    
+    [Header("Prefabs")]
+    [SerializeField]
+    GameObject droppedItemPrefab;
 
     
 
@@ -31,7 +33,23 @@ public class Inventory : MonoBehaviour
     /// 
     /// Shift to pickup script pls pls pls pls pls pls pls pls pls pls pls
     
-    
+    public void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("DroppedItem"))
+        {
+            var droppedItem = other.GetComponent<DroppedItem>(); // get the dropped item script attacked to a component with a dropped item tag
+            if (droppedItem.pickedUp) //if the pickedm up variable is true 
+            {
+                return; //dont pick up again go out of function
+            }
+            droppedItem.pickedUp = true; // else picked up is true set
+            AddItem(droppedItem.item); // Added item to the inventory
+            Destroy(other.gameObject); // Removed the gameobject from the scene
+
+        }
+    }
+
+
     
     
 
@@ -43,10 +61,16 @@ public class Inventory : MonoBehaviour
     {
         var inventoryId = Guid.NewGuid().ToString();//generate new id to allow for multiple instaces of a single item
         inventory.Add(inventoryId, item); //add it to inventory dictionary along with its ID as key
-        // ui.AddUIItem(inventoryId, item); //add it to ui
+        
     }
 
-
+    public void DropItem(string inventoryId)
+    {
+        var droppedItem = Instantiate(droppedItemPrefab, transform.position, Quaternion.identity).GetComponent<DroppedItem>();
+        var item = inventory.GetValueOrDefault(inventoryId);
+        droppedItem.Initialize(item);
+        inventory.Remove(inventoryId);
+    }
 
     //Remove Item from Inventory
     public void RemoveItem(string inventoryId)
