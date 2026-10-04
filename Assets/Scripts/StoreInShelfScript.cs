@@ -65,7 +65,7 @@ public class StoreInShelfScript : MonoBehaviour
                         hitTestingGrid = testingGrid;
 
                         inventory = hitTestingGrid.ReturnInventory();
-                        Debug.Log("INVENTORY INITIALISED",inventory) ;
+                        
                         
                         break; //Exits for loop if the correct grid is found by cycling through the TestingGrid array
                     }
@@ -116,7 +116,11 @@ public class StoreInShelfScript : MonoBehaviour
     {
         GameObject heldObj = pickUpScript.GetHeldObject();
         Rigidbody heldObjRb = pickUpScript.GetHeldObjectRigidbody();
-        Debug.Log("INVENTORY ACCESS", inventory);
+        
+        //INVENTORY
+        var droppedItem = heldObj.GetComponent<DroppedItem>();
+        inventory.AddItem(droppedItem.item);
+        //INVENTORY
 
         if (heldObj == null || heldObjRb == null)
         {

@@ -200,7 +200,15 @@ public class PickUpScript : MonoBehaviour
     public void ClearHeldObject()
     {
         Debug.Log("ClearHeldObject was called");
+
+        //INVENTORY
+        var droppedItem = heldObj.GetComponent<DroppedItem>();
+        inventory.RemoveItem(droppedItem.item.id);
+        //INVENTORY
+        
         heldObj = null;
         heldObjRb = null;
+
+        
     }
 }
