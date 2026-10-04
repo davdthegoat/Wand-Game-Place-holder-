@@ -156,6 +156,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 70596d64957d1974990d059a253742a6, type: 3}
       insertIndex: -1
       addedObject: {fileID: 7630987013638644875}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 70596d64957d1974990d059a253742a6, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6179093118156504925}
   m_SourcePrefab: {fileID: 100100000, guid: 70596d64957d1974990d059a253742a6, type: 3}
 --- !u!4 &2826929673990486603 stripped
 Transform:
@@ -245,3 +248,16 @@ MonoBehaviour:
   faceA: {fileID: 476964835546436644}
   faceB: {fileID: 6869201887024765250}
   anchorFace: 0
+--- !u!114 &6179093118156504925
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3202223312977977585}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9341c6775cc83384baa360af6eab1ab6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DroppedItem
+  item: {fileID: 11400000, guid: 16058fbde544d14418055fa867fc7ab5, type: 2}

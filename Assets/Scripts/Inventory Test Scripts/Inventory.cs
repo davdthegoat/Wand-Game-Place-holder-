@@ -69,13 +69,13 @@ public class Inventory : MonoBehaviour
         
     }
 
-    public void DropItem(string inventoryId)
-    {
-        var droppedItem = Instantiate(droppedItemPrefab, transform.position, Quaternion.identity).GetComponent<DroppedItem>();
-        var item = inventory.GetValueOrDefault(inventoryId);
-        droppedItem.Initialize(item);
-        inventory.Remove(inventoryId);
-    }
+    // public void DropItem(string inventoryId)
+    // {
+    //     var droppedItem = Instantiate(droppedItemPrefab, transform.position, Quaternion.identity).GetComponent<DroppedItem>();
+    //     var item = inventory.GetValueOrDefault(inventoryId);
+    //     droppedItem.Initialize(item);
+    //     inventory.Remove(inventoryId);
+    // }
 
     //Remove Item from Inventory
     public void RemoveItem(string inventoryId)
