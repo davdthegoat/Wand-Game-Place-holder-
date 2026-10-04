@@ -19,7 +19,8 @@ public class WandSpawner : MonoBehaviour
 
 
     private float theta = 0f;
-    const int zDeviationfromZero = 18;
+    public int zDeviationfromZero = 18;
+    public float step;
     private float ogx;
     private float ogy;
 
@@ -37,8 +38,9 @@ public class WandSpawner : MonoBehaviour
         {
             Instantiate(wandPrefab, spawnPosition);
             count++;
-            transform.position = new Vector3(ogx,ogy,zDeviationfromZero * Cos( theta));
-            theta += 0.01f;
+
+            transform.position = new Vector3(theta,ogy, Sqrt((zDeviationfromZero*zDeviationfromZero) - (theta*theta)));
+            theta += step;
             // -1,1 => cos(x)*18
         }
         
