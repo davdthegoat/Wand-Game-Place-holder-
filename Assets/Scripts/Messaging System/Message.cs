@@ -5,7 +5,10 @@ using UnityEngine;
 
 public static class Messaging
 {
-    public enum Message{}
+    public enum Message {
+        ItemPickedUp
+        
+    }
 
     private static Dictionary<Message, List<Action>> _messages = new();
 
@@ -27,6 +30,12 @@ public static class Messaging
         
             _messages.Add(message,new List<Action> {action});
         
+    }
+
+    public static void Unsubscribe(Message message, Action action)
+    {
+        if (_messages.TryGetValue(message, out var actions))
+            actions.Remove(action); 
     }
 
 

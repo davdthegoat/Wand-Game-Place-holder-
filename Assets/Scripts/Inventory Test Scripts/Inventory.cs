@@ -33,9 +33,13 @@ public class Inventory : MonoBehaviour
     
     
     
+    
+
+
+    
 
     //The actual Good stuff is here : look below
-    void AddItem(Wand item)
+    public void AddItem(Wand item)
     {
         var inventoryId = Guid.NewGuid().ToString();//generate new id to allow for multiple instaces of a single item
         inventory.Add(inventoryId, item); //add it to inventory dictionary along with its ID as key
@@ -60,6 +64,12 @@ public class Inventory : MonoBehaviour
         
         
 
+    }
+
+
+    public void ClearInventory()
+    {
+        inventory.Clear();
     }
 
 }

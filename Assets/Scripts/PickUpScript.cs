@@ -1,8 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
-using UnityEngine.Animations;
-using UnityEngine.LowLevelPhysics;
+
+
 
 public class PickUpScript : MonoBehaviour
 {
@@ -17,6 +16,10 @@ public class PickUpScript : MonoBehaviour
     private bool canDrop = true; //this is needed so we don't throw/drop object when rotating the object
     private int LayerNumber; //layer index
     private int LayerNumStore;
+
+    //----------------------------INVENTORY CONNECTION-------------------------------//
+    [SerializeField]
+    Inventory inventory;
 
     //Reference to script which includes mouse movement of player (looking around)
     //we want to disable the player looking around when rotating the object
@@ -92,6 +95,8 @@ public class PickUpScript : MonoBehaviour
                 storedGridItem.testingGrid.GetGrid().SetGridValue(storedGridItem.gridX, storedGridItem.gridY, 0);
                 Destroy(storedGridItem);
             }
+            //----------ADD TO INVENTORY----------//
+            inventory.AddItem();
         }
     }
 
