@@ -159,11 +159,14 @@ public class PickUpScript : MonoBehaviour
         heldObjRb.isKinematic = false;
         heldObj.transform.parent = null;
         heldObjRb.AddForce(transform.forward * throwForce);
+
+         //------------- INVENTORY DROP --------------//
+        inventory.RemoveItem(heldObj.GetComponent<DroppedItem>().item.id);
+
         heldObj = null;
         heldObjRb = null;
 
-        //------------- INVENTORY DROP --------------//
-        inventory.RemoveItem(heldObj.GetComponent<DroppedItem>().item.id);
+       
     }
 
     void StopClipping() //function only called when dropping/throwing
