@@ -1245,6 +1245,7 @@ GameObject:
   - component: {fileID: 808400316}
   - component: {fileID: 808400317}
   - component: {fileID: 808400318}
+  - component: {fileID: 808400319}
   m_Layer: 0
   m_Name: Cube
   m_TagString: canPickUp
@@ -1402,6 +1403,19 @@ MonoBehaviour:
   faceA: {fileID: 0}
   faceB: {fileID: 0}
   anchorFace: 0
+--- !u!114 &808400319
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 808400311}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9341c6775cc83384baa360af6eab1ab6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DroppedItem
+  item: {fileID: 11400000, guid: 4ba4192e59d992e4198f0fea8b4a3b81, type: 2}
 --- !u!4 &824332696 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2826929673990486603, guid: 112f03effd3f0f4468a574c1dcb4f8f3, type: 3}

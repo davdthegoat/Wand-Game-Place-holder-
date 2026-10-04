@@ -54,7 +54,7 @@ public class Inventory : MonoBehaviour
 
 
 
-    void Awake()
+    void Start()
     {
         InventorySingleton = this;
     }
@@ -64,7 +64,7 @@ public class Inventory : MonoBehaviour
     //The actual Good stuff is here : look below
     public void AddItem(Wand item)
     {
-        var inventoryId = item.id;//generate new id to allow for multiple instaces of a single item
+        var inventoryId = item.id.ToString();//generate new id to allow for multiple instaces of a single item
         inventory.Add(inventoryId, item); //add it to inventory dictionary along with its ID as key
         
     }
