@@ -90,7 +90,7 @@ public class StoreInShelfScript : MonoBehaviour
                     int lowestFreeY = grid.GetLowestFreeGrid(gridX);
                     if (lowestFreeY != -1)
                     { 
-                        StoreInShelf(hit.transform.gameObject, gridX, lowestFreeY, hitTestingGrid);
+                        StoreInShelf(hit.transform.gameObject, gridX, lowestFreeY, hitTestingGrid, hit.point);
                         grid.SetGridValue(gridX, lowestFreeY, 1);
                     }
                     /* Code working, no need for this debug.
@@ -108,7 +108,7 @@ public class StoreInShelfScript : MonoBehaviour
         }
     }
 
-    void StoreInShelf(GameObject StoreObj, int gridX, int gridY, TestingGrid hitTestingGrid)
+    void StoreInShelf(GameObject StoreObj, int gridX, int gridY, TestingGrid hitTestingGrid, Vector3 hitPoint)
     {
         GameObject heldObj = pickUpScript.GetHeldObject();
         Rigidbody heldObjRb = pickUpScript.GetHeldObjectRigidbody();
@@ -146,8 +146,24 @@ public class StoreInShelfScript : MonoBehaviour
         StoredGridItem storedGridItem = heldObj.GetComponent<StoredGridItem>();
         if (storedGridItem == null)
         {
-            storedGridItem = heldObj.AddComponent<StoredGridItem>();
+            Debug.Log("Item doesn't have a StoredGridItem" + heldObj.name);
+            return;
+            //storedGridItem = heldObj.AddComponent<StoredGridItem>();
         }
+
+        //Determines which face is closest to the raycast hitpoint of grid
+        float distanceToFaceA = Vector3.Distance(hitPoint, storedGridItem.faceA.position);
+        float distanceToFaceB = Vector3.Distance(hitPoint, storedGridItem.faceB.position);
+
+        if (distanceToFaceA <= distanceToFaceB)
+        {
+            storedGridItem.anchorFace = StoredGridItem.AnchorFace.FaceA;
+        }
+        else
+        {
+            storedGridItem.anchorFace = StoredGridItem.AnchorFace.FaceB;
+        }
+
 
         //Determines which face the item should be anchored at to the grid.
         heldObj.transform.rotation = itemRotation;

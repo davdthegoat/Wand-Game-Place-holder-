@@ -39,12 +39,12 @@ public class Grid
                 //gridDebuggingArray[x,y] = UtilsClass.CreateWorldText(gridArray[x, y].ToString(), null, GetWorldPositionCenter(x, y), 10, Color.white, TextAnchor.MiddleCenter); //"GetWorldPosition(x, y) + new Vector3(cellSize,cellSize)" controls where in a grid are objects/text shown
                 //The following two lines are to help visualize what the grid looks like and are not necessary as our grid will be invisible in the final product.
                 //GetWorldPositionCenter(x,y) is meant to replace GetWorldPosition(x,y) + new Vector3(cellSize,cellSize)*0.5f
-                Debug.DrawLine(GetWorldPosition(x, y), GetWorldPosition(x, y + 1),Color.white, 100f);
-                Debug.DrawLine(GetWorldPosition(x, y), GetWorldPosition(x+1, y), Color.white, 100f);
+                Debug.DrawLine(GetWorldPosition(x, y), GetWorldPosition(x, y + 1),Color.white,10000f);
+                Debug.DrawLine(GetWorldPosition(x, y), GetWorldPosition(x+1, y), Color.white,10000f);
             }
         }
-        Debug.DrawLine(GetWorldPosition(0, height), GetWorldPosition(width, height), Color.white, 100f); //Draw horizontal line from (0,maxHeight) - (maxWidth,maxHeight)
-        Debug.DrawLine(GetWorldPosition(width, 0), GetWorldPosition(width, height), Color.white, 100f); //Same thing but vertical
+        Debug.DrawLine(GetWorldPosition(0, height), GetWorldPosition(width, height), Color.white,10000f); //Draw horizontal line from (0,maxHeight) - (maxWidth,maxHeight)
+        Debug.DrawLine(GetWorldPosition(width, 0), GetWorldPosition(width, height), Color.white,10000f); //Same thing but vertical
 
         //SetGridValue(2, 1, 56); //Cordinate, and value set within cordinate.
     }
@@ -73,11 +73,11 @@ public class Grid
         //return GetWorldPosition(x, y) + new Vector3(cellSize, cellSize) * 0.5f;
         if (gridPlane == GridPlane.XY)
         {
-            return GetWorldPosition(x, y) + new Vector3(cellSize, cellSize) * 0.5f;
+            return GetWorldPosition(x, y) + new Vector3(cellSize, cellSize,0) * 0.5f;
         }
         else
         {
-            return GetWorldPosition(x, y) + new Vector3(cellSize, cellSize) * 0.5f;
+            return GetWorldPosition(x, y) + new Vector3(0,cellSize, cellSize) * 0.5f;
         }
     }
 
