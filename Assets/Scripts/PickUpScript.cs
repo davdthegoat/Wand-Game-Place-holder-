@@ -92,6 +92,10 @@ public class PickUpScript : MonoBehaviour
             if (storedGridItem != null && storedGridItem.testingGrid != null)
             {
                 storedGridItem.testingGrid.GetGrid().SetGridValue(storedGridItem.gridX, storedGridItem.gridY, 0);
+                //INVENTORY
+                var takeoutItem = heldObj.GetComponent<DroppedItem>();
+                storedGridItem.testingGrid.inventory.RemoveItem( takeoutItem.item.id);
+                //INVENTORY
                 storedGridItem.testingGrid = null;
             }
             //----------ADD TO INVENTORY----------//
@@ -205,7 +209,7 @@ public class PickUpScript : MonoBehaviour
         var droppedItem = heldObj.GetComponent<DroppedItem>();
         inventory.RemoveItem(droppedItem.item.id);
         //INVENTORY
-        
+
         heldObj = null;
         heldObjRb = null;
 
