@@ -27,3 +27,11 @@ This week we tried to work more on the back-end code, like fixing up and improvi
 Below are the lapse links for week 2:
 https://lapse.hackclub.com/timelapse/eyW29fDBmLhD
 https://lapse.hackclub.com/timelapse/8wDLL4XA2688
+
+
+Week 3:
+Completed grid system, with polished features. Inventory-system is nearing completion but it's polish is a bit lacking, but we're working on implementation. We have big plans for week 4 as the largest part of our back-end systems are complete, and we are almost at a playable state.
+
+Below are lapse links for week 3:
+https://lapse.hackclub.com/timelapse/aGGZ-6w-WJ3i
+https://lapse.hackclub.com/timelapse/dE1pdo7Ts0Dq
