@@ -1,6 +1,8 @@
 using System;
 
 using UnityEngine;
+using UnityEngine.Rendering;
+using static UnityEngine.Mathf;
 
 public class WandSpawner : MonoBehaviour
 {
@@ -10,7 +12,24 @@ public class WandSpawner : MonoBehaviour
     [SerializeField] int wandCount;
 
     public Transform spawnPosition;
+
+    [SerializeField] float speed = 1;
+
     private int count = 0;
+
+
+    private float theta = 0f;
+    const int zDeviationfromZero = 18;
+    private float ogx;
+    private float ogy;
+
+    void Start()
+    {
+        ogx = transform.position.x;
+        ogy = transform.position.y;
+    }
+
+
     private void Update()
     {
         
@@ -18,7 +37,12 @@ public class WandSpawner : MonoBehaviour
         {
             Instantiate(wandPrefab, spawnPosition);
             count++;
+            transform.position = new Vector3(ogx,ogy,zDeviationfromZero * Cos( theta));
+            theta += 0.01f;
+            // -1,1 => cos(x)*18
         }
+        
+        
         
         //Instantiate(wandPrefab, spawnPosition)
         //DVD here, made changes cuz too many wands to keep track of in the spector for debugging. I set it as serialized, change it in the inspector or die
