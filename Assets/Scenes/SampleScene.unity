@@ -1401,6 +1401,11 @@ MonoBehaviour:
   faceA: {fileID: 0}
   faceB: {fileID: 0}
   anchorFace: 0
+--- !u!4 &824332696 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2826929673990486603, guid: 112f03effd3f0f4468a574c1dcb4f8f3, type: 3}
+  m_PrefabInstance: {fileID: 8171370045259042790}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0
@@ -1732,8 +1737,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: -4.6, y: 1.8, z: 0}
+  m_Size: {x: 1.5313507, y: 0.8142363, z: 0.99999946}
+  m_Center: {x: -4.3343673, y: 2.1025414, z: 0}
 --- !u!1 &1187360215
 GameObject:
   m_ObjectHideFlags: 0
@@ -2351,6 +2356,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 808400312}
+  - {fileID: 824332696}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1323671043
@@ -3024,7 +3030,7 @@ Transform:
   m_GameObject: {fileID: 1988484347}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.76, y: 11.6, z: -11.1}
+  m_LocalPosition: {x: -2.11, y: 3.73, z: -11.15}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3042,7 +3048,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3e43049a1f929243ab509dc7d00fc8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WandSpawner
-  wandPrefab: {fileID: 8583238787488274419, guid: 51ce47cf4c8bea74fbaedfb9816e5707, type: 3}
+  wandPrefab: {fileID: 3202223312977977585, guid: 112f03effd3f0f4468a574c1dcb4f8f3, type: 3}
   wandCount: 5
   spawnPosition: {fileID: 1988484348}
 --- !u!1 &2146256738
@@ -3315,6 +3321,63 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ac3557a0acb5ac8479f596547d6d6f9f, type: 3}
+--- !u!1001 &8171370045259042790
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1262698876}
+    m_Modifications:
+    - target: {fileID: 2826929673990486603, guid: 112f03effd3f0f4468a574c1dcb4f8f3, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 3.23
+      objectReference: {fileID: 0}
+    - target: {fileID: 2826929673990486603, guid: 112f03effd3f0f4468a574c1dcb4f8f3, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.44
+      objectReference: {fileID: 0}
+    - target: {fileID: 2826929673990486603, guid: 112f03effd3f0f4468a574c1dcb4f8f3, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1.26699
+      objectReference: {fileID: 0}
+    - target: {fileID: 2826929673990486603, guid: 112f03effd3f0f4468a574c1dcb4f8f3, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2826929673990486603, guid: 112f03effd3f0f4468a574c1dcb4f8f3, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2826929673990486603, guid: 112f03effd3f0f4468a574c1dcb4f8f3, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2826929673990486603, guid: 112f03effd3f0f4468a574c1dcb4f8f3, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2826929673990486603, guid: 112f03effd3f0f4468a574c1dcb4f8f3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2826929673990486603, guid: 112f03effd3f0f4468a574c1dcb4f8f3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2826929673990486603, guid: 112f03effd3f0f4468a574c1dcb4f8f3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3202223312977977585, guid: 112f03effd3f0f4468a574c1dcb4f8f3, type: 3}
+      propertyPath: m_Name
+      value: Wandbox (placeholder)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 112f03effd3f0f4468a574c1dcb4f8f3, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

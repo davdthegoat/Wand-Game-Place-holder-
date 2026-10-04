@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 607463944509136856}
   - component: {fileID: 6657549105401720599}
   - component: {fileID: -3286594394893149397}
+  - component: {fileID: 2724666657656606844}
   m_Layer: 0
   m_Name: Wand
   m_TagString: canPickUp
@@ -153,3 +154,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dea991a067e43834394b356dd9bdc325, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ItemPositionReset
+--- !u!114 &2724666657656606844
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8583238787488274419}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 332c4c5cbce544d4a9e3b4d628eec2cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::StoredGridItem
+  testingGrid: {fileID: 0}
+  gridX: 0
+  gridY: 0
+  faceA: {fileID: 0}
+  faceB: {fileID: 0}
+  anchorFace: 0

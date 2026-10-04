@@ -141,11 +141,19 @@ public class StoreInShelfScript : MonoBehaviour
         Grid grid = hitTestingGrid.GetGrid();
         Vector3 gridWorldPosition = grid.GetWorldPositionCenter(gridX, gridY);
         Quaternion itemRotation = hitTestingGrid.GetItemRotation();
-        heldObj.transform.rotation = itemRotation;
+
+
         StoredGridItem storedGridItem = heldObj.GetComponent<StoredGridItem>();
         if (storedGridItem == null)
         {
             storedGridItem = heldObj.AddComponent<StoredGridItem>();
+        }
+
+        //Determines which face the item should be anchored at to the grid.
+        heldObj.transform.rotation = itemRotation;
+        if (storedGridItem.anchorFace == StoredGridItem.AnchorFace.FaceB)
+        {
+            heldObj.transform.Rotate(0, 180f, 0);
         }
 
         Transform anchor;
@@ -157,9 +165,13 @@ public class StoreInShelfScript : MonoBehaviour
         {
             anchor = storedGridItem.faceB;
         }
-
-        Vector3 anchorLocalPosition = anchor.localPosition;
-        heldObj.transform.position = gridWorldPosition - heldObj.transform.rotation * anchorLocalPosition;
+        //Attempting to debug what is the root cause of the null exception.
+        Debug.Log("Stored Grid Item: " + storedGridItem);
+        Debug.Log("Anchor: " + anchor);
+        Debug.Log("FaceA: " + storedGridItem.faceA);
+        Debug.Log("FaceB: " + storedGridItem.faceB);
+        Vector3 anchorWorldOffset = anchor.position - heldObj.transform.position;
+        heldObj.transform.position = gridWorldPosition - anchorWorldOffset;
         /*
         heldObj.transform.position = gridWorldPosition;
         heldObj.transform.rotation = Quaternion.identity;

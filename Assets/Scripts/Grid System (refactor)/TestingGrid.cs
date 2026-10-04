@@ -28,6 +28,10 @@ public class TestingGrid : MonoBehaviour
 
     public Quaternion GetItemRotation()
     {
+        if (gridPlane == Grid.GridPlane.ZY)
+        {
+            return Quaternion.Euler(itemRotation + new Vector3(0, 90f, 0));
+        }
         return Quaternion.Euler(itemRotation);
     }
 

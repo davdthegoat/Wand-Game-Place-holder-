@@ -96,7 +96,7 @@ public class PickUpScript : MonoBehaviour
                 Destroy(storedGridItem);
             }
             //----------ADD TO INVENTORY----------//
-            inventory.AddItem();
+            //inventory.AddItem();
         }
     }
 
