@@ -18,8 +18,7 @@ public class PickUpScript : MonoBehaviour
     private int LayerNumStore;
 
     //----------------------------INVENTORY CONNECTION-------------------------------//
-    [SerializeField]
-    Inventory inventory;
+    Inventory inventory = Inventory.InventorySingleton;
 
     //Reference to script which includes mouse movement of player (looking around)
     //we want to disable the player looking around when rotating the object
@@ -96,7 +95,9 @@ public class PickUpScript : MonoBehaviour
                 Destroy(storedGridItem);
             }
             //----------ADD TO INVENTORY----------//
-            //inventory.AddItem();
+            //find item data script in pickup obj
+
+            inventory.AddItem(heldObj.GetComponent<DroppedItem>().item);
         }
     }
 
