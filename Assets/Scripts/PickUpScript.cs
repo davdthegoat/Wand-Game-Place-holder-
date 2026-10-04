@@ -96,8 +96,9 @@ public class PickUpScript : MonoBehaviour
             }
             //----------ADD TO INVENTORY----------//
             //find item data script in pickup obj
+            var droppedItem = heldObj.GetComponent<DroppedItem>(); 
 
-            inventory.AddItem(heldObj.GetComponent<DroppedItem>().item);
+            inventory.AddItem(droppedItem.item);
         }
     }
 

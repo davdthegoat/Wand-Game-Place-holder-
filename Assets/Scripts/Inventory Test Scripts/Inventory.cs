@@ -9,7 +9,7 @@ using UnityEngine.Rendering;
 public class Inventory : MonoBehaviour
 {
 
-    public static Inventory InventorySingleton;
+    
     
     [Header("Prefabs")]
     [SerializeField]
@@ -54,11 +54,7 @@ public class Inventory : MonoBehaviour
 
 
 
-    void Start()
-    {
-        InventorySingleton = this;
-    }
-
+   
 
 
     //The actual Good stuff is here : look below
