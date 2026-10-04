@@ -260,4 +260,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9341c6775cc83384baa360af6eab1ab6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DroppedItem
-  item: {fileID: 11400000, guid: 4ba4192e59d992e4198f0fea8b4a3b81, type: 2}
+  item: {fileID: 11400000, guid: 16058fbde544d14418055fa867fc7ab5, type: 2}

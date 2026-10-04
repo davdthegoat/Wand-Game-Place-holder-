@@ -11,9 +11,9 @@ public class Inventory : MonoBehaviour
 
     public static Inventory InventorySingleton;
     
-    // [Header("Prefabs")]
-    // [SerializeField]
-    // GameObject droppedItemPrefab;
+    [Header("Prefabs")]
+    [SerializeField]
+    GameObject droppedItemPrefab;
 
     
 

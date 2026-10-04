@@ -18,7 +18,7 @@ public class PickUpScript : MonoBehaviour
     private int LayerNumStore;
 
     //----------------------------INVENTORY CONNECTION-------------------------------//
-    private Inventory inventory = Inventory.InventorySingleton;
+    public Inventory inventory;
 
     //Reference to script which includes mouse movement of player (looking around)
     //we want to disable the player looking around when rotating the object
@@ -97,10 +97,6 @@ public class PickUpScript : MonoBehaviour
             //----------ADD TO INVENTORY----------//
             //find item data script in pickup obj
 
-            
-
-            Debug.Log(heldObj.GetComponent<DroppedItem>().item.id);
-
             inventory.AddItem(heldObj.GetComponent<DroppedItem>().item);
         }
     }
@@ -115,8 +111,8 @@ public class PickUpScript : MonoBehaviour
         heldObj.transform.parent = null; //unparent object
         heldObj = null; //undefine game object
         heldObjRb = null;
-        // //------------- INVENTORY DROP --------------//
-        // inventory.RemoveItem(heldObj.GetComponent<DroppedItem>().item.id);
+        //------------- INVENTORY DROP --------------//
+        inventory.RemoveItem(heldObj.GetComponent<DroppedItem>().item.id);
     }
 
     void MoveObject()
@@ -161,8 +157,8 @@ public class PickUpScript : MonoBehaviour
         heldObj = null;
         heldObjRb = null;
 
-        // //------------- INVENTORY DROP --------------//
-        // inventory.RemoveItem(heldObj.GetComponent<DroppedItem>().item.id);
+        //------------- INVENTORY DROP --------------//
+        inventory.RemoveItem(heldObj.GetComponent<DroppedItem>().item.id);
     }
 
     void StopClipping() //function only called when dropping/throwing
