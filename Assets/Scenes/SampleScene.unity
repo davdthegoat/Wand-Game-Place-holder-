@@ -3741,6 +3741,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wandbox (placeholder)
       objectReference: {fileID: 0}
+    - target: {fileID: 7630987013638644875, guid: 112f03effd3f0f4468a574c1dcb4f8f3, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
