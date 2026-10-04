@@ -108,12 +108,16 @@ public class PickUpScript : MonoBehaviour
         //re-enable collision with player
         Physics.IgnoreCollision(heldObj.GetComponent<Collider>(), player.GetComponent<Collider>(), false);
         heldObj.layer = 0; //object assigned back to default layer
+
+         //------------- INVENTORY DROP --------------//
+        
+        inventory.RemoveItem(heldObj.GetComponent<DroppedItem>().item.id);
+        
         heldObjRb.isKinematic = false;
         heldObj.transform.parent = null; //unparent object
         heldObj = null; //undefine game object
         heldObjRb = null;
-        //------------- INVENTORY DROP --------------//
-        inventory.RemoveItem(heldObj.GetComponent<DroppedItem>().item.id);
+       
     }
 
     void MoveObject()
