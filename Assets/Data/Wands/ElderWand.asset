@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: ElderWand
   m_EditorClassIdentifier: Assembly-CSharp::Wand
   id: ElderWand
+  length: 0
   core: 1
   wood: 7
   CorrectStorageLocation: 
   AttributeText: 
-  prefab: {fileID: 0}
+  prefab: {fileID: 8583238787488274419, guid: 51ce47cf4c8bea74fbaedfb9816e5707, type: 3}
