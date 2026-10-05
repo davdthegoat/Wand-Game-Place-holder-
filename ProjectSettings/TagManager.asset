@@ -7,6 +7,7 @@ TagManager:
   - canPickUp
   - canStore
   - DroppedItem
+  - WorkBench
   layers:
   - Default
   - TransparentFX
