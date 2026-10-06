@@ -19,6 +19,7 @@ public class Movement : MonoBehaviour
     bool isGrounded;
     float cameraCap;
     bool cameraLocked;
+    bool movementLocked;
     Vector2 currentMouseDelta;
     Vector2 currentMouseDeltaVelocity;
     CharacterController controller;
@@ -52,7 +53,7 @@ public class Movement : MonoBehaviour
     {
         if (cameraLocked)
         {
-            return;
+            return; //Prevents camera movement
         }
         Vector2 targetMouseDelta = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
         currentMouseDelta = Vector2.SmoothDamp(currentMouseDelta, targetMouseDelta, ref currentMouseDeltaVelocity, mouseSmoothTime);
@@ -63,6 +64,10 @@ public class Movement : MonoBehaviour
     }
     void UpdateMove()
     {
+        if (movementLocked == true)
+        {
+            return; //Prevents player from jittering when trying to sit at workstation
+        }
         isGrounded = Physics.CheckSphere(groundCheck.position, 0.2f, ground);
 
         Vector2 targetDir = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
@@ -90,5 +95,10 @@ public class Movement : MonoBehaviour
     public void SetCameraLocked(bool locked)
     {
         cameraLocked = locked;
+    }
+
+    public void SetMovementLocked(bool locked)
+    {
+        movementLocked = locked;
     }
 }

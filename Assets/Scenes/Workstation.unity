@@ -139,6 +139,24 @@ MonoBehaviour:
   player: {fileID: 396702658}
   playerSitPosition: {fileID: 1988527778}
   interactRange: 3
+  movement: {fileID: 396702666}
+  controller: {fileID: 396702668}
+--- !u!114 &396702666 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3722208846254453762, guid: 28ce48b2c6dad3d46b9373039ed74b07, type: 3}
+  m_PrefabInstance: {fileID: 1372410978}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 396702658}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70b68190d4a64084ea1ef9cc5985a23e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+--- !u!143 &396702668 stripped
+CharacterController:
+  m_CorrespondingSourceObject: {fileID: 6829145951087975348, guid: 28ce48b2c6dad3d46b9373039ed74b07, type: 3}
+  m_PrefabInstance: {fileID: 1372410978}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &703100756
 GameObject:
   m_ObjectHideFlags: 0
@@ -811,7 +829,7 @@ Transform:
   m_GameObject: {fileID: 1988527777}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.48, y: 0.53, z: -7.08}
+  m_LocalPosition: {x: 3, y: 1.5, z: -8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
