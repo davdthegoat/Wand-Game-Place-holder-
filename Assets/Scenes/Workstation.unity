@@ -141,6 +141,7 @@ MonoBehaviour:
   interactRange: 3
   movement: {fileID: 396702666}
   controller: {fileID: 396702668}
+  isSitting: 0
 --- !u!114 &396702666 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3722208846254453762, guid: 28ce48b2c6dad3d46b9373039ed74b07, type: 3}
@@ -156,6 +157,28 @@ MonoBehaviour:
 CharacterController:
   m_CorrespondingSourceObject: {fileID: 6829145951087975348, guid: 28ce48b2c6dad3d46b9373039ed74b07, type: 3}
   m_PrefabInstance: {fileID: 1372410978}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &396702670
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 396702658}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30bbf4114e8ea404faac22982bc8fc69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WandboxSelectionScript
+  playerCamera: {fileID: 1068104538}
+  wandboxPrefab: {fileID: 639492182}
+  wandSpawnLocation: {fileID: 1662115010}
+  raycastRange: 100
+  workStationSit: {fileID: 396702664}
+--- !u!1 &639492182 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3202223312977977585, guid: 112f03effd3f0f4468a574c1dcb4f8f3, type: 3}
+  m_PrefabInstance: {fileID: 1640955418}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &703100756
 GameObject:
@@ -247,6 +270,11 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 703100756}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!20 &1068104538 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 6295452991940378061, guid: 28ce48b2c6dad3d46b9373039ed74b07, type: 3}
+  m_PrefabInstance: {fileID: 1372410978}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1372410978
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -306,6 +334,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8707502996643971259, guid: 28ce48b2c6dad3d46b9373039ed74b07, type: 3}
       insertIndex: -1
       addedObject: {fileID: 396702664}
+    - targetCorrespondingSourceObject: {fileID: 8707502996643971259, guid: 28ce48b2c6dad3d46b9373039ed74b07, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 396702670}
   m_SourcePrefab: {fileID: 100100000, guid: 28ce48b2c6dad3d46b9373039ed74b07, type: 3}
 --- !u!1 &1440971776
 GameObject:
@@ -556,7 +587,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2826929673990486603, guid: 112f03effd3f0f4468a574c1dcb4f8f3, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.1593599
+      value: 2.427
       objectReference: {fileID: 0}
     - target: {fileID: 2826929673990486603, guid: 112f03effd3f0f4468a574c1dcb4f8f3, type: 3}
       propertyPath: m_LocalPosition.y
@@ -564,7 +595,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2826929673990486603, guid: 112f03effd3f0f4468a574c1dcb4f8f3, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -3.2392645
+      value: -2.55
       objectReference: {fileID: 0}
     - target: {fileID: 2826929673990486603, guid: 112f03effd3f0f4468a574c1dcb4f8f3, type: 3}
       propertyPath: m_LocalRotation.w
@@ -598,6 +629,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wandbox (placeholder)
       objectReference: {fileID: 0}
+    - target: {fileID: 3202223312977977585, guid: 112f03effd3f0f4468a574c1dcb4f8f3, type: 3}
+      propertyPath: m_TagString
+      value: WandBox
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -628,7 +663,7 @@ Transform:
   m_GameObject: {fileID: 1662115009}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.928, y: 1.433, z: -5.266}
+  m_LocalPosition: {x: 3.6, y: 1.28, z: -5.01}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -828,13 +863,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1988527777}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3, y: 1.5, z: -8}
+  m_LocalRotation: {x: 0.2401267, y: -0, z: -0, w: 0.97074157}
+  m_LocalPosition: {x: 3, y: 2.26, z: -7.52}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1982430868}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 27.788, y: 0, z: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

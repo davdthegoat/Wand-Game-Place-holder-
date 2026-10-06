@@ -8,6 +8,7 @@ TagManager:
   - canStore
   - DroppedItem
   - WorkBench
+  - WandBox
   layers:
   - Default
   - TransparentFX
