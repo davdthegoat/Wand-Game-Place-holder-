@@ -3,10 +3,13 @@ using UnityEngine;
 public class WandboxSelectionScript : MonoBehaviour
 {
     [SerializeField] private Camera playerCamera;
-    [SerializeField] private GameObject wandboxPrefab; //Later on, there will be multiple fields for each respective box size.
+    [SerializeField] private GameObject wandboxPrefab; //Later on, there will be multiple fields for each respective box size. //Maybe not.
     [SerializeField] private Transform wandSpawnLocation;
     [SerializeField] private float raycastRange = 100f;
     [SerializeField] private WorkStationSit workStationSit;
+
+    private int count = 0;
+    GameObject duplicatedBox;
 
 
     // Update is called once per frame
@@ -28,9 +31,21 @@ public class WandboxSelectionScript : MonoBehaviour
             {
                 if (hit.collider.CompareTag("WandBox"))
                 {
-                    GameObject duplicatedBox = Instantiate(wandboxPrefab, wandSpawnLocation.position, wandSpawnLocation.rotation); //Click on the appropriate sized box -> duplicate box spawns infron of you.
+                    if (count == 0) //First box spawn
+                    {
+                        duplicatedBox = Instantiate(hit.collider.gameObject, wandSpawnLocation.position, wandSpawnLocation.rotation); //Click on the appropriate sized box -> duplicate box spawns infron of you.
 
-                    duplicatedBox.tag = "canPickUp"; //So that wandbox can be picked up after item has been stored inside.
+                        duplicatedBox.tag = "canPickUp"; //So that wandbox can be picked up after item has been stored inside.
+
+                        count += 1;
+                    }
+                    else if (count == 1)
+                    {
+                        Destroy(duplicatedBox);
+                        duplicatedBox = Instantiate(hit.collider.gameObject, wandSpawnLocation.position, wandSpawnLocation.rotation); //Destroys previously summoned box and replaces it with the newly clicked box-type.
+
+                        duplicatedBox.tag = "canPickUp";
+                    }
                 }
             }
         }

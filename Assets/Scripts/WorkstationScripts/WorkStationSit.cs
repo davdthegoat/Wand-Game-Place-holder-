@@ -63,7 +63,7 @@ public class WorkStationSit : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Q)) //Trying to set it to a different keybind. Maybe pressing F is conflicting with StoreInShelfScript causing the movement-jitters.
+        if (Input.GetKeyDown(KeyCode.F)) //Trying to set it to a different keybind. Maybe pressing F is conflicting with StoreInShelfScript causing the movement-jitters.
         {
             if (isSitting == false)
             {
