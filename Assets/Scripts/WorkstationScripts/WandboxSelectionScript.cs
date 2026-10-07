@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Assertions.Must;
 
 public class WandboxSelectionScript : MonoBehaviour
 {
@@ -25,10 +26,12 @@ public class WandboxSelectionScript : MonoBehaviour
     //Reused code from previous scripts mostly.
     {
         Ray ray = playerCamera.ScreenPointToRay(Input.mousePosition);
+        Debug.Log("Camera being used: " + playerCamera.name);
         if (workStationSit.IsSitting() == true)
         {
             if (Physics.Raycast(ray, out RaycastHit hit, raycastRange))
             {
+                Debug.Log("Ray hit: " + hit.collider.name);
                 if (hit.collider.CompareTag("WandBox"))
                 {
                     if (count == 0) //First box spawn
@@ -36,6 +39,9 @@ public class WandboxSelectionScript : MonoBehaviour
                         duplicatedBox = Instantiate(hit.collider.gameObject, wandSpawnLocation.position, wandSpawnLocation.rotation); //Click on the appropriate sized box -> duplicate box spawns infron of you.
 
                         duplicatedBox.tag = "canPickUp"; //So that wandbox can be picked up after item has been stored inside.
+                        //Made the original item kinematic, removed need for next line.
+                        //duplicatedBox.GetComponent<Rigidbody>().isKinematic = true;
+
 
                         count += 1;
                     }
@@ -45,6 +51,9 @@ public class WandboxSelectionScript : MonoBehaviour
                         duplicatedBox = Instantiate(hit.collider.gameObject, wandSpawnLocation.position, wandSpawnLocation.rotation); //Destroys previously summoned box and replaces it with the newly clicked box-type.
 
                         duplicatedBox.tag = "canPickUp";
+                        //duplicatedBox.GetComponent<Rigidbody>().isKinematic = true;
+
+
                     }
                 }
             }
