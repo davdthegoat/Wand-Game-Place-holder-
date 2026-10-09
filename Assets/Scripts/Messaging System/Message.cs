@@ -6,7 +6,12 @@ using UnityEngine;
 public static class Messaging
 {
     public enum Message {
-        ItemPickedUp
+        AddToInventoryPlayer,
+        RemoveFromInventoryPLayer,
+        AddToInventoryShelf1,
+        RemoveFromInventoryShelf1,
+        AddToInventoryShelf2,
+        RemoveFromInventoryShelf2,
         
     }
 

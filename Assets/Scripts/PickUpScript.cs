@@ -20,6 +20,7 @@ public class PickUpScript : MonoBehaviour
     //----------------------------INVENTORY CONNECTION-------------------------------//
     public Inventory inventory;
 
+    public Inventory removeInventory;
     //Reference to script which includes mouse movement of player (looking around)
     //we want to disable the player looking around when rotating the object
     //public Movement mouseLookScript;
@@ -92,10 +93,13 @@ public class PickUpScript : MonoBehaviour
             if (storedGridItem != null && storedGridItem.testingGrid != null)
             {
                 storedGridItem.testingGrid.GetGrid().SetGridValue(storedGridItem.gridX, storedGridItem.gridY, 0);
+
                 //INVENTORY
                 var takeoutItem = heldObj.GetComponent<DroppedItem>();
                 storedGridItem.testingGrid.inventory.RemoveItem( takeoutItem.item.id);
+                
                 //INVENTORY
+
                 storedGridItem.testingGrid = null;
             }
             //----------ADD TO INVENTORY----------//
@@ -103,6 +107,7 @@ public class PickUpScript : MonoBehaviour
             var droppedItem = heldObj.GetComponent<DroppedItem>(); 
 
             inventory.AddItem(droppedItem.item);
+            removeInventory.RemoveItem(droppedItem.item.id);
         }
     }
 
@@ -116,6 +121,7 @@ public class PickUpScript : MonoBehaviour
          //------------- INVENTORY DROP --------------//
         
         inventory.RemoveItem(heldObj.GetComponent<DroppedItem>().item.id);
+        removeInventory.AddItem(heldObj.GetComponent<DroppedItem>().item);
         
         heldObjRb.isKinematic = false;
         heldObj.transform.parent = null; //unparent object
