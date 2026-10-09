@@ -5,7 +5,7 @@ using UnityEngine;
 public class WorkStationSit : MonoBehaviour
 {
     //This script is meant to seat Mr.Bean to the workstation. Depending on how things unfold, it might also be used for freezing the camera and letting go of Mr.Bean.
-     
+    [SerializeField] private HeldObjectPlacementScript heldObjectPlacementScript; //Linking both scripts to one another.
     [SerializeField] private GameObject player;
     [SerializeField] private Transform playerSitPosition;
     [SerializeField] private float interactRange = 3f;
@@ -56,6 +56,8 @@ public class WorkStationSit : MonoBehaviour
 
                 playerCamera.enabled = false;
                 sitPositionCamera.enabled = true;
+
+                heldObjectPlacementScript.PlaceHeldObject();
             }
         }
     }

@@ -102,27 +102,33 @@ public class PickUpScript : MonoBehaviour
 
                 storedGridItem.testingGrid = null;
             }
+
+            //Workstation DVD here, commenting out for testing purposes.
+            /*
             //----------ADD TO INVENTORY----------//
             //find item data script in pickup obj
             var droppedItem = heldObj.GetComponent<DroppedItem>(); 
 
             inventory.AddItem(droppedItem.item);
-            removeInventory.RemoveItem(droppedItem.item.id);
+            removeInventory.RemoveItem(droppedItem.item.id); 
+            */
         }
     }
 
-    void DropObject()
+    public void DropObject()
     {
         Debug.Log("DROP OBJECT WAS CALLED");
         //re-enable collision with player
         Physics.IgnoreCollision(heldObj.GetComponent<Collider>(), player.GetComponent<Collider>(), false);
         heldObj.layer = 0; //object assigned back to default layer
-
-         //------------- INVENTORY DROP --------------//
+        /* DVD workstation.
+        
+        //------------- INVENTORY DROP --------------//
         
         inventory.RemoveItem(heldObj.GetComponent<DroppedItem>().item.id);
         removeInventory.AddItem(heldObj.GetComponent<DroppedItem>().item);
-        
+
+        */
         heldObjRb.isKinematic = false;
         heldObj.transform.parent = null; //unparent object
         heldObj = null; //undefine game object
@@ -169,11 +175,11 @@ public class PickUpScript : MonoBehaviour
         heldObjRb.isKinematic = false;
         heldObj.transform.parent = null;
         heldObjRb.AddForce(transform.forward * throwForce);
-
+        /*
          //------------- INVENTORY DROP --------------//
         inventory.RemoveItem(heldObj.GetComponent<DroppedItem>().item.id);
         removeInventory.AddItem(heldObj.GetComponent<DroppedItem>().item);
-
+        */
         heldObj = null;
         heldObjRb = null;
 
@@ -212,10 +218,14 @@ public class PickUpScript : MonoBehaviour
     {
         Debug.Log("ClearHeldObject was called");
 
+        //DVD here, disabling for testing purposes.
+        /*
         //INVENTORY
         var droppedItem = heldObj.GetComponent<DroppedItem>();
         inventory.RemoveItem(droppedItem.item.id);
         //INVENTORY
+        */
+        //This code above keeps giving null reference.
 
         heldObj = null;
         heldObjRb = null;
