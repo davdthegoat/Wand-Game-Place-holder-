@@ -172,6 +172,7 @@ public class PickUpScript : MonoBehaviour
 
          //------------- INVENTORY DROP --------------//
         inventory.RemoveItem(heldObj.GetComponent<DroppedItem>().item.id);
+        removeInventory.AddItem(heldObj.GetComponent<DroppedItem>().item);
 
         heldObj = null;
         heldObjRb = null;
