@@ -13,9 +13,7 @@ public class TestingGrid : MonoBehaviour
     [SerializeField] Grid.GridPlane gridPlane;
     [SerializeField] private Collider gridCollider; //Will help to uniquely identify a grid.
     [SerializeField] private Vector3 itemRotation;
-    //INVENTORY
-    public Inventory inventory;
-    //INVENTORY
+    
 
     private Grid grid;
 
@@ -63,8 +61,5 @@ public class TestingGrid : MonoBehaviour
         return hit.collider == gridCollider;
     }
 
-    public Inventory ReturnInventory()
-    {
-        return inventory;
-    }
+    
 }

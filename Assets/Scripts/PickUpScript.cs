@@ -95,8 +95,8 @@ public class PickUpScript : PlayerSystem
                 storedGridItem.testingGrid.GetGrid().SetGridValue(storedGridItem.gridX, storedGridItem.gridY, 0);
 
                 //REMOVEINVENTORY
-                var takeoutItem = heldObj.GetComponent<DroppedItem>();
-                storedGridItem.testingGrid.inventory.RemoveItem( takeoutItem.item.id);
+                //var takeoutItem = heldObj.GetComponent<DroppedItem>();
+                //storedGridItem.testingGrid.inventory.RemoveItem( takeoutItem.item.id);
                 
                 //REMOVEINVENTORY
 
@@ -104,7 +104,7 @@ public class PickUpScript : PlayerSystem
             }
 
            
-            var droppedItem = heldObj.GetComponent<DroppedItem>().item; 
+            var droppedItem = DropItem();
             playerIdentification.Playerdata.Events.AddItemInventory?.Invoke(droppedItem);
             
         }
@@ -234,4 +234,13 @@ public class PickUpScript : PlayerSystem
         var itemtodropID = itemtodrop.item.id;
         return itemtodropID;
     }
+
+     private Wand DropItem()
+    {
+        var itemtodrop = heldObj.GetComponent<DroppedItem>();
+        var itemtodropItem = itemtodrop.item;
+        return itemtodropItem;
+    }
+
+
 }

@@ -1,7 +1,7 @@
 using Unity.Properties;
 using UnityEngine;
 
-public class StoreInShelfScript : MonoBehaviour
+public class StoreInShelfScript : ShelfSystem
 {
     //Dont need player collision to be disabled when storing in shelf
     //[SerializeField] GameObject player;
@@ -17,7 +17,7 @@ public class StoreInShelfScript : MonoBehaviour
     //An attempt to search through multiple grids, using an Array in order to be able to identify which one was called.
     private TestingGrid[] testingGrids;
 
-    private Inventory inventory;
+                                    
 
     void Start()
     {
@@ -64,7 +64,7 @@ public class StoreInShelfScript : MonoBehaviour
                     {
                         hitTestingGrid = testingGrid;
 
-                        inventory = hitTestingGrid.ReturnInventory();
+                        
                         
                         
                         break; //Exits for loop if the correct grid is found by cycling through the TestingGrid array
@@ -118,8 +118,9 @@ public class StoreInShelfScript : MonoBehaviour
         Rigidbody heldObjRb = pickUpScript.GetHeldObjectRigidbody();
         
         //INVENTORY
+
         var droppedItem = heldObj.GetComponent<DroppedItem>();
-        inventory.AddItem(droppedItem.item);
+        //ADD THE ADD ITEM THING
         //INVENTORY
 
         if (heldObj == null || heldObjRb == null)

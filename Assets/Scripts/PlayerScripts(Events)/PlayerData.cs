@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem.Utilities;
 
-[CreateAssetMenu(fileName = "PlayerData", menuName = "NetherportaCode/Events", order = 3)]
+[CreateAssetMenu(fileName = "PlayerData", menuName = "NetherportaCode/PlayerData", order = 1)]
 public class PlayerData : ScriptableObject
 {
     //Stores all actions the player might need to perform
