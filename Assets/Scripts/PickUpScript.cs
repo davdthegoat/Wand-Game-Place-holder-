@@ -3,7 +3,7 @@ using UnityEngine;
 
 
 
-public class PickUpScript : MonoBehaviour
+public class PickUpScript : PlayerSystem
 {
     public GameObject player;
     public Transform holdPos;
@@ -94,24 +94,19 @@ public class PickUpScript : MonoBehaviour
             {
                 storedGridItem.testingGrid.GetGrid().SetGridValue(storedGridItem.gridX, storedGridItem.gridY, 0);
 
-                //INVENTORY
+                //REMOVEINVENTORY
                 var takeoutItem = heldObj.GetComponent<DroppedItem>();
                 storedGridItem.testingGrid.inventory.RemoveItem( takeoutItem.item.id);
                 
-                //INVENTORY
+                //REMOVEINVENTORY
 
                 storedGridItem.testingGrid = null;
             }
 
-            //Workstation DVD here, commenting out for testing purposes.
-            /*
-            //----------ADD TO INVENTORY----------//
-            //find item data script in pickup obj
-            var droppedItem = heldObj.GetComponent<DroppedItem>(); 
-
-            inventory.AddItem(droppedItem.item);
-            removeInventory.RemoveItem(droppedItem.item.id); 
-            */
+           
+            var droppedItem = heldObj.GetComponent<DroppedItem>().item; 
+            playerIdentification.Playerdata.Events.AddItemInventory?.Invoke(droppedItem);
+            
         }
     }
 
@@ -121,14 +116,12 @@ public class PickUpScript : MonoBehaviour
         //re-enable collision with player
         Physics.IgnoreCollision(heldObj.GetComponent<Collider>(), player.GetComponent<Collider>(), false);
         heldObj.layer = 0; //object assigned back to default layer
-        /* DVD workstation.
         
-        //------------- INVENTORY DROP --------------//
-        
-        inventory.RemoveItem(heldObj.GetComponent<DroppedItem>().item.id);
-        removeInventory.AddItem(heldObj.GetComponent<DroppedItem>().item);
+        //DROPINVENTROY
+        string dropitemID = DropItemID();
+        playerIdentification.Playerdata.Events.RemoveItemInventory?.Invoke(dropitemID);
+        //DROPINVENTORY
 
-        */
         heldObjRb.isKinematic = false;
         heldObj.transform.parent = null; //unparent object
         heldObj = null; //undefine game object
@@ -175,11 +168,11 @@ public class PickUpScript : MonoBehaviour
         heldObjRb.isKinematic = false;
         heldObj.transform.parent = null;
         heldObjRb.AddForce(transform.forward * throwForce);
-        /*
-         //------------- INVENTORY DROP --------------//
-        inventory.RemoveItem(heldObj.GetComponent<DroppedItem>().item.id);
-        removeInventory.AddItem(heldObj.GetComponent<DroppedItem>().item);
-        */
+        
+        //INVENTORY
+        string dropitemID = DropItemID();
+        playerIdentification.Playerdata.Events.RemoveItemInventory?.Invoke(dropitemID);
+        //DROPINVENTORY
         heldObj = null;
         heldObjRb = null;
 
@@ -226,10 +219,19 @@ public class PickUpScript : MonoBehaviour
         //INVENTORY
         */
         //This code above keeps giving null reference.
+        
+
 
         heldObj = null;
         heldObjRb = null;
 
         
+    }
+
+    private string DropItemID()
+    {
+        var itemtodrop = heldObj.GetComponent<DroppedItem>();
+        var itemtodropID = itemtodrop.item.id;
+        return itemtodropID;
     }
 }

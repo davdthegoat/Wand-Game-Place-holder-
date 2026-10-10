@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class NewMonoBehaviourScript : MonoBehaviour
+public class PlayerIdentification : MonoBehaviour
 {
     public PlayerData Playerdata;
 }

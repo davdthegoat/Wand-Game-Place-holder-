@@ -7,5 +7,7 @@ public struct PlayerEvents
 {
     public Action<float> BimbimBamBam;
     public Action<string> RemoveItemInventory;
+
+    
     public Action<Wand> AddItemInventory;
 }
