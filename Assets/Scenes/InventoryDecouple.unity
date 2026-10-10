@@ -1233,7 +1233,6 @@ MonoBehaviour:
   gridPlane: 1
   gridCollider: {fileID: 560248661}
   itemRotation: {x: 0, y: 0, z: 0}
-  inventory: {fileID: 560248662}
 --- !u!65 &560248661
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2108,7 +2107,6 @@ MonoBehaviour:
   gridPlane: 0
   gridCollider: {fileID: 1070140596}
   itemRotation: {x: 0, y: 0, z: 0}
-  inventory: {fileID: 1070140597}
 --- !u!4 &1070140595
 Transform:
   m_ObjectHideFlags: 0
