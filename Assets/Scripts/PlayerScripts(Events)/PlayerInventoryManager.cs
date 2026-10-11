@@ -88,8 +88,8 @@ public class PlayerInventoryManager : PlayerSystem
         playerIdentification.Playerdata.Events.AddItemInventory += AddItem;
         playerIdentification.Playerdata.Events.RemoveItemInventory += RemoveItem;
 
-        playerIdentification.Playerdata.Events.RemoveItemGroundInventory += RemoveItemGroundInventory;
-        playerIdentification.Playerdata.Events.AddItemGroundInventory += AddItemGroundInventory; 
+        //playerIdentification.Playerdata.Events.RemoveItemGroundInventory += RemoveItemGroundInventory;
+        //playerIdentification.Playerdata.Events.AddItemGroundInventory += AddItemGroundInventory; 
 
         playerIdentification.Playerdata.Events.AddItemShelfInventory += AddItemShelfInventory;
         playerIdentification.Playerdata.Events.RemoveItemShelfInventory += RemoveItemShelfInventory;

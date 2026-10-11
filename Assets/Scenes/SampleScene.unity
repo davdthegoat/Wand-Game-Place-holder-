@@ -2137,7 +2137,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -3801,7 +3801,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1988484347}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e3e43049a1f929243ab509dc7d00fc8a, type: 3}
   m_Name: 
@@ -4002,6 +4002,10 @@ PrefabInstance:
     - target: {fileID: 4269084305278181802, guid: 28ce48b2c6dad3d46b9373039ed74b07, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7108556316494594470, guid: 28ce48b2c6dad3d46b9373039ed74b07, type: 3}
+      propertyPath: storeRange
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8707502996643971259, guid: 28ce48b2c6dad3d46b9373039ed74b07, type: 3}
       propertyPath: m_Name
