@@ -60,6 +60,10 @@ public class WorkStationSit : MonoBehaviour
                 sitPositionCamera.enabled = true;
 
                 heldObjectPlacementScript.PlaceHeldObject();
+
+
+
+                // ADD INVENTORY HERE - Remove from player inventory + add to the table's inventory.
             }
         }
     }
