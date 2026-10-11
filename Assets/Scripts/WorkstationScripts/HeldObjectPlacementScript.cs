@@ -18,8 +18,9 @@ public class HeldObjectPlacementScript : MonoBehaviour
 
         if (itemOnTable != null)
         {
-            DropHeldObject(heldObject); //Not the same from pickup script, slight modifications for workstation only. That one is called DropObject. In particular, the real difference is inventory.
-            return;
+            //Making it so that instead of dropping the item, the item is just not visible to sit position camera. Remains in players hand, when exiting workstation.
+            //DropHeldObject(heldObject); //Not the same from pickup script, slight modifications for workstation only. That one is called DropObject. In particular, the real difference is inventory.
+            return; //Meaning the rest of the code is skipped.
         }
         Rigidbody heldObjectRb = pickUpScript.GetHeldObjectRigidbody();
 
@@ -37,6 +38,7 @@ public class HeldObjectPlacementScript : MonoBehaviour
         pickUpScript.ClearHeldObject(); //All prior steps necessary because ClearHeldObject only sets heldObj and heldObjRb to null.
     }
 
+    /*
     private void DropHeldObject(GameObject heldObject)
     {
         heldObject.transform.position = DroppedItemPlacementPosition.position;
@@ -45,4 +47,5 @@ public class HeldObjectPlacementScript : MonoBehaviour
         pickUpScript.DropObject();
         //At first I tried to create a modified version of DropObject, which didn't involve inventory. But the inventory is an essential part of the game and this function can't be completed without it.
     }
+    */ //Redundant.
 }

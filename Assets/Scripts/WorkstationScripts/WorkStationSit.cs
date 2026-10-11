@@ -6,6 +6,7 @@ public class WorkStationSit : MonoBehaviour
 {
     //This script is meant to seat Mr.Bean to the workstation. Depending on how things unfold, it might also be used for freezing the camera and letting go of Mr.Bean.
     [SerializeField] private HeldObjectPlacementScript heldObjectPlacementScript; //Linking both scripts to one another.
+    [SerializeField] private PickUpScript pickUpScript; //Need to disable the script when sitting, it's causing issues imo.
     [SerializeField] private GameObject player;
     [SerializeField] private Transform playerSitPosition;
     [SerializeField] private float interactRange = 3f;
@@ -39,6 +40,7 @@ public class WorkStationSit : MonoBehaviour
         {
             if (hit.collider.CompareTag("WorkBench"))
             {
+                pickUpScript.enabled = false;
                 //Trying to figure out why it won't work/jitter right now.
                 //Debug.Log("Current postion: sitting");
 
@@ -63,6 +65,9 @@ public class WorkStationSit : MonoBehaviour
     }
     private void TryStand()
     {
+        pickUpScript.enabled = true;
+
+
         movement.enabled = true;
         controller.enabled = true;
         //Attempt to fix camera jittering caused by Quaternion identity when pressing f, and not seated.
