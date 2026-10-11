@@ -9,13 +9,15 @@ public class PlayerInventoryManager : PlayerSystem
     private Inventory playerInventory;
 
 
-    void RemoveItem(string id)
-    {
+    void RemoveItem(GameObject item)
+    {   
+        var id = item.GetComponent<DroppedItem>().item.id; 
         playerInventory.RemoveItem(id);
     }
 
-    void AddItem(Wand wandItem)
+    void AddItem(GameObject item)
     {
+        var wandItem = item.GetComponent<DroppedItem>().item; 
         playerInventory.AddItem(wandItem);
     }
 
