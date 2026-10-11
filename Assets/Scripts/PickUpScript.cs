@@ -104,7 +104,7 @@ public class PickUpScript : PlayerSystem
             }
 
            
-            var droppedItem = DropItem();
+            var droppedItem = DropItem(heldObj);
             playerIdentification.Playerdata.Events.AddItemInventory?.Invoke(droppedItem);
             
         }
@@ -118,8 +118,8 @@ public class PickUpScript : PlayerSystem
         heldObj.layer = 0; //object assigned back to default layer
         
         //DROPINVENTROY
-        string dropitemID = DropItemID();
-        playerIdentification.Playerdata.Events.RemoveItemInventory?.Invoke(dropitemID);
+        var dropitem = DropItem(heldObj);
+        playerIdentification.Playerdata.Events.RemoveItemInventory?.Invoke(dropitem);
         //DROPINVENTORY
 
         heldObjRb.isKinematic = false;
@@ -170,8 +170,8 @@ public class PickUpScript : PlayerSystem
         heldObjRb.AddForce(transform.forward * throwForce);
         
         //INVENTORY
-        string dropitemID = DropItemID();
-        playerIdentification.Playerdata.Events.RemoveItemInventory?.Invoke(dropitemID);
+        var dropitem = DropItem(heldObj);
+        playerIdentification.Playerdata.Events.RemoveItemInventory?.Invoke(dropitem);
         //DROPINVENTORY
         heldObj = null;
         heldObjRb = null;
@@ -228,18 +228,18 @@ public class PickUpScript : PlayerSystem
         
     }
 
+    /* Redundant/useless code Remove if no errors arise
     private string DropItemID()
     {
         var itemtodrop = heldObj.GetComponent<DroppedItem>();
         var itemtodropID = itemtodrop.item.id;
         return itemtodropID;
     }
-
-     private Wand DropItem()
+*/ 
+     private GameObject DropItem(GameObject heldObj)
     {
-        var itemtodrop = heldObj.GetComponent<DroppedItem>();
-        var itemtodropItem = itemtodrop.item;
-        return itemtodropItem;
+        
+        return heldObj;
     }
 
 
