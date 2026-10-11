@@ -35,3 +35,6 @@ Completed grid system, with polished features. Inventory-system is nearing compl
 Below are lapse links for week 3:
 https://lapse.hackclub.com/timelapse/aGGZ-6w-WJ3i
 https://lapse.hackclub.com/timelapse/dE1pdo7Ts0Dq
+
+Week 4:
+Work in progress on the workstation and inventory. We underestimated the scale of these resulting in far more time being taken than we initially thought. Started work on a event handling system which can pass data between different game objects, and added some more 3D assets.
