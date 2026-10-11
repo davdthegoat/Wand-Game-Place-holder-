@@ -1,7 +1,7 @@
 using Unity.Properties;
 using UnityEngine;
 
-public class StoreInShelfScript : ShelfSystem
+public class StoreInShelfScript : PlayerSystem
 {
     //Dont need player collision to be disabled when storing in shelf
     //[SerializeField] GameObject player;
@@ -119,7 +119,18 @@ public class StoreInShelfScript : ShelfSystem
         
         //INVENTORY
 
-        var droppedItem = heldObj.GetComponent<DroppedItem>();
+        var droppedItem = heldObj;
+        Inventory GridInventory = hitTestingGrid.GetComponent<Inventory>();
+        if (droppedItem == null || GridInventory == null) Debug.Log("DroppedItem or Grid Inventory Not found while ADDSHELFINVENTORY ");
+        else{
+        playerIdentification.Playerdata.Events.AddItemShelfInventory?.Invoke(droppedItem, GridInventory);
+        }
+        if (droppedItem != null)
+        {
+            playerIdentification.Playerdata.Events.RemoveItemInventory?.Invoke(droppedItem);
+        }
+        
+        
         //ADD THE ADD ITEM THING
         //INVENTORY
 

@@ -10,5 +10,5 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fd64870201c3c274a8314fbb69a10cb5, type: 3}
-  m_Name: Mr. BeanData
+  m_Name: Mr Bean
   m_EditorClassIdentifier: Assembly-CSharp::PlayerData

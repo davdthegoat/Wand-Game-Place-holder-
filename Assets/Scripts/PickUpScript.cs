@@ -17,10 +17,10 @@ public class PickUpScript : PlayerSystem
     private int LayerNumber; //layer index
     private int LayerNumStore;
 
-    //----------------------------INVENTORY CONNECTION-------------------------------//
-    public Inventory inventory;
+    
+    
 
-    public Inventory removeInventory;
+    
     //Reference to script which includes mouse movement of player (looking around)
     //we want to disable the player looking around when rotating the object
     //public Movement mouseLookScript;
@@ -94,19 +94,24 @@ public class PickUpScript : PlayerSystem
             {
                 storedGridItem.testingGrid.GetGrid().SetGridValue(storedGridItem.gridX, storedGridItem.gridY, 0);
 
-                //REMOVEINVENTORY
-                //var takeoutItem = heldObj.GetComponent<DroppedItem>();
-                //storedGridItem.testingGrid.inventory.RemoveItem( takeoutItem.item.id);
                 
-                //REMOVEINVENTORY
+                var takeoutItem = heldObj;
+                Inventory GridInventory = storedGridItem.testingGrid.GetComponent<Inventory>();
+                if (GridInventory != null || takeoutItem != null){
+                playerIdentification.Playerdata.Events.RemoveItemShelfInventory?.Invoke(takeoutItem, GridInventory);
+                //PUT into player inventory
+                }
+                
+                
+               
 
                 storedGridItem.testingGrid = null;
             }
 
            
-            var droppedItem = DropItem();
-            playerIdentification.Playerdata.Events.AddItemInventory?.Invoke(droppedItem);
-            
+            var droppedItem = heldObj;
+            if (droppedItem != null) {playerIdentification.Playerdata.Events.AddItemInventory?.Invoke(droppedItem);
+            playerIdentification.Playerdata.Events.RemoveItemGroundInventory?.Invoke(droppedItem);}
         }
     }
 
@@ -118,9 +123,13 @@ public class PickUpScript : PlayerSystem
         heldObj.layer = 0; //object assigned back to default layer
         
         //DROPINVENTROY
-        string dropitemID = DropItemID();
-        playerIdentification.Playerdata.Events.RemoveItemInventory?.Invoke(dropitemID);
+        var dropitem = heldObj;
+        if (dropitem == null) Debug.Log("DROPITEM IS NULL GOING TO REMOVEITEMINVENTORY - DROPOBJECT");
+        else{
+        playerIdentification.Playerdata.Events.RemoveItemInventory?.Invoke(dropitem);
         //DROPINVENTORY
+        playerIdentification.Playerdata.Events.AddItemGroundInventory?.Invoke(dropitem);
+        }
 
         heldObjRb.isKinematic = false;
         heldObj.transform.parent = null; //unparent object
@@ -170,9 +179,16 @@ public class PickUpScript : PlayerSystem
         heldObjRb.AddForce(transform.forward * throwForce);
         
         //INVENTORY
-        string dropitemID = DropItemID();
-        playerIdentification.Playerdata.Events.RemoveItemInventory?.Invoke(dropitemID);
+        var dropitem = heldObj;
+
+        if (dropitem == null) Debug.Log("DROPITEM IS NULL GOING TO REMOVEITEMINVENTORY - THROW OBJECT");
+        else{
+        playerIdentification.Playerdata.Events.RemoveItemInventory?.Invoke(dropitem);
         //DROPINVENTORY
+        //Put in GROUND INVENTORY
+        playerIdentification.Playerdata.Events.AddItemGroundInventory?.Invoke(dropitem);
+        }
+
         heldObj = null;
         heldObjRb = null;
 
@@ -228,19 +244,9 @@ public class PickUpScript : PlayerSystem
         
     }
 
-    private string DropItemID()
-    {
-        var itemtodrop = heldObj.GetComponent<DroppedItem>();
-        var itemtodropID = itemtodrop.item.id;
-        return itemtodropID;
-    }
+    
 
-     private Wand DropItem()
-    {
-        var itemtodrop = heldObj.GetComponent<DroppedItem>();
-        var itemtodropItem = itemtodrop.item;
-        return itemtodropItem;
-    }
+    
 
 
 }

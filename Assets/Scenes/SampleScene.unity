@@ -480,35 +480,35 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8391222552659086748, guid: f5349f83009baf04cb29f66c6a955747, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8380157826906577798, guid: f5349f83009baf04cb29f66c6a955747, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8116613859084990610, guid: f5349f83009baf04cb29f66c6a955747, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -7146521406498821007, guid: f5349f83009baf04cb29f66c6a955747, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -3215555783603854218, guid: f5349f83009baf04cb29f66c6a955747, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -2932998491564163895, guid: f5349f83009baf04cb29f66c6a955747, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -1018664272722485354, guid: f5349f83009baf04cb29f66c6a955747, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -516098083770646512, guid: f5349f83009baf04cb29f66c6a955747, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: f5349f83009baf04cb29f66c6a955747, type: 3}
       propertyPath: m_Name
@@ -516,35 +516,35 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: f5349f83009baf04cb29f66c6a955747, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: f5349f83009baf04cb29f66c6a955747, type: 3}
       propertyPath: m_TagString
-      value: canPickUp
+      value: canStore
       objectReference: {fileID: 0}
     - target: {fileID: 2800250516343163423, guid: f5349f83009baf04cb29f66c6a955747, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3849762623622064168, guid: f5349f83009baf04cb29f66c6a955747, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4424396828587804706, guid: f5349f83009baf04cb29f66c6a955747, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5914173764048766335, guid: f5349f83009baf04cb29f66c6a955747, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8416272007918961125, guid: f5349f83009baf04cb29f66c6a955747, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8700725330082129686, guid: f5349f83009baf04cb29f66c6a955747, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3184,7 +3184,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1566928314}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 43c7a91f77f72d34ea675f43ccb7e772, type: 3}
   m_Name: 
@@ -4047,6 +4047,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerInventoryManager
   playerInventory: {fileID: 30686074597218294}
+  GroundInventory: {fileID: 1566928315}
 --- !u!114 &30686074597218296
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4059,7 +4060,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 293508616c0e1164a8f4271d78344eff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerIdentification
-  Playerdata: {fileID: 11400000, guid: b253241f59a8fe744ab7159360bc8ff4, type: 2}
+  Playerdata: {fileID: 11400000, guid: 2fa747d93bfbeb94ab52cd7b641d67ba, type: 2}
 --- !u!4 &3594742703325271214 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8484189227265311541, guid: ac3557a0acb5ac8479f596547d6d6f9f, type: 3}

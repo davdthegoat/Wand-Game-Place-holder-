@@ -5,9 +5,14 @@ using System;
 
 public struct PlayerEvents
 {
-    public Action<float> BimbimBamBam;
-    public Action<string> RemoveItemInventory;
+    public Action BimbimBamBam;
 
-    
-    public Action<Wand> AddItemInventory;
+    public Action<GameObject> RemoveItemInventory;
+    public Action<GameObject> AddItemInventory;
+
+    public Action<GameObject> AddItemGroundInventory;
+    public Action<GameObject> RemoveItemGroundInventory;
+
+    public Action<GameObject, Inventory> AddItemShelfInventory;
+    public Action<GameObject, Inventory> RemoveItemShelfInventory;
 }
