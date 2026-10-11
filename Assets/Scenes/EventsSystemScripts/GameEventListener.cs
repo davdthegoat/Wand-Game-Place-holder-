@@ -3,7 +3,7 @@ using UnityEngine;
 public class GameEventListener : MonoBehaviour
 {
     public GameEvent Event;
-    //public UnityEvent Response;
+    public UnityEvent Response;
 
     private void OnEnable()
     { Event.RegisterListener(this); }
@@ -11,6 +11,6 @@ public class GameEventListener : MonoBehaviour
     private void OnDisable()
     { Event.UnregisterListener(this); }
 
-    //public void OnEventRaised()
-    //{ Response.Invoke(); }
+    public void OnEventRaised()
+    { Response.Invoke(); }
 }
