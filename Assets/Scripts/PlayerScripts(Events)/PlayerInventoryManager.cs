@@ -11,35 +11,20 @@ public class PlayerInventoryManager : PlayerSystem
 
     void RemoveItem(GameObject item)
     {   
-        if (NotNullDroppedItem(item))
-        {
-            var id = item.GetComponent<DroppedItem>().item.id; 
-            playerInventory.RemoveItem(id);
-        }
+        var id = item.GetComponent<DroppedItem>().item.id; 
+        playerInventory.RemoveItem(id);
     }
 
     void AddItem(GameObject item)
-    {   
-        if (NotNullDroppedItem(item)) // Ensures getting the item doesnt return null
-        {
-            var wandItem = item.GetComponent<DroppedItem>().item; 
-            playerInventory.AddItem(wandItem);
-        }
-    }
-
-    void AddItemToGroundInventory(GameObject item)
     {
-        
+        var wandItem = item.GetComponent<DroppedItem>().item; 
+        playerInventory.AddItem(wandItem);
     }
 
 
 
 
-    private bool NotNullDroppedItem(GameObject item)
-    {
-        return item.GetComponent<DroppedItem>() != null;
-         // Ensures getting the item doesnt return null
-    }
+
 
 
 
