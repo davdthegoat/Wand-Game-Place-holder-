@@ -108,10 +108,11 @@ public class PickUpScript : PlayerSystem
                 storedGridItem.testingGrid = null;
             }
 
-           
+           /*
             var droppedItem = heldObj;
-            if (droppedItem != null) {playerIdentification.Playerdata.Events.AddItemInventory?.Invoke(droppedItem);
+            if (droppedItem != null) {playerIdentification.Playerdata.Events.AddItemInventory?.Invoke(droppedItem); //This line is causing problems. (null references)
             playerIdentification.Playerdata.Events.RemoveItemGroundInventory?.Invoke(droppedItem);}
+           */
         }
     }
 
@@ -178,9 +179,11 @@ public class PickUpScript : PlayerSystem
         heldObj.transform.parent = null;
         heldObjRb.AddForce(transform.forward * throwForce);
         
+
+        //TESTING, REMOVING THIS.
+        /*
         //INVENTORY
         var dropitem = heldObj;
-
         if (dropitem == null) Debug.Log("DROPITEM IS NULL GOING TO REMOVEITEMINVENTORY - THROW OBJECT");
         else{
         playerIdentification.Playerdata.Events.RemoveItemInventory?.Invoke(dropitem);
@@ -188,6 +191,7 @@ public class PickUpScript : PlayerSystem
         //Put in GROUND INVENTORY
         playerIdentification.Playerdata.Events.AddItemGroundInventory?.Invoke(dropitem);
         }
+        */
 
         heldObj = null;
         heldObjRb = null;
