@@ -108,10 +108,11 @@ public class PickUpScript : PlayerSystem
                 storedGridItem.testingGrid = null;
             }
 
-           
+           /*
             var droppedItem = heldObj;
             if (droppedItem != null) {playerIdentification.Playerdata.Events.AddItemInventory?.Invoke(droppedItem); //This line is causing problems. (null references)
             playerIdentification.Playerdata.Events.RemoveItemGroundInventory?.Invoke(droppedItem);}
+           */
            
         }
     }

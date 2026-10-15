@@ -69,7 +69,7 @@ public class PlayerInventoryManager : PlayerSystem
 
 
 
-
+    /* DVD - Commenting out cuz of null error
     void OnDisable()
     {
         playerIdentification.Playerdata.Events.AddItemInventory -= AddItem;
@@ -94,4 +94,5 @@ public class PlayerInventoryManager : PlayerSystem
         playerIdentification.Playerdata.Events.AddItemShelfInventory += AddItemShelfInventory;
         playerIdentification.Playerdata.Events.RemoveItemShelfInventory += RemoveItemShelfInventory;
     }
+    */
 }

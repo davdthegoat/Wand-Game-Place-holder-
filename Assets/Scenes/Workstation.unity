@@ -167,6 +167,7 @@ MonoBehaviour:
   workStationSit: {fileID: 396702664}
   dragRange: 10
   dragStrength: 1
+  itemPlacementPosition: {fileID: 1662115010}
 --- !u!1 &386254710
 GameObject:
   m_ObjectHideFlags: 0
