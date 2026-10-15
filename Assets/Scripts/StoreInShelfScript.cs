@@ -54,8 +54,8 @@ public class StoreInShelfScript : PlayerSystem
             Debug.DrawRay(transform.position, transform.forward * storeRange, Color.red,2f); // To test colider/rb info.
             if (Physics.Raycast(transform.position, transform.forward, out hit, storeRange))
             {
-                //Debug.Log("F raycast hit: " + hit.transform.gameObject.name);
-                //Debug.Log("F raycast tag: " + hit.transform.gameObject.tag);
+                Debug.Log("F raycast hit: " + hit.transform.gameObject.name);
+                Debug.Log("F raycast tag: " + hit.transform.gameObject.tag);
                 TestingGrid hitTestingGrid = null;
 
                 foreach (TestingGrid testingGrid in testingGrids)

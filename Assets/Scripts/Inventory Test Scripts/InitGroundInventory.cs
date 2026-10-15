@@ -16,7 +16,7 @@ public class InitGroundInventory : MonoBehaviour
     {
         foreach (DroppedItem wand in WandsToInit)
         {
-            groundInventory.AddItem(wand.item);
+            
         }
     }
 
