@@ -171,6 +171,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wandbox (placeholder) 4
       objectReference: {fileID: 0}
+    - target: {fileID: 6179093118156504925, guid: 25649eaa43b1a8946ae5462527e92c1a, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -258,6 +262,10 @@ PrefabInstance:
     - target: {fileID: 3202223312977977585, guid: f0ffc881939b43f40804a6ac9bf9f562, type: 3}
       propertyPath: m_Name
       value: Wandbox (placeholder) 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6179093118156504925, guid: f0ffc881939b43f40804a6ac9bf9f562, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1321,6 +1329,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wandbox (placeholder) 5
       objectReference: {fileID: 0}
+    - target: {fileID: 6179093118156504925, guid: 8486bdc2701a8ca439d2c4d5a5e68dd5, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1798,7 +1810,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 808400311}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9341c6775cc83384baa360af6eab1ab6, type: 3}
   m_Name: 
@@ -2836,6 +2848,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wandbox (placeholder) 6
       objectReference: {fileID: 0}
+    - target: {fileID: 6179093118156504925, guid: 59ccb244d95b7a34dbd02195f349d29e, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3284,6 +3300,10 @@ PrefabInstance:
     - target: {fileID: 3202223312977977585, guid: e47e7ee4016974f4d8dd432a15aed631, type: 3}
       propertyPath: m_Name
       value: Wandbox (placeholder) 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6179093118156504925, guid: e47e7ee4016974f4d8dd432a15aed631, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3751,6 +3771,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wandbox (placeholder) 3
       objectReference: {fileID: 0}
+    - target: {fileID: 6179093118156504925, guid: fb7de263997bfbe4a97a3200e1b300cc, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3801,7 +3825,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1988484347}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e3e43049a1f929243ab509dc7d00fc8a, type: 3}
   m_Name: 
@@ -4178,6 +4202,10 @@ PrefabInstance:
     - target: {fileID: 3202223312977977585, guid: 112f03effd3f0f4468a574c1dcb4f8f3, type: 3}
       propertyPath: m_Name
       value: Wandbox (placeholder)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6179093118156504925, guid: 112f03effd3f0f4468a574c1dcb4f8f3, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7630987013638644875, guid: 112f03effd3f0f4468a574c1dcb4f8f3, type: 3}
       propertyPath: m_Enabled
