@@ -18,7 +18,7 @@ public class WorkStationDragAndDrop : MonoBehaviour
     //dragPlane = new Plane(sitPositionCamera.transform.forward, draggedObject.transform.position);
     
 
-    void Update()
+    /*void Update()
     {
         if (workStationSit.IsSitting() == false) //Trying to reduce lag by nesting all of this inside a if statement.
         {
@@ -42,7 +42,40 @@ public class WorkStationDragAndDrop : MonoBehaviour
         {
             StopDragging();
         }
+    } */
+
+void Update()
+    {
+        if (workStationSit.IsSitting() == false)
+        {
+            StopDragging();
+            return;
+        }
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            Debug.Log("Mouse DOWN");
+            TryDragging();
+        }
+
+        if (Input.GetMouseButton(0))
+        {
+            Debug.Log("Mouse HELD | Object: " +
+                (draggedObject != null ? draggedObject.name : "NULL"));
+
+            if (draggedObject != null)
+            {
+                DragObject();
+            }
+        }
+
+        if (Input.GetMouseButtonUp(0))
+        {
+            Debug.Log("Mouse UP");
+            StopDragging();
+        }
     }
+
 
     void TryDragging()
     {
@@ -52,6 +85,7 @@ public class WorkStationDragAndDrop : MonoBehaviour
         {
             if (hit.collider.CompareTag("canPickUp"))
             {
+
                 draggedObject = hit.collider.gameObject;
                 draggedObjectRb = draggedObject.GetComponent<Rigidbody>();
 
@@ -62,6 +96,12 @@ public class WorkStationDragAndDrop : MonoBehaviour
                 {
                     Vector3 mouseWorldPosition = ray.GetPoint(distance);
                     dragOffset = draggedObject.transform.position - mouseWorldPosition;
+
+                    Debug.Log("Initial plane intersection succeeded. Distance: " + distance);
+                }
+                else
+                {
+                    Debug.Log("Initial plane intersection failed");
                 }
 
                 if (draggedObjectRb != null)
@@ -69,8 +109,14 @@ public class WorkStationDragAndDrop : MonoBehaviour
                     wasKinematic = draggedObjectRb.isKinematic;
                     draggedObjectRb.isKinematic = true;
 
-                    Debug.Log("Dragging start?: " + draggedObject.name);
+                    Debug.Log("Dragging start: " + draggedObject.name);
                 }
+                Debug.Log("Selected: " + draggedObject.name);
+                Debug.Log("Plane selected.");
+            }
+            else
+            {
+                Debug.Log("Selection ray hit nothing");
             }
         }
     }
@@ -78,13 +124,16 @@ public class WorkStationDragAndDrop : MonoBehaviour
 
     void DragObject()
     {
-        Debug.Log("Should be dragging");
         Ray ray = sitPositionCamera.ScreenPointToRay(Input.mousePosition);
         //Plane dragPlane = new Plane(sitPositionCamera.transform.forward, draggedObject.transform.position);
 
         if (dragPlane.Raycast(ray, out float distance))
         {
-            draggedObject.transform.position = ray.GetPoint(distance) + dragOffset;
+            Vector3 targetPosition = ray.GetPoint(distance) + dragOffset;
+            Debug.Log("Taget position: " + targetPosition);
+            Debug.Log("Current Position:" + draggedObject.transform.position);
+            draggedObject.transform.position = targetPosition; //For debugging
+            Debug.Log("Position after movement:" + draggedObject.transform.position);
         }
     }
 

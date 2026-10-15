@@ -272,6 +272,31 @@ MonoBehaviour:
   pickUpScript: {fileID: 2067119704}
   ItemPlacementPosition: {fileID: 1662115010}
   DroppedItemPlacementPosition: {fileID: 386254711}
+--- !u!114 &396702675 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 9223195710490985902, guid: 28ce48b2c6dad3d46b9373039ed74b07, type: 3}
+  m_PrefabInstance: {fileID: 1372410978}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 396702658}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f2f7cb64da43f046979f9cebe29ac03, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Inventory
+--- !u!114 &396702678
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 396702658}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1331b35bc8472e429b1004a5b85783c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerInventoryManager
+  playerInventory: {fileID: 396702675}
+  GroundInventory: {fileID: 0}
 --- !u!1 &400193805
 GameObject:
   m_ObjectHideFlags: 0
@@ -585,7 +610,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6973963359921857790, guid: dc1de050d2b53b343bf6beba47c69990, type: 3}
       propertyPath: m_Name
-      value: ElderWand (1)
+      value: Wand 13
       objectReference: {fileID: 0}
     - target: {fileID: 7747227191138270788, guid: dc1de050d2b53b343bf6beba47c69990, type: 3}
       propertyPath: m_LocalPosition.x
@@ -727,6 +752,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8707502996643971259, guid: 28ce48b2c6dad3d46b9373039ed74b07, type: 3}
       insertIndex: -1
       addedObject: {fileID: 396702674}
+    - targetCorrespondingSourceObject: {fileID: 8707502996643971259, guid: 28ce48b2c6dad3d46b9373039ed74b07, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 396702678}
   m_SourcePrefab: {fileID: 100100000, guid: 28ce48b2c6dad3d46b9373039ed74b07, type: 3}
 --- !u!1 &1440971776
 GameObject:
@@ -1081,7 +1109,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9341c6775cc83384baa360af6eab1ab6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DroppedItem
-  item: {fileID: 0}
+  item: {fileID: 11400000, guid: 29e6fcf857689084ea8cab507c4d03c2, type: 2}
 --- !u!1 &1639338817 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6973963359921857790, guid: dc1de050d2b53b343bf6beba47c69990, type: 3}
@@ -1119,7 +1147,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9341c6775cc83384baa360af6eab1ab6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DroppedItem
-  item: {fileID: 0}
+  item: {fileID: 11400000, guid: b112d0160485e5542afe354eb4e28aad, type: 2}
 --- !u!1001 &1640955418
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1473,7 +1501,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6973963359921857790, guid: dc1de050d2b53b343bf6beba47c69990, type: 3}
       propertyPath: m_Name
-      value: ElderWand
+      value: Wand 12
       objectReference: {fileID: 0}
     - target: {fileID: 7747227191138270788, guid: dc1de050d2b53b343bf6beba47c69990, type: 3}
       propertyPath: m_LocalPosition.x
