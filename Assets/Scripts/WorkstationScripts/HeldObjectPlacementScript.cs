@@ -36,6 +36,10 @@ public class HeldObjectPlacementScript : MonoBehaviour
 
         itemOnTable = heldObject;
         pickUpScript.ClearHeldObject(); //All prior steps necessary because ClearHeldObject only sets heldObj and heldObjRb to null.
+
+
+        //Giving it a tag, for workstation WorkStationDragAndDrop script.
+        heldObject.tag = "WorkStationItem";
     }
 
     /*

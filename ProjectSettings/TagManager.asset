@@ -9,6 +9,7 @@ TagManager:
   - DroppedItem
   - WorkBench
   - WandBox
+  - WorkStationItem
   layers:
   - Default
   - TransparentFX
