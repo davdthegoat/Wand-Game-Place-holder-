@@ -17,6 +17,9 @@ public class StoreInShelfScript : PlayerSystem
     //An attempt to search through multiple grids, using an Array in order to be able to identify which one was called.
     private TestingGrid[] testingGrids;
 
+    [SerializeField]
+    LayerMask ignoreLayer;
+
                                     
 
     void Start()
@@ -52,7 +55,7 @@ public class StoreInShelfScript : PlayerSystem
 
             RaycastHit hit;
             Debug.DrawRay(transform.position, transform.forward * storeRange, Color.red,2f); // To test colider/rb info.
-            if (Physics.Raycast(transform.position, transform.forward, out hit, storeRange))
+            if (Physics.Raycast(transform.position, transform.forward, out hit, storeRange, ~ignoreLayer/*Ignores this layer*/))
             {
                 Debug.Log("F raycast hit: " + hit.transform.gameObject.name);
                 Debug.Log("F raycast tag: " + hit.transform.gameObject.tag);

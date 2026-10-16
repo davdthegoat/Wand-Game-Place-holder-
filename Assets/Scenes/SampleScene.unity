@@ -1262,7 +1262,7 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 512
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -2177,7 +2177,7 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 512
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -4096,6 +4096,10 @@ PrefabInstance:
     - target: {fileID: 7108556316494594470, guid: 28ce48b2c6dad3d46b9373039ed74b07, type: 3}
       propertyPath: storeRange
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7108556316494594470, guid: 28ce48b2c6dad3d46b9373039ed74b07, type: 3}
+      propertyPath: ignoreLayer.m_Bits
+      value: 256
       objectReference: {fileID: 0}
     - target: {fileID: 8707502996643971259, guid: 28ce48b2c6dad3d46b9373039ed74b07, type: 3}
       propertyPath: m_Name
