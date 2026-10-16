@@ -18,6 +18,7 @@ public class WorkStationDragAndDrop : MonoBehaviour
     private Plane dragPlane;
     private Vector3 originalPosition;
     private Quaternion originalRotation;
+    private GameObject selectedObject;
     
 
 void Update()
@@ -47,9 +48,27 @@ void Update()
             Debug.Log("Mouse UP");
             StopDragging();
         }
-        if (Input.GetKeyDown(KeyCode.F))
+
+
+        if (Input.GetKeyDown(KeyCode.F) && selectedObject != null)
         {
-            draggedObject.transform.position = itemPlacementPosition.position;
+            if (selectedObject.CompareTag("WorkStationItem"))
+            {
+                selectedObject.transform.position = itemPlacementPosition.position;
+                selectedObject.transform.rotation = itemPlacementPosition.rotation;
+
+                Rigidbody rb = selectedObject.GetComponent<Rigidbody>();
+
+                if (rb != null) //Ensure that rigidbody is return to normal when played exits. While have to nest this in another loop depending on whether item is packaged or not maybe.
+                {
+                    rb.linearVelocity = Vector3.zero;
+                    rb.angularVelocity = Vector3.zero;
+                    rb.useGravity = false;
+                    rb.isKinematic = true;
+                }
+
+                selectedObject = null;
+            }
         }
     }
 
@@ -60,17 +79,18 @@ void Update()
         
         if (Physics.Raycast(ray, out RaycastHit hit, dragRange))
         {
-            if (hit.collider.CompareTag("canPickUp"))
+            if (hit.collider.CompareTag("WorkStationItem")) //Makes it so that wandboxes are un-draggable.
             {
 
                 draggedObject = hit.collider.gameObject;
+                selectedObject = draggedObject; //Creating duplicate because draggedObject is set to null once left click is released.
                 draggedObjectRb = draggedObject.GetComponent<Rigidbody>();
 
                 //To reset item's position when you stand back up.
                 originalPosition = draggedObject.transform.position;
                 originalRotation = draggedObject.transform.rotation;
 
-                //Trying to make it so this plane isn't created every frame, for consistency in movement, performance and debugging.
+                //Trying to make it so this plane isn't created every frame, for consistency in movement, performance and debugging. //Failed
                 dragPlane = new Plane(sitPositionCamera.transform.forward, draggedObject.transform.position);
 
                 if (dragPlane.Raycast(ray, out float distance))
@@ -111,12 +131,17 @@ void Update()
             Debug.Log("Current Position:" + draggedObject.transform.position);
             draggedObject.transform.position = targetPosition; //For debugging
             Debug.Log("Position after movement:" + draggedObject.transform.position);
+
+
+            //For gravity (testing)
+            draggedObjectRb.isKinematic = true;
+            draggedObjectRb.useGravity = false;
         }
     }
 
     void StopDragging()
     {
-        if (draggedObject == null) 
+        if (draggedObject == null) //Early exit, not all left clicks set "draggedObject".
         {
             return;
         }
@@ -129,8 +154,12 @@ void Update()
         Debug.Log("Stopped item dragging: " + draggedObject.name);
 
         //return to OG position
-        //draggedObject.transform.position = originalPosition;
+        //draggedObject.transform.position = originalPosition; //Doing in update.
         //draggedObject.transform.rotation = originalRotation;
+
+        //Physics behavior
+        draggedObjectRb.isKinematic = false;
+        draggedObjectRb.useGravity = true;
 
         //clear assignments
         draggedObject = null;

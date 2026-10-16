@@ -16,17 +16,19 @@ public class WandboxSelectionScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (workStationSit.IsSitting() == true)
         {
-            SelectWandBox();
-        } 
+            if (Input.GetMouseButtonDown(0))
+            {
+                SelectWandBox();
+            }
+        }
     }
 
     private void SelectWandBox() //Chose the correct sized box for your needs.
     //Reused code from previous scripts mostly.
     {
         Ray ray = playerCamera.ScreenPointToRay(Input.mousePosition);
-        Debug.Log("Camera being used: " + playerCamera.name);
         if (workStationSit.IsSitting() == true)
         {
             if (Physics.Raycast(ray, out RaycastHit hit, raycastRange))
