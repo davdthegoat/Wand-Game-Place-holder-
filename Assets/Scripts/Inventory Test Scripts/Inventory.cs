@@ -22,6 +22,7 @@ public class Inventory : MonoBehaviour
     [Header("State")]
     [SerializeField]
     SerializedDictionary<string, Wand> inventory = new();
+    
 
 
 
@@ -84,11 +85,17 @@ public class Inventory : MonoBehaviour
         
         //Updates inventory
         inventory.Remove(inventoryId); // removes that item from dictionary
-        
+    }
 
-        
-        
+    public Wand GetItem(string inventoryId)
+    {
+        var item = inventory.GetValueOrDefault(inventoryId);
+        return item;
+    }
 
+    public int Length()
+    {
+        return inventory.Count;
     }
 
 

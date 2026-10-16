@@ -10,6 +10,8 @@ public class PlayerInventoryManager : PlayerSystem
     [SerializeField]
     private Inventory GroundInventory;
 
+    
+
 
     void RemoveItem(GameObject item)
     {
@@ -65,6 +67,10 @@ public class PlayerInventoryManager : PlayerSystem
         }
     }
 
+    void FindItembyCore()
+    {
+        ;
+    }
 
 
 

@@ -23,6 +23,8 @@ public class Wand : ScriptableObject
 
     public string AttributeText;
 
+    public bool foundGround;
+
     public GameObject prefab;
 }
 
