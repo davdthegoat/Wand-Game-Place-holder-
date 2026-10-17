@@ -23,6 +23,9 @@ public class Inventory : MonoBehaviour
     [SerializeField]
     SerializedDictionary<string, Wand> inventory = new();
 
+    [Header("WandBox Dict")]
+    [SerializeField]
+    SerializedDictionary<string, WandBox> boxinventory = new();
 
 
 
@@ -66,6 +69,13 @@ public class Inventory : MonoBehaviour
         
     }
 
+    public void AddItemBox(WandBox itemBox)
+    {
+        var inventoryId = itemBox.id.ToString();//generate new id to allow for multiple instaces of a single item
+        boxinventory.Add(inventoryId, itemBox); //add it to inventory dictionary along with its ID as key
+        
+    }
+
     // public void DropItem(string inventoryId)
     // {
     //     var droppedItem = Instantiate(droppedItemPrefab, transform.position, Quaternion.identity).GetComponent<DroppedItem>();
@@ -87,15 +97,38 @@ public class Inventory : MonoBehaviour
         inventory.Remove(inventoryId); // removes that item from dictionary
     }
 
+    public void RemoveItemBox(string inventoryBoxId)
+    {
+        //creates + initiallises a new item from the prefab
+        
+        
+        var item = boxinventory.GetValueOrDefault(inventoryBoxId);
+        
+        
+        //Updates inventory
+        boxinventory.Remove(inventoryBoxId); // removes that item from dictionary
+    }
+
     public Wand GetItem(string inventoryId)
     {
         var item = inventory.GetValueOrDefault(inventoryId);
         return item;
     }
 
+    public WandBox GetItemBox(string inventoryBoxId)
+    {
+        var itembox = boxinventory.GetValueOrDefault(inventoryBoxId);
+        return itembox;
+    }
+
     public int Length()
     {
         return inventory.Count;
+    }
+
+    public int LengthBox()
+    {
+        return boxinventory.Count;
     }
 
     public List<Wand> ReturnWandsCore(Wand.CoreType coreType)
@@ -130,6 +163,11 @@ public class Inventory : MonoBehaviour
     public void ClearInventory()
     {
         inventory.Clear();
+    }
+
+    public void ClearInventoryBox()
+    {
+        boxinventory.Clear();
     }
 
 
