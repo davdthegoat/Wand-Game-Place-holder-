@@ -4,13 +4,15 @@ using UnityEngine.Assertions.Must;
 public class WandboxSelectionScript : MonoBehaviour
 {
     [SerializeField] private Camera playerCamera;
-    [SerializeField] private GameObject wandboxPrefab; //Later on, there will be multiple fields for each respective box size. //Maybe not.
+    //[SerializeField] private GameObject wandboxPrefab; //Don't think this is useful any longer. 
     [SerializeField] private Transform wandSpawnLocation;
+    [SerializeField] private Transform wandLidSpawnLocation;
     [SerializeField] private float raycastRange = 100f;
     [SerializeField] private WorkStationSit workStationSit;
 
     private int count = 0;
     GameObject duplicatedBox;
+    Transform lid;
 
 
     // Update is called once per frame
@@ -45,17 +47,28 @@ public class WandboxSelectionScript : MonoBehaviour
                         //duplicatedBox.GetComponent<Rigidbody>().isKinematic = true;
 
 
+                        //Creating and duplicating lid
+                        lid = duplicatedBox.transform.Find("WandboxLid");
+
+                        lid.position = wandLidSpawnLocation.position;
+                        lid.rotation = wandLidSpawnLocation.rotation;
+                        lid.tag = "WorkStationItem";
                         count += 1;
                     }
                     else if (count == 1)
                     {
                         Destroy(duplicatedBox);
+
                         duplicatedBox = Instantiate(hit.collider.gameObject, wandSpawnLocation.position, wandSpawnLocation.rotation); //Destroys previously summoned box and replaces it with the newly clicked box-type.
 
-                        duplicatedBox.tag = "canPickUp";
+                        lid = duplicatedBox.transform.Find("WandboxLid");
+
+                        lid.position = wandLidSpawnLocation.position;
+                        lid.rotation = wandLidSpawnLocation.rotation;
+
+                        lid.tag = "WorkStationItem"; //To enable item dragging FOR LID ONLY
+                        //duplicatedBox.tag = "canPickUp";
                         //duplicatedBox.GetComponent<Rigidbody>().isKinematic = true;
-
-
                     }
                 }
             }

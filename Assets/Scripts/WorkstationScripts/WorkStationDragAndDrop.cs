@@ -9,6 +9,7 @@ public class WorkStationDragAndDrop : MonoBehaviour
     [SerializeField] private float dragRange = 10f; //How close to the cursor the item's collider must be
     [SerializeField] private float dragStrength; //How strongly is the item pulled. Might not be used.
     [SerializeField] private Transform itemPlacementPosition; //Same one from HeldObjectPlacementScript, same gameObject too.
+    [SerializeField] private LayerMask layersToIgnore;
     private GameObject draggedObject;
     private Rigidbody draggedObjectRb;
     private float dragDepth; //if we want to freeze movement in one axis.
@@ -77,7 +78,7 @@ void Update()
     {
         Ray ray = sitPositionCamera.ScreenPointToRay(Input.mousePosition);
         
-        if (Physics.Raycast(ray, out RaycastHit hit, dragRange))
+        if (Physics.Raycast(ray, out RaycastHit hit, dragRange, ~layersToIgnore))
         {
             if (hit.collider.CompareTag("WorkStationItem")) //Makes it so that wandboxes are un-draggable.
             {

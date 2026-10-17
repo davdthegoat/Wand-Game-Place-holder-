@@ -38,7 +38,7 @@ public class StoreInShelfScript : PlayerSystem
         {
             GameObject heldObj = pickUpScript.GetHeldObject();
             Rigidbody heldObjRb = pickUpScript.GetHeldObjectRigidbody();
-            /*
+            /* Removed cuz this script no longer needed this debugging.
             Debug.Log("F was pressed");
             Debug.Log("PickUpScript reference " + pickUpScript); 
             Debug.Log("heldObj immediately after pickup: " + heldObj);
@@ -92,7 +92,7 @@ public class StoreInShelfScript : PlayerSystem
 
 
                 if (hit.transform.gameObject.tag == "canStore" && hit.transform.gameObject.layer == LayerMask.NameToLayer("storeLayer")) //Verifies if the object is being placed in a "storable" area (BOTH REQUIRED)
-                //&& hit.transform.gameObject.layer == LayerMask.NameToLayer("storeLayer"), trying without tag. Future DVD here, tag removed for redundancy.
+                //&& hit.transform.gameObject.layer == LayerMask.NameToLayer("storeLayer"), trying without tag. Future DVD here, tag removed for redundancy. Futuremost DVD here, tag re-added.
                 {
                     int lowestFreeY = grid.GetLowestFreeGrid(gridX);
                     if (lowestFreeY != -1)
