@@ -80,7 +80,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 33daeadccf54ee141847a4cf12dfeabb, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 2.3516326
+      value: 2.953
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 33daeadccf54ee141847a4cf12dfeabb, type: 3}
       propertyPath: m_LocalRotation.w
@@ -110,9 +110,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -8391222552659086748, guid: 33daeadccf54ee141847a4cf12dfeabb, type: 3}
+      propertyPath: m_Name
+      value: Wandbox
+      objectReference: {fileID: 0}
+    - target: {fileID: -7146521406498821007, guid: 33daeadccf54ee141847a4cf12dfeabb, type: 3}
+      propertyPath: m_Name
+      value: DecorationPiece2
+      objectReference: {fileID: 0}
     - target: {fileID: -1253996098385199550, guid: 33daeadccf54ee141847a4cf12dfeabb, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.397
+      objectReference: {fileID: 0}
+    - target: {fileID: -516098083770646512, guid: 33daeadccf54ee141847a4cf12dfeabb, type: 3}
+      propertyPath: m_Name
+      value: WandboxLid
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 33daeadccf54ee141847a4cf12dfeabb, type: 3}
       propertyPath: m_Name
@@ -121,6 +133,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 33daeadccf54ee141847a4cf12dfeabb, type: 3}
       propertyPath: m_TagString
       value: WandBox
+      objectReference: {fileID: 0}
+    - target: {fileID: 8416272007918961125, guid: 33daeadccf54ee141847a4cf12dfeabb, type: 3}
+      propertyPath: m_Name
+      value: DecorationPiece1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
@@ -143,7 +159,66 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 33daeadccf54ee141847a4cf12dfeabb, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2163030529789532490}
+    - targetCorrespondingSourceObject: {fileID: -516098083770646512, guid: 33daeadccf54ee141847a4cf12dfeabb, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8204735271756090493}
+    - targetCorrespondingSourceObject: {fileID: -516098083770646512, guid: 33daeadccf54ee141847a4cf12dfeabb, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 88956956224942297}
   m_SourcePrefab: {fileID: 100100000, guid: 33daeadccf54ee141847a4cf12dfeabb, type: 3}
+--- !u!1 &59759339612756631 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -516098083770646512, guid: 33daeadccf54ee141847a4cf12dfeabb, type: 3}
+  m_PrefabInstance: {fileID: 8647541628819872391}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &8204735271756090493
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 59759339612756631}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2, y: 2.1472118, z: 2}
+  m_Center: {x: -0.00000047683716, y: -0.07360595, z: 0}
+--- !u!54 &88956956224942297
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 59759339612756631}
+  serializedVersion: 5
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &8413661551713265622 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 33daeadccf54ee141847a4cf12dfeabb, type: 3}

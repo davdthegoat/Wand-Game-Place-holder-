@@ -9,6 +9,7 @@ public class WorkStationDragAndDrop : MonoBehaviour
     [SerializeField] private float dragRange = 10f; //How close to the cursor the item's collider must be
     [SerializeField] private float dragStrength; //How strongly is the item pulled. Might not be used.
     [SerializeField] private Transform itemPlacementPosition; //Same one from HeldObjectPlacementScript, same gameObject too.
+    [SerializeField] private Transform wandLidPlacementPosition; //Same one from WandBoxSelectionScript, using same gameObject. 
     [SerializeField] private LayerMask layersToIgnore;
     private GameObject draggedObject;
     private Rigidbody draggedObjectRb;
@@ -19,16 +20,30 @@ public class WorkStationDragAndDrop : MonoBehaviour
     private Plane dragPlane;
     private Vector3 originalPosition;
     private Quaternion originalRotation;
-    private GameObject selectedObject;
+    private GameObject selectedWand;
+    private GameObject selectedLid;
+    private bool wasSitting;
     
 
 void Update()
     {
         if (workStationSit.IsSitting() == false)
         {
-            StopDragging();
+            if (wasSitting)
+            {
+                StopDragging();
+
+                ReturnObjectToPosition(selectedWand, itemPlacementPosition);
+                ReturnObjectToPosition(selectedLid, wandLidPlacementPosition);
+
+                selectedWand = null;
+                selectedLid = null;
+            }
+
+            wasSitting = false;
             return;
         }
+        wasSitting = true;
 
         if (Input.GetMouseButtonDown(0))
         {
@@ -50,16 +65,29 @@ void Update()
             StopDragging();
         }
 
-
+        /*
         if (Input.GetKeyDown(KeyCode.F) && selectedObject != null)
         {
             if (selectedObject.CompareTag("WorkStationItem"))
             {
-                selectedObject.transform.position = itemPlacementPosition.position;
-                selectedObject.transform.rotation = itemPlacementPosition.rotation;
+                //Determines where the item will be respawned when played exits workstation.
+                Transform returnPosition = null;
+                if (selectedObject.name == "WandboxLid")
+                {
+                    returnPosition = wandLidPlacementPosition;
+                }
+                else if (selectedObject.CompareTag("WorkStationItem"))
+                {
+                    returnPosition = itemPlacementPosition;
+                }
+                if (returnPosition != null)
+                {
+                    selectedObject.transform.position = returnPosition.position;
+                    selectedObject.transform.rotation = returnPosition.rotation;
+                }
+
 
                 Rigidbody rb = selectedObject.GetComponent<Rigidbody>();
-
                 if (rb != null) //Ensure that rigidbody is return to normal when played exits. While have to nest this in another loop depending on whether item is packaged or not maybe.
                 {
                     rb.linearVelocity = Vector3.zero;
@@ -71,6 +99,7 @@ void Update()
                 selectedObject = null;
             }
         }
+        */
     }
 
 
@@ -84,8 +113,16 @@ void Update()
             {
 
                 draggedObject = hit.collider.gameObject;
-                selectedObject = draggedObject; //Creating duplicate because draggedObject is set to null once left click is released.
                 draggedObjectRb = draggedObject.GetComponent<Rigidbody>();
+
+                if (draggedObject.name == "WandboxLid")
+                {
+                    selectedLid = draggedObject; //Assigns value of last-selected/most recently selected lid to variable selected lid.
+                }
+                else //Elif if we add decals or something else here. Update will have to change too
+                {
+                    selectedWand = draggedObject;
+                }
 
                 //To reset item's position when you stand back up.
                 originalPosition = draggedObject.transform.position;
@@ -165,6 +202,27 @@ void Update()
         //clear assignments
         draggedObject = null;
         draggedObjectRb = null;
+    }
+
+    private void ReturnObjectToPosition(GameObject selectedObject, Transform targetLocation)
+    {
+        if (selectedObject == null || targetLocation == null)
+        {
+            return;
+        }
+
+        selectedObject.transform.position = targetLocation.position;
+        selectedObject.transform.rotation = targetLocation.rotation;
+
+        Rigidbody rb = selectedObject.GetComponent<Rigidbody>();
+
+        if (rb != null)
+        {
+            rb.linearVelocity = Vector3.zero;
+            rb.angularVelocity = Vector3.zero;
+            rb.useGravity = false;
+            rb.isKinematic = true;
+        }
     }
 }
 
