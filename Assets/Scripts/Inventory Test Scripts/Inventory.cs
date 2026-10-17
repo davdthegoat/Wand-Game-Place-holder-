@@ -22,7 +22,7 @@ public class Inventory : MonoBehaviour
     [Header("State")]
     [SerializeField]
     SerializedDictionary<string, Wand> inventory = new();
-    
+
 
 
 
@@ -97,6 +97,11 @@ public class Inventory : MonoBehaviour
     {
         return inventory.Count;
     }
+
+    // public Wand[] ReturnWand()
+    // {
+        
+    // }
 
 
     public void ClearInventory()
