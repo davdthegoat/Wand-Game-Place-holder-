@@ -98,8 +98,18 @@ public class Inventory : MonoBehaviour
         return inventory.Count;
     }
 
-    // public Wand[] ReturnWand()
+    // public Wand[] ReturnWandsCore(Wand.CoreType coreType)
     // {
+    //     List<Wand> Wands = new List<Wand>();
+    //     foreach (Wand wand in inventory.Values)
+    //     {
+    //         if ( wand.core == coreType)
+    //         {
+    //             Wands.Add(wand);
+    //         }
+    //     }
+
+        
         
     // }
 
