@@ -59,10 +59,26 @@ void Update()
             }
         }
 
-        if (Input.GetMouseButtonUp(0))
+        if (Input.GetMouseButtonUp(0)) //Additions to make this script play nice with WorkStationSnap script
         {
             Debug.Log("Mouse UP");
+
+            GameObject releasedObject = draggedObject;
+
             StopDragging();
+
+            if (releasedObject != null && releasedObject.CompareTag("WorkStationItem") && releasedObject.name != "WandBoxLid")//All three conditions must be met, as only wand should snap into place.
+            {
+                WorkStationSnap[] snapSystems = FindObjectsByType<WorkStationSnap>(FindObjectsSortMode.None);
+
+                foreach (WorkStationSnap snapSystem in snapSystems)
+                {
+                    if (snapSystem.TrySnap(releasedObject))
+                    {
+                        break;
+                    }
+                }
+            }
         }
 
         /*
@@ -165,11 +181,11 @@ void Update()
         if (dragPlane.Raycast(ray, out float distance))
         {
             Vector3 targetPosition = ray.GetPoint(distance) + dragOffset;
-            Debug.Log("Taget position: " + targetPosition);
-            Debug.Log("Current Position:" + draggedObject.transform.position);
+            //Debug.Log("Taget position: " + targetPosition);
+            //Debug.Log("Current Position:" + draggedObject.transform.position);
             draggedObject.transform.position = targetPosition; //For debugging
-            Debug.Log("Position after movement:" + draggedObject.transform.position);
-
+            //Debug.Log("Position after movement:" + draggedObject.transform.position);
+            //Commented out the debugs above because they were absolutely SPAMMING my console. Not testing this further anyways
 
             //For gravity (testing)
             draggedObjectRb.isKinematic = true;
