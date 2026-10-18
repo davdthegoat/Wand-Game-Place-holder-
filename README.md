@@ -41,3 +41,4 @@ Work in progress on the workstation and inventory. We underestimated the scale o
 
 Week 5: 
 This is the week marks an important milestone for us as much of our work has begun to bear fruit: the inventory is now nearing full-completion (only aspect left is implementation), the workstation is also nearly complete with only final touches & polish remaining, we also made some leeway on procedural 3D-asset generation as well as shaders for our scene. Due to us pursuing procedural 3D asset generation we believe it is reasonable to increase our goal, from 100 unique place-able and sort-able items to 1,000. The goal is to finish this portion by week 7.
+(Sidenote, please understand that all progress made in the workstation is in the workstation-scene, which can not be accessed through the playable demo submitted this week. Only it's code and assets can be viewed through Github commits.)
