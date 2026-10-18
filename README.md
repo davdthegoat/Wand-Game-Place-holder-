@@ -38,3 +38,6 @@ https://lapse.hackclub.com/timelapse/dE1pdo7Ts0Dq
 
 Week 4:
 Work in progress on the workstation and inventory. We underestimated the scale of these resulting in far more time being taken than we initially thought. Started work on a event handling system which can pass data between different game objects, and added some more 3D assets.
+
+Week 5: 
+This is the week marks an important milestone for us as much of our work has begun to bear fruit: the inventory is now nearing full-completion (only aspect left is implementation), the workstation is also nearly complete with only final touches & polish remaining, we also made some leeway on procedural 3D-asset generation as well as shaders for our scene. Due to us pursuing procedural 3D asset generation we believe it is reasonable to increase our goal, from 100 unique place-able and sort-able items to 1,000. The goal is to finish this portion by week 7.
