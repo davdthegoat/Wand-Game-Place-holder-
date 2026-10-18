@@ -22,10 +22,11 @@ public class WorkStationSnap : MonoBehaviour
 
     public bool TrySnap(GameObject item)
     {
-        Debug.Log("TrySnap called for item: " + item.name);
-
         if (item == null || itemPlacementVolume == null) //If no item
             return false;
+
+        Debug.Log("TrySnap called for item: " + item.name); //Moved here to avoid null references.
+
 
         if (item.name == "WandboxLid")
             return false;
@@ -39,6 +40,12 @@ public class WorkStationSnap : MonoBehaviour
             return false;
 
         Bounds volumeBounds = itemPlacementVolume.bounds;
+
+        //Ignore the box if item is released outside box
+        if (!volumeBounds.Intersects(itemBounds))
+        {
+            return false;
+        }
 
         Vector3 size = itemBounds.size;
 
