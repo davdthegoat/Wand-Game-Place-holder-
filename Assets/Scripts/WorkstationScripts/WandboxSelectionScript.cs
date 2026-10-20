@@ -10,10 +10,18 @@ public class WandboxSelectionScript : MonoBehaviour
     [SerializeField] private float raycastRange = 100f;
     [SerializeField] private WorkStationSit workStationSit;
 
+    /* Redundant.
+    [Header("Wand Box Colliders")]
+    [SerializeField] private Collider wandBoxCollider;
+    [SerializeField] private Collider wandBoxLidCollider;
+    [SerializeField] private Collider wandBoxContainerCollider;
+    */
     private int count = 0;
     GameObject duplicatedBox;
     Transform lid;
 
+    //Found a good solution on Unity discord, let's test it
+    [SerializeField] private WorkStationSnap snap;
 
     // Update is called once per frame
     void Update()
@@ -42,6 +50,7 @@ public class WandboxSelectionScript : MonoBehaviour
                     {
                         duplicatedBox = Instantiate(hit.collider.gameObject, wandSpawnLocation.position, wandSpawnLocation.rotation); //Click on the appropriate sized box -> duplicate box spawns infron of you.
 
+                        
                         duplicatedBox.tag = "canPickUp"; //So that wandbox can be picked up after item has been stored inside.
                         //Made the original item kinematic, removed need for next line.
                         //duplicatedBox.GetComponent<Rigidbody>().isKinematic = true;
@@ -54,6 +63,8 @@ public class WandboxSelectionScript : MonoBehaviour
                         lid.rotation = wandLidSpawnLocation.rotation;
                         lid.tag = "WorkStationItem";
                         count += 1;
+
+                        //SetBoxOpen();
                     }
                     else if (count == 1)
                     {
@@ -69,9 +80,26 @@ public class WandboxSelectionScript : MonoBehaviour
                         lid.tag = "WorkStationItem"; //To enable item dragging FOR LID ONLY
                         //duplicatedBox.tag = "canPickUp";
                         //duplicatedBox.GetComponent<Rigidbody>().isKinematic = true;
+
+                        //SetBoxOpen();
                     }
                 }
             }
         }
     }
+    /*Future DVD here. After writing all the code, and going to the inspector I realized why this code can't be here. It's not applied to the box, but to Mr. Bean. Meaning each and every boxs colliders would more or less have to either be identical, or individually assigned. Putting this back in WorkStationSnap script.
+    private void SetBoxClosed() //Perhaps the opening of wand boxes should be here, but I don't think closing should.
+    {
+        wandBoxCollider.enabled = true;
+        wandBoxLidCollider.enabled = false;
+        wandBoxContainerCollider.enabled = false;
+    }
+
+    private void SetBoxOpen()
+    {
+        wandBoxCollider.enabled = false;
+        wandBoxLidCollider.enabled = true;
+        wandBoxContainerCollider.enabled = true;
+    }
+    */
 }

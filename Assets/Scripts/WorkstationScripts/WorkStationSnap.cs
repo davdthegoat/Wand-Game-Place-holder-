@@ -15,11 +15,12 @@ public class WorkStationSnap : MonoBehaviour
     [SerializeField] private Transform wandBox;
     private readonly List<GameObject> placedItems = new List<GameObject>();
 
+    
     [Header("Box colliders")]
     [SerializeField] private Collider wandBoxCollider;
     [SerializeField] private Collider wandBoxLidCollider;
     [SerializeField] private Collider wandBoxContainerCollider;
-
+    
 
     private void Awake()
     {
@@ -37,7 +38,7 @@ public class WorkStationSnap : MonoBehaviour
         Debug.Log("TrySnap called for item: " + item.name); //Moved here to avoid null references.
 
 
-        if (item.name == "WandboxLid")
+        if (item.name == "WandboxLid") //Don't want lid to go into wandbox. It'll go on top, to close. Will make a function for that later.
             return false;
 
         if (item.GetComponentInChildren<Collider>() == null)
@@ -89,32 +90,6 @@ public class WorkStationSnap : MonoBehaviour
         return true;
     }
 
-    private bool OverlapsPlacedItems(Bounds candidateBounds)
-    {
-        for (int i = placedItems.Count -1; i >= 0; i--)
-        {
-            GameObject placedItem = placedItems[i];
-
-            if (placedItem == null)
-            {
-                placedItems.RemoveAt(i);
-                continue;
-            }
-
-            Bounds placedBounds; 
-
-            if (TryGetItemBounds(placedItem, out placedBounds))
-            {
-                if (candidateBounds.Intersects(placedBounds))
-                {
-                    return true;
-                }
-            }
-        }
-
-        return false;
-    }
-
     private bool TryGetItemBounds(GameObject item, out Bounds bounds)
     {
         Collider[] colliders = item.GetComponentsInChildren<Collider>();
@@ -142,4 +117,20 @@ public class WorkStationSnap : MonoBehaviour
 
         return foundCollider;
     }
+
+    
+    public void SetBoxOpen() //Actually, maybe this should be in WandboxSelectionScript now that I think of it. //Future DVD, tried that. Didn't work. Back here we go.
+    {
+        wandBoxCollider.enabled = false;
+        wandBoxLidCollider.enabled = true;
+        wandBoxContainerCollider.enabled = true;
+    }
+
+    public void SetBoxClosed()
+    {
+        wandBoxCollider.enabled = true;
+        wandBoxLidCollider.enabled = false;
+        wandBoxContainerCollider.enabled = false;
+    }
+    
 }
