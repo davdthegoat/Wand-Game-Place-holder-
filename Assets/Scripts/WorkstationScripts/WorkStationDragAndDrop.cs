@@ -23,6 +23,9 @@ public class WorkStationDragAndDrop : MonoBehaviour
     private GameObject selectedWand;
     private GameObject selectedLid;
     private bool wasSitting;
+
+    private bool wandInPlace = false;
+    private bool boxPacked = false;
     
 
 void Update()
@@ -33,8 +36,11 @@ void Update()
             {
                 StopDragging();
 
-                ReturnObjectToPosition(selectedWand, itemPlacementPosition);
-                ReturnObjectToPosition(selectedLid, wandLidPlacementPosition);
+                if (!boxPacked)
+                {
+                    ReturnObjectToPosition(selectedWand, itemPlacementPosition);
+                    ReturnObjectToPosition(selectedLid, wandLidPlacementPosition);
+                }
 
                 selectedWand = null;
                 selectedLid = null;
@@ -75,6 +81,7 @@ void Update()
                 {
                     if (snapSystem.TrySnap(releasedObject))
                     {
+                        wandInPlace = true;
                         break;
                     }
                 }
