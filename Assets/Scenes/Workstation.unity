@@ -515,10 +515,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af8bbd1d0f62f6c409fd8813d2763a43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WorkStationSnap
-  wandBoxColliderManager: {fileID: 2012552788}
   itemPlacementVolume: {fileID: 934106012}
-  wandBox: {fileID: 1520294615}
-  spacing: 0.02
+  wandBox: {fileID: 1835449631}
+  wandBoxCollider: {fileID: 2012552787}
+  wandBoxLidCollider: {fileID: 1572120065}
+  wandBoxContainerCollider: {fileID: 1835449628}
 --- !u!1 &969087110
 GameObject:
   m_ObjectHideFlags: 0
@@ -1491,10 +1492,15 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 2, y: 2, z: 2}
   m_Center: {x: 0, y: -0.0000009536743, z: -0.00000047683716}
+--- !u!4 &1835449631 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5474444909940729353, guid: 822a9d5a8b3b57949b0577db711b9116, type: 3}
+  m_PrefabInstance: {fileID: 4569506477109935809}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1871806084
 GameObject:
   m_ObjectHideFlags: 0

@@ -80,42 +80,6 @@ void Update()
                 }
             }
         }
-
-        /*
-        if (Input.GetKeyDown(KeyCode.F) && selectedObject != null)
-        {
-            if (selectedObject.CompareTag("WorkStationItem"))
-            {
-                //Determines where the item will be respawned when played exits workstation.
-                Transform returnPosition = null;
-                if (selectedObject.name == "WandboxLid")
-                {
-                    returnPosition = wandLidPlacementPosition;
-                }
-                else if (selectedObject.CompareTag("WorkStationItem"))
-                {
-                    returnPosition = itemPlacementPosition;
-                }
-                if (returnPosition != null)
-                {
-                    selectedObject.transform.position = returnPosition.position;
-                    selectedObject.transform.rotation = returnPosition.rotation;
-                }
-
-
-                Rigidbody rb = selectedObject.GetComponent<Rigidbody>();
-                if (rb != null) //Ensure that rigidbody is return to normal when played exits. While have to nest this in another loop depending on whether item is packaged or not maybe.
-                {
-                    rb.linearVelocity = Vector3.zero;
-                    rb.angularVelocity = Vector3.zero;
-                    rb.useGravity = false;
-                    rb.isKinematic = true;
-                }
-
-                selectedObject = null;
-            }
-        }
-        */
     }
 
 

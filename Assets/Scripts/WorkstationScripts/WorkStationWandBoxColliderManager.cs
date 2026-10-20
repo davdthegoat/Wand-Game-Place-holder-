@@ -1,4 +1,5 @@
 using UnityEngine;
+/* Redundant
 
 public class WorkStationWandBoxColliderManager : MonoBehaviour
 {
@@ -27,3 +28,4 @@ public class WorkStationWandBoxColliderManager : MonoBehaviour
         WandBoxCollider.enabled = true;
     }
 }
+*/

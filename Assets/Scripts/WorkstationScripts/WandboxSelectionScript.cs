@@ -20,9 +20,6 @@ public class WandboxSelectionScript : MonoBehaviour
     GameObject duplicatedBox;
     Transform lid;
 
-    //Found a good solution on Unity discord, let's test it
-    [SerializeField] private WorkStationSnap snap;
-
     // Update is called once per frame
     void Update()
     {
@@ -50,7 +47,8 @@ public class WandboxSelectionScript : MonoBehaviour
                     {
                         duplicatedBox = Instantiate(hit.collider.gameObject, wandSpawnLocation.position, wandSpawnLocation.rotation); //Click on the appropriate sized box -> duplicate box spawns infron of you.
 
-                        
+                        WorkStationSnap duplicate = duplicatedBox.GetComponentInChildren<WorkStationSnap>();
+                        duplicate.SetBoxOpen();
                         duplicatedBox.tag = "canPickUp"; //So that wandbox can be picked up after item has been stored inside.
                         //Made the original item kinematic, removed need for next line.
                         //duplicatedBox.GetComponent<Rigidbody>().isKinematic = true;
@@ -63,14 +61,15 @@ public class WandboxSelectionScript : MonoBehaviour
                         lid.rotation = wandLidSpawnLocation.rotation;
                         lid.tag = "WorkStationItem";
                         count += 1;
-
-                        //SetBoxOpen();
                     }
                     else if (count == 1)
                     {
                         Destroy(duplicatedBox);
 
                         duplicatedBox = Instantiate(hit.collider.gameObject, wandSpawnLocation.position, wandSpawnLocation.rotation); //Destroys previously summoned box and replaces it with the newly clicked box-type.
+
+                        WorkStationSnap duplicate = duplicatedBox.GetComponentInChildren<WorkStationSnap>();
+                        duplicate.SetBoxOpen();
 
                         lid = duplicatedBox.transform.Find("WandboxLid");
 
@@ -80,8 +79,6 @@ public class WandboxSelectionScript : MonoBehaviour
                         lid.tag = "WorkStationItem"; //To enable item dragging FOR LID ONLY
                         //duplicatedBox.tag = "canPickUp";
                         //duplicatedBox.GetComponent<Rigidbody>().isKinematic = true;
-
-                        //SetBoxOpen();
                     }
                 }
             }
