@@ -476,7 +476,7 @@ Transform:
   m_GameObject: {fileID: 934106010}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.105, z: 0}
+  m_LocalPosition: {x: 0, y: 0.016, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -517,6 +517,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WorkStationSnap
   wandBoxColliderManager: {fileID: 2012552788}
   itemPlacementVolume: {fileID: 934106012}
+  wandBox: {fileID: 1520294615}
   spacing: 0.02
 --- !u!1 &969087110
 GameObject:
