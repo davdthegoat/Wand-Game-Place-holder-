@@ -9,7 +9,7 @@ public class WorkStationDragAndDrop : MonoBehaviour
     [SerializeField] private float dragRange = 10f; //How close to the cursor the item's collider must be
     [SerializeField] private float dragStrength; //How strongly is the item pulled. Might not be used.
     [SerializeField] private Transform itemPlacementPosition; //Same one from HeldObjectPlacementScript, same gameObject too.
-    [SerializeField] private Transform wandLidPlacementPosition; //Same one from WandBoxSelectionScript, using same gameObject. 
+    [SerializeField] private Transform wandLidPlacementPosition; //Same one from WandBoxSelectionScript, using same gameObject.
     [SerializeField] private LayerMask layersToIgnore;
     private GameObject draggedObject;
     private Rigidbody draggedObjectRb;
@@ -26,9 +26,9 @@ public class WorkStationDragAndDrop : MonoBehaviour
 
     private bool wandInPlace = false;
     private bool boxPacked = false;
-    
 
-void Update()
+
+    void Update()
     {
         if (workStationSit.IsSitting() == false)
         {
@@ -67,25 +67,8 @@ void Update()
 
         if (Input.GetMouseButtonUp(0)) //Additions to make this script play nice with WorkStationSnap script
         {
-            Debug.Log("Mouse UP");
-
-            GameObject releasedObject = draggedObject;
-
-            StopDragging();
-
-            if (releasedObject != null && releasedObject.CompareTag("WorkStationItem") && releasedObject.name != "WandBoxLid")//All three conditions must be met, as only wand should snap into place.
-            {
-                WorkStationSnap[] snapSystems = FindObjectsByType<WorkStationSnap>(FindObjectsSortMode.None);
-
-                foreach (WorkStationSnap snapSystem in snapSystems)
-                {
-                    if (snapSystem.TrySnap(releasedObject))
-                    {
-                        wandInPlace = true;
-                        break;
-                    }
-                }
-            }
+            //Refactoring for ease of readability and editing. I can't make sense of this in VS debugger.
+            TryToSnap();
         }
     }
 
@@ -93,7 +76,7 @@ void Update()
     void TryDragging()
     {
         Ray ray = sitPositionCamera.ScreenPointToRay(Input.mousePosition);
-        
+
         if (Physics.Raycast(ray, out RaycastHit hit, dragRange, ~layersToIgnore))
         {
             if (hit.collider.CompareTag("WorkStationItem")) //Makes it so that wandboxes are un-draggable.
@@ -159,8 +142,11 @@ void Update()
             //Commented out the debugs above because they were absolutely SPAMMING my console. Not testing this further anyways
 
             //For gravity (testing)
-            draggedObjectRb.isKinematic = true;
-            draggedObjectRb.useGravity = false;
+            if (draggedObjectRb != null)
+            {
+                draggedObjectRb.isKinematic = true;
+                draggedObjectRb.useGravity = false;
+            }
         }
     }
 
@@ -209,6 +195,90 @@ void Update()
             rb.angularVelocity = Vector3.zero;
             rb.useGravity = false;
             rb.isKinematic = true;
+        }
+    }
+
+    private void TryToSnap()
+    {
+        GameObject releasedObject = draggedObject;
+
+        StopDragging();
+
+        if (releasedObject == null || !releasedObject.CompareTag("WorkStationItem"))
+        {
+            return;
+        }
+
+        if (releasedObject.name == "WandboxLid")
+        {
+            if (wandInPlace == false) //Use this value to transfer item data to box inventory -DVD.
+            {
+                Debug.Log("Snapping rejected, wand not in place");
+                return;
+            }
+
+            WorkStationSnap[] snapSystems = FindObjectsByType<WorkStationSnap>(FindObjectsSortMode.None);
+            foreach (WorkStationSnap snapSystem in snapSystems)
+            {
+                Transform box = snapSystem.transform.parent;
+
+                if (box == null)
+                {
+                    continue;
+                }
+
+                Transform lidVolumeTransform = box.Find("WandboxLidPlacementVolume");
+
+                if (lidVolumeTransform == null)
+                {
+                    continue;
+                }
+
+                Collider lidVolume = lidVolumeTransform.GetComponent<Collider>();
+                Collider lidCollider = releasedObject.GetComponent<Collider>();
+
+                if (lidVolume == null || lidCollider == null)
+                {
+                    continue;   
+                }
+                if (lidVolume.bounds.Intersects(lidCollider.bounds))
+                {
+                    Debug.Log("Lid snapped successfully");
+                    //Return lid to it's closed state.
+                    Transform lidClosedPosition = box.Find("WandboxLidClosed");
+                    releasedObject.transform.position = lidClosedPosition.transform.position;
+                    releasedObject.transform.rotation = lidClosedPosition.transform.rotation;
+
+                    snapSystem.SetBoxClosed();
+
+                    box.tag = "canPickUp";
+                    releasedObject.tag = "Untagged";
+
+                    boxPacked = true; //Use this for Inventory/destroying stored item.
+
+                    Rigidbody lidRb = releasedObject.GetComponent<Rigidbody>();
+                    if (lidRb != null)
+                    {
+                        Debug.Log("Item should no longer fall through world");
+                        lidRb.angularVelocity = Vector3.zero;
+                        lidRb.linearVelocity = Vector3.zero;
+                        lidRb.useGravity = false;
+                        lidRb.isKinematic = true;
+                    }
+                    break;
+                }
+            }
+            return;
+        }
+        WorkStationSnap[] systems = FindObjectsByType<WorkStationSnap>(FindObjectsSortMode.None);
+
+        foreach (WorkStationSnap snapSystem in systems)
+        {
+            if (snapSystem.TrySnap(releasedObject))
+            {
+                wandInPlace = true;
+                break;
+            }
         }
     }
 }
