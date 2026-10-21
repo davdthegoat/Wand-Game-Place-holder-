@@ -1624,31 +1624,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1982430868}
   m_LocalEulerAnglesHint: {x: 20, y: 0, z: 0}
---- !u!1 &2012552784 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8413661551713265622, guid: 822a9d5a8b3b57949b0577db711b9116, type: 3}
-  m_PrefabInstance: {fileID: 4569506477109935809}
-  m_PrefabAsset: {fileID: 0}
 --- !u!65 &2012552787 stripped
 BoxCollider:
   m_CorrespondingSourceObject: {fileID: 4754162324435964148, guid: 822a9d5a8b3b57949b0577db711b9116, type: 3}
   m_PrefabInstance: {fileID: 4569506477109935809}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &2012552788
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2012552784}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 69ae8e9a91ae94e4f98fbb3ebabaefc7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::WorkStationWandBoxColliderManager
-  WandBoxCollider: {fileID: 2012552787}
-  WandLidCollider: {fileID: 1572120065}
-  WandBoxContainerCollider: {fileID: 1835449628}
 --- !u!114 &2067119704 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4193431201714661888, guid: 28ce48b2c6dad3d46b9373039ed74b07, type: 3}
@@ -1723,9 +1703,6 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 934106011}
     m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 8413661551713265622, guid: 822a9d5a8b3b57949b0577db711b9116, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2012552788}
     - targetCorrespondingSourceObject: {fileID: 8326696971787315427, guid: 822a9d5a8b3b57949b0577db711b9116, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1835449628}
