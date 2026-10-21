@@ -22,6 +22,7 @@ public class WorkStationSnap : MonoBehaviour
     [SerializeField] private Collider wandBoxContainerCollider;
     
 
+
     private void Awake()
     {
         if (itemPlacementVolume == null)

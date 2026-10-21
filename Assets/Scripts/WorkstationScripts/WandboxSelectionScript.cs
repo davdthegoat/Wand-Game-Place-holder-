@@ -49,7 +49,7 @@ public class WandboxSelectionScript : MonoBehaviour
 
                         WorkStationSnap duplicate = duplicatedBox.GetComponentInChildren<WorkStationSnap>();
                         duplicate.SetBoxOpen();
-                        duplicatedBox.tag = "canPickUp"; //So that wandbox can be picked up after item has been stored inside.
+                        //duplicatedBox.tag = "canPickUp"; //So that wandbox can be picked up after item has been stored inside.
                         //Made the original item kinematic, removed need for next line.
                         //duplicatedBox.GetComponent<Rigidbody>().isKinematic = true;
 
