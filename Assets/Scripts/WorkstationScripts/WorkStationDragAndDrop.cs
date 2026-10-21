@@ -39,7 +39,10 @@ public class WorkStationDragAndDrop : MonoBehaviour
                 if (!boxPacked)
                 {
                     ReturnObjectToPosition(selectedWand, itemPlacementPosition);
-                    ReturnObjectToPosition(selectedLid, wandLidPlacementPosition);
+                    if (selectedLid != null && selectedLid.name == "WandboxLid")
+                    {
+                        ReturnObjectToPosition(selectedLid, wandLidPlacementPosition);
+                    }
                 }
 
                 selectedWand = null;
@@ -88,7 +91,7 @@ public class WorkStationDragAndDrop : MonoBehaviour
                 {
                     selectedLid = draggedObject; //Assigns value of last-selected/most recently selected lid to variable selected lid.
                 }
-                else //Elif if we add decals or something else here. Update will have to change too
+                else if (draggedObject.name != "WandboxLidClosed") //Elif if we add decals or something else here. Update will have to change too
                 {
                     selectedWand = draggedObject; //INVENTORY //Possibly useful for you.
                 }
@@ -124,28 +127,27 @@ public class WorkStationDragAndDrop : MonoBehaviour
     }
 
 
-        void DragObject()
+    void DragObject()
         {
-            Ray ray = sitPositionCamera.ScreenPointToRay(Input.mousePosition);
-            //Plane dragPlane = new Plane(sitPositionCamera.transform.forward, draggedObject.transform.position);
+        Ray ray = sitPositionCamera.ScreenPointToRay(Input.mousePosition);
+        //Plane dragPlane = new Plane(sitPositionCamera.transform.forward, draggedObject.transform.position);
 
-            if (dragPlane.Raycast(ray, out float distance))
-            {
-                Vector3 targetPosition = ray.GetPoint(distance) + dragOffset;
+        if (dragPlane.Raycast(ray, out float distance))
+        {
+            Vector3 targetPosition = ray.GetPoint(distance) + dragOffset;
                 //Debug.Log("Taget position: " + targetPosition);
                 //Debug.Log("Current Position:" + draggedObject.transform.position);
-                draggedObject.transform.position = targetPosition; //For debugging
+            draggedObject.transform.position = targetPosition; //For debugging
                 //Debug.Log("Position after movement:" + draggedObject.transform.position);
                 //Commented out the debugs above because they were absolutely SPAMMING my console. Not testing this further anyways
 
-                //For gravity (testing)
-                if (draggedObjectRb != null)
-                {
-                    draggedObjectRb.isKinematic = true;
-                    draggedObjectRb.useGravity = false;
-                }
+            if (draggedObjectRb != null)
+            {
+                draggedObjectRb.isKinematic = true;
+              draggedObjectRb.useGravity = false;
             }
         }
+    }
 
         void StopDragging()
         {
@@ -247,6 +249,8 @@ public class WorkStationDragAndDrop : MonoBehaviour
                         releasedObject.transform.rotation = lidClosedPosition.transform.rotation;
 
                         snapSystem.SetBoxClosed();
+
+                        releasedObject.name = "WandboxLidClosed";
 
                         box.tag = "canPickUp";
                         releasedObject.tag = "Untagged";
