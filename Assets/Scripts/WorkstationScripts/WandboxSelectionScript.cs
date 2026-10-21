@@ -3,6 +3,7 @@ using UnityEngine.Assertions.Must;
 
 public class WandboxSelectionScript : MonoBehaviour
 {
+    [SerializeField] WorkStationDragAndDrop workStationDragAndDrop;
     [SerializeField] private Camera playerCamera;
     //[SerializeField] private GameObject wandboxPrefab; //Don't think this is useful any longer. 
     [SerializeField] private Transform wandSpawnLocation;
@@ -47,6 +48,10 @@ public class WandboxSelectionScript : MonoBehaviour
                     {
                         duplicatedBox = Instantiate(hit.collider.gameObject, wandSpawnLocation.position, wandSpawnLocation.rotation); //Click on the appropriate sized box -> duplicate box spawns infron of you.
 
+                        //Reseting packing state to avoid invalid box and thus wand deletions
+                        workStationDragAndDrop.ResetPackingState();
+
+
                         WorkStationSnap duplicate = duplicatedBox.GetComponentInChildren<WorkStationSnap>();
                         duplicate.SetBoxOpen();
                         //duplicatedBox.tag = "canPickUp"; //So that wandbox can be picked up after item has been stored inside.
@@ -64,9 +69,18 @@ public class WandboxSelectionScript : MonoBehaviour
                     }
                     else if (count == 1)
                     {
+                        if (workStationDragAndDrop.IsBoxFullyClosed() == true)
+                        {
+                            count = 0;
+                            duplicatedBox = null; //Prevents destruction of a closed wandbox (which contains a wand).
+                            return;
+                        }
                         Destroy(duplicatedBox);
 
                         duplicatedBox = Instantiate(hit.collider.gameObject, wandSpawnLocation.position, wandSpawnLocation.rotation); //Destroys previously summoned box and replaces it with the newly clicked box-type.
+
+                        //Reseting packing state to avoid invalid box and thus wand deletions
+                        workStationDragAndDrop.ResetPackingState();
 
                         WorkStationSnap duplicate = duplicatedBox.GetComponentInChildren<WorkStationSnap>();
                         duplicate.SetBoxOpen();

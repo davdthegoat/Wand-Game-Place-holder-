@@ -10,6 +10,7 @@ public class WorkStationDragAndDrop : MonoBehaviour
     [SerializeField] private Transform itemPlacementPosition; //Same one from HeldObjectPlacementScript, same gameObject too.
     [SerializeField] private Transform wandLidPlacementPosition; //Same one from WandBoxSelectionScript, using same gameObject.
     [SerializeField] private LayerMask layersToIgnore;
+    [SerializeField] private HeldObjectPlacementScript heldObjectPlacementScript;
     private GameObject draggedObject;
     private Rigidbody draggedObjectRb;
     private float dragDepth; //if we want to freeze movement in one axis.
@@ -77,7 +78,7 @@ public class WorkStationDragAndDrop : MonoBehaviour
 
         if (Physics.Raycast(ray, out RaycastHit hit, dragRange, ~layersToIgnore))
         {
-            if (hit.collider.CompareTag("WorkStationItem")) //Makes it so that wandboxes are un-draggable.
+            if (hit.collider.CompareTag("WorkStationItem") || hit.collider.CompareTag("canPickUp")) //Makes it so that wandboxes are un-draggable.
             {
 
                 draggedObject = hit.collider.gameObject;
@@ -200,7 +201,7 @@ public class WorkStationDragAndDrop : MonoBehaviour
 
             StopDragging();
 
-            if (releasedObject == null || !releasedObject.CompareTag("WorkStationItem"))
+            if (releasedObject == null || !releasedObject.CompareTag("WorkStationItem") && !releasedObject.CompareTag("canPickUp"))
             {
                 return;
             }
@@ -273,12 +274,23 @@ public class WorkStationDragAndDrop : MonoBehaviour
                 if (snapSystem.TrySnap(releasedObject))
                 {
                     wandInPlace = true;
+                    if (releasedObject.name != "WandboxLid")
+                    {
+                        heldObjectPlacementScript?.ClearItemOnTable(releasedObject);
+                    }
+
                     break;
                 }
             }
         }
+    public void ResetPackingState()
+    {
+        wandInPlace = false;
+        boxPacked = false;
+    }
+        
 
-
+        //Idk why this has weird indentation
         //INVETORY ASSISTANCE 
         //Trying to help with inventory work.
         public bool IsBoxFullyClosed()
@@ -288,7 +300,7 @@ public class WorkStationDragAndDrop : MonoBehaviour
         //Unless I'm wrong you just need the name in string of the gameObject being stored right? This should do it.
         public string GetStoredItemsName()
         {
-            if (selectedWand != null)
+            if (selectedWand == null)
             {
                 //no wand. Player sat -> didn't grab a wand -> nothing to store. Just doing this to avoid null errors.
                 return ""; //Just make sure your inventory can handle null strings. If not, change this to run on != null.

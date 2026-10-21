@@ -4,7 +4,7 @@ public class HeldObjectPlacementScript : MonoBehaviour
 {
     [SerializeField] PickUpScript pickUpScript;
     [SerializeField] Transform ItemPlacementPosition; //Empty gameobject in the scene used to determine where placed items spawn on the workstation.
-    [SerializeField] Transform DroppedItemPlacementPosition;
+
 
     private GameObject itemOnTable; //Could've used boolean too but I saw similar method on stack overflow.
     public void PlaceHeldObject()
@@ -39,17 +39,20 @@ public class HeldObjectPlacementScript : MonoBehaviour
 
 
         //Giving it a tag, for workstation WorkStationDragAndDrop script.
-        heldObject.tag = "WorkStationItem";
+        //Revoking tag. Item should be pick-up-able even after placed on table and cleared.
+        heldObject.tag = "canPickUp";
     }
 
-    /*
-    private void DropHeldObject(GameObject heldObject)
+    public GameObject GetItemOnTable()
     {
-        heldObject.transform.position = DroppedItemPlacementPosition.position;
-        heldObject.transform.rotation = DroppedItemPlacementPosition.rotation;
-        //The code above is a QOL feature. Otherwise, depending on player position item might still get dropped onto the table.
-        pickUpScript.DropObject();
-        //At first I tried to create a modified version of DropObject, which didn't involve inventory. But the inventory is an essential part of the game and this function can't be completed without it.
+        return itemOnTable;
     }
-    */ //Redundant.
+
+    public void ClearItemOnTable(GameObject item)
+    {
+        if (itemOnTable == item)
+        {
+            itemOnTable = null;
+        }
+    }
 }

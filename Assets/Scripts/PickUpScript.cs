@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class PickUpScript : PlayerSystem
 {
+    [SerializeField] private HeldObjectPlacementScript heldObjectPlacementScript;
     public GameObject player;
     public Transform holdPos;
     //if you copy from below this point, you are legally required to like the video
@@ -82,8 +83,10 @@ public class PickUpScript : PlayerSystem
         if (pickUpObj.GetComponent<Rigidbody>()) //make sure the object has a RigidBody
         {
             heldObj = pickUpObj; //assign heldObj to the object that was hit by the raycast (no longer == null)
+            heldObjectPlacementScript?.ClearItemOnTable(pickUpObj);
             heldObjRb = pickUpObj.GetComponent<Rigidbody>(); //assign Rigidbody
             heldObjRb.isKinematic = true;
+            heldObjRb.useGravity = false;
             heldObjRb.transform.parent = holdPos.transform; //parent object to holdposition
             heldObj.layer = LayerNumber; //change the object layer to the holdLayer
 
@@ -134,6 +137,7 @@ public class PickUpScript : PlayerSystem
         }
 
         heldObjRb.isKinematic = false;
+        heldObjRb.useGravity = true;
         heldObj.transform.parent = null; //unparent object
         heldObj = null; //undefine game object
         heldObjRb = null;
@@ -177,6 +181,7 @@ public class PickUpScript : PlayerSystem
         Physics.IgnoreCollision(heldObj.GetComponent<Collider>(), player.GetComponent<Collider>(), false);
         heldObj.layer = 0;
         heldObjRb.isKinematic = false;
+        heldObjRb.useGravity = true;
         heldObj.transform.parent = null;
         heldObjRb.AddForce(transform.forward * throwForce);
         
@@ -245,13 +250,5 @@ public class PickUpScript : PlayerSystem
 
         heldObj = null;
         heldObjRb = null;
-
-        
     }
-
-    
-
-    
-
-
 }

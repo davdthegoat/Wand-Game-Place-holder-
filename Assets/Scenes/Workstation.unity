@@ -203,6 +203,7 @@ MonoBehaviour:
   layersToIgnore:
     serializedVersion: 2
     m_Bits: 1280
+  heldObjectPlacementScript: {fileID: 396702674}
 --- !u!1 &396702658 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8707502996643971259, guid: 28ce48b2c6dad3d46b9373039ed74b07, type: 3}
@@ -257,6 +258,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30bbf4114e8ea404faac22982bc8fc69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WandboxSelectionScript
+  workStationDragAndDrop: {fileID: 289240919}
   playerCamera: {fileID: 969087114}
   wandSpawnLocation: {fileID: 1871806085}
   wandLidSpawnLocation: {fileID: 209077734}
@@ -711,6 +713,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 4193431201714661888, guid: 28ce48b2c6dad3d46b9373039ed74b07, type: 3}
+      propertyPath: heldObjectPlacementScript
+      value: 
+      objectReference: {fileID: 396702674}
     - target: {fileID: 4269084305278181802, guid: 28ce48b2c6dad3d46b9373039ed74b07, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.480654
