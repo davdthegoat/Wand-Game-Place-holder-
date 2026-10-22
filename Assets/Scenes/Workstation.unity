@@ -278,7 +278,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::HeldObjectPlacementScript
   pickUpScript: {fileID: 2067119704}
   ItemPlacementPosition: {fileID: 1662115010}
-  DroppedItemPlacementPosition: {fileID: 0}
 --- !u!114 &396702675 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 9223195710490985902, guid: 28ce48b2c6dad3d46b9373039ed74b07, type: 3}
