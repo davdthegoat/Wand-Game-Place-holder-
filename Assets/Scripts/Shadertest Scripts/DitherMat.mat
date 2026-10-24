@@ -38,7 +38,7 @@ Material:
     m_Ints: []
     m_Floats:
     - _ColorRes: 256
-    - _DitherRes: 0
+    - _DitherRes: 0.03
     - _Spread: 0
     - _ThresholdMap: 2
     m_Colors: []

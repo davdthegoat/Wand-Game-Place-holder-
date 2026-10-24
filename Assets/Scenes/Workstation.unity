@@ -1201,6 +1201,25 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 9189740407255956844, guid: 822a9d5a8b3b57949b0577db711b9116, type: 3}
   m_PrefabInstance: {fileID: 4569506477109935809}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1552981709 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8413661551713265622, guid: 822a9d5a8b3b57949b0577db711b9116, type: 3}
+  m_PrefabInstance: {fileID: 4569506477109935809}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1552981713
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1552981709}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29009e01030e5b54eb5c4ad6890c7178, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WandBoxItem
+  wandboxitem: {fileID: 0}
+  itemToInstantiate: {fileID: 11400000, guid: 499836c7123cfba4fb5e983f80798e4e, type: 2}
 --- !u!1 &1639338817 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6973963359921857790, guid: dc1de050d2b53b343bf6beba47c69990, type: 3}
@@ -1291,7 +1310,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3202223312977977585, guid: 112f03effd3f0f4468a574c1dcb4f8f3, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2079548551}
   m_SourcePrefab: {fileID: 100100000, guid: 112f03effd3f0f4468a574c1dcb4f8f3, type: 3}
 --- !u!1 &1662115009
 GameObject:
@@ -1497,6 +1519,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1982430868}
   - component: {fileID: 1982430869}
+  - component: {fileID: 1982430870}
+  - component: {fileID: 1982430872}
+  - component: {fileID: 1982430871}
   m_Layer: 0
   m_Name: Table
   m_TagString: WorkBench
@@ -1548,6 +1573,49 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 4.1500745, y: 1.3066787, z: 3.5311394}
   m_Center: {x: 2.9975708, y: 0.43893796, z: -4.4972086}
+--- !u!114 &1982430870
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1982430867}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 293508616c0e1164a8f4271d78344eff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerIdentification
+  Playerdata: {fileID: 11400000, guid: dc38436a090dc4a48a844644f8315801, type: 2}
+--- !u!114 &1982430871
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1982430867}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a909810711d599941b48595e97b3f44a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WorkStationInventoryManager
+--- !u!114 &1982430872
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1982430867}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f2f7cb64da43f046979f9cebe29ac03, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Inventory
+  inventory:
+    m_Keys: []
+    m_Values: []
+  boxinventory:
+    m_Keys: []
+    m_Values: []
 --- !u!1 &1988527777
 GameObject:
   m_ObjectHideFlags: 0
@@ -1590,6 +1658,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5083124e74e78c94bb54e371edb56782, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PickUpScript
+--- !u!1 &2079548545 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3202223312977977585, guid: 112f03effd3f0f4468a574c1dcb4f8f3, type: 3}
+  m_PrefabInstance: {fileID: 1640955418}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2079548551
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2079548545}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29009e01030e5b54eb5c4ad6890c7178, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WandBoxItem
+  wandboxitem: {fileID: 0}
+  itemToInstantiate: {fileID: 0}
 --- !u!1001 &4569506477109935809
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1645,7 +1732,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8413661551713265622, guid: 822a9d5a8b3b57949b0577db711b9116, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1552981713}
   m_SourcePrefab: {fileID: 100100000, guid: 822a9d5a8b3b57949b0577db711b9116, type: 3}
 --- !u!1001 &9119550877604845574
 PrefabInstance:

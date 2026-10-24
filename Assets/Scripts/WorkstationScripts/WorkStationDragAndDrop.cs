@@ -256,6 +256,7 @@ public class WorkStationDragAndDrop : MonoBehaviour
                         releasedObject.tag = "Untagged";
 
                         boxPacked = true; //Use this for Inventory/destroying stored item. //INVENTORY
+                        //STORE WAND IN BOX ITEM DATA
 
                         Rigidbody lidRb = releasedObject.GetComponent<Rigidbody>();
                         if (lidRb != null)
@@ -312,6 +313,8 @@ public class WorkStationDragAndDrop : MonoBehaviour
             else
             {
                 return selectedWand.name;
+
+                //INVENTORY//
             }
         }
     }

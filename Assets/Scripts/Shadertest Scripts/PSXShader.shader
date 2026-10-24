@@ -9,7 +9,7 @@ Shader "Custom/PSXShader"
             Name "ForwardLit" //fordebugging
             Tags{"LightMode" = "UniversalForward"}
 
-            HLSL PROGRAM
+            HLSLPROGRAM
             #pragma vertex Vertex
             #pragma fragment Fragment
             
