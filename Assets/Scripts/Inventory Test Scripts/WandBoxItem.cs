@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -13,16 +14,26 @@ public class WandBoxItem : MonoBehaviour
     }
 
 
-    [Header("State")]
-    public WandBox wandboxitem=null;
+    [Header("FOR VIEWING ONLY")]
+    public WandBox wandboxitem;
 
+    [Header("WANDBOXLENGTH")]
+    public int length = 0;
+    public string WandBoxname;
 
     
-    [SerializeField] WandBox itemToInstantiate=null; //Set this in the inspector
+    [SerializeField] WandBox itemToInstantiate; //Set this in the inspector
 
-    void Awake()
+    
+    void OnEnable()
     {
+        var path = "WandBox/" + WandBoxname;
+        itemToInstantiate = Resources.Load<WandBox>(path);
+
         wandboxitem = CreateInstance();
+        var id = Guid.NewGuid().ToString();
+        wandboxitem.id = id;
+        wandboxitem.length = length;
     }
 
 
