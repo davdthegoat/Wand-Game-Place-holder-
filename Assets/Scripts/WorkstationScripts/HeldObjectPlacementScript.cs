@@ -4,6 +4,8 @@ public class HeldObjectPlacementScript : MonoBehaviour
 {
     [SerializeField] PickUpScript pickUpScript;
     [SerializeField] Transform ItemPlacementPosition; //Empty gameobject in the scene used to determine where placed items spawn on the workstation.
+    [Header ("Powerups")]
+    [SerializeField] FloatPowerup floatPowerup;
 
 
     private GameObject itemOnTable; //Could've used boolean too but I saw similar method on stack overflow.
@@ -15,7 +17,13 @@ public class HeldObjectPlacementScript : MonoBehaviour
         {
             return;
         }
-
+        if (heldObject.name == "PowerupParchment-Float") //If the float powerup is brought to the workbench. We don't actually want to place it on the table.
+        {
+            Debug.Log("PowerUp brought to workstation");
+            floatPowerup.enabled = true;
+            //Possibly destroy the gameobject. Unsure, gameplay choice.
+            return;
+        }
         if (itemOnTable != null)
         {
             //Making it so that instead of dropping the item, the item is just not visible to sit position camera. Remains in players hand, when exiting workstation.

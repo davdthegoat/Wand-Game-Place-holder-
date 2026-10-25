@@ -1519,8 +1519,9 @@ GameObject:
   - component: {fileID: 808400317}
   - component: {fileID: 808400318}
   - component: {fileID: 808400319}
+  - component: {fileID: 808400320}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: PowerupParchment-Float
   m_TagString: canPickUp
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1535,8 +1536,8 @@ Transform:
   m_GameObject: {fileID: 808400311}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.04, y: 0.45, z: 0}
-  m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
+  m_LocalPosition: {x: 3.8692, y: 0.6588, z: -0.0829}
+  m_LocalScale: {x: 0.058319997, y: 0.92545205, z: 0.56588}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 1262698876}
@@ -1587,7 +1588,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: b4b79325cb0972746acf84a445905528, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1689,6 +1690,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DroppedItem
   item: {fileID: 11400000, guid: 4ba4192e59d992e4198f0fea8b4a3b81, type: 2}
+--- !u!114 &808400320
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 808400311}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc56784ea1146c94881c2d4ae97e5577, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FloatPowerup
 --- !u!4 &824332696 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2826929673990486603, guid: 112f03effd3f0f4468a574c1dcb4f8f3, type: 3}
@@ -4439,6 +4452,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8707502996643971259, guid: 28ce48b2c6dad3d46b9373039ed74b07, type: 3}
       insertIndex: -1
       addedObject: {fileID: 30686074597218300}
+    - targetCorrespondingSourceObject: {fileID: 8707502996643971259, guid: 28ce48b2c6dad3d46b9373039ed74b07, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 30686074597218303}
   m_SourcePrefab: {fileID: 100100000, guid: 28ce48b2c6dad3d46b9373039ed74b07, type: 3}
 --- !u!1 &30686074597218293 stripped
 GameObject:
@@ -4542,6 +4558,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::HeldObjectPlacementScript
   pickUpScript: {fileID: 30686074597218297}
   ItemPlacementPosition: {fileID: 762442606}
+  floatPowerup: {fileID: 0}
 --- !u!114 &30686074597218302
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4562,6 +4579,18 @@ MonoBehaviour:
   movement: {fileID: 30686074597218298}
   controller: {fileID: 30686074597218299}
   isSitting: 0
+--- !u!114 &30686074597218303
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 30686074597218293}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6628693a8da66b84e9f579e9cd0cdf0d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
 --- !u!4 &3594742703325271214 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8484189227265311541, guid: ac3557a0acb5ac8479f596547d6d6f9f, type: 3}
