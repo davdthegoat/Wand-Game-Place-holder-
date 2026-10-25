@@ -42,6 +42,18 @@ Work in progress on the workstation and inventory. We underestimated the scale o
 Week 5: 
 This is the week marks an important milestone for us as much of our work has begun to bear fruit: the inventory is now nearing full-completion (only aspect left is implementation), the workstation is also nearly complete with only final touches & polish remaining, we also made some leeway on procedural 3D-asset generation as well as shaders for our scene. Due to us pursuing procedural 3D asset generation we believe it is reasonable to increase our goal, from 100 unique place-able and sort-able items to 1,000. The goal is to finish this portion by week 7.
 (Sidenote, please understand that all progress made in the workstation is in the workstation-scene, which can not be accessed through the playable demo submitted this week. Only it's code and assets can be viewed through Github commits.)
+Below are the lapse links for week 5:
+https://lapse.hackclub.com/timelapse/p6vvyfOzwmAf
+https://lapse.hackclub.com/timelapse/3FhdEcF_Kqgl
+https://lapse.hackclub.com/timelapse/rsRYTbOm5X__
+https://lapse.hackclub.com/timelapse/yBElTLVDErFv
 
 Week 6: 
 Another round of huge progress was made this week, as we have set a routine and gotten used to the basics and the workflow. Work was started on shaders, with implementation of colour quantization, dithering, etc. The workstation scene was also fully completed and imported into our main scene, where it was then extensively tested and many major and minor bugs fixed to enhance playing experience. Progress was also made on procedurally generated 3D assets, and designing of map-related 3D assets. In essence, we have finished 80% of the backend with only 20% of rich features remaining, after which the only missing aspect would be art.
+https://lapse.hackclub.com/timelapse/xHvm73LPxBDr
+https://lapse.hackclub.com/timelapse/r84Iey-k56To
+https://lapse.hackclub.com/timelapse/wfqfht_5Nwc7
+https://lapse.hackclub.com/timelapse/AocoDqrLOYhF
+https://lapse.hackclub.com/timelapse/27kk1tq_0GZz
+https://lapse.hackclub.com/timelapse/COl98XwzXsIb
+Apologies in advance for failing to add lapse links in chronological order since week 4.
