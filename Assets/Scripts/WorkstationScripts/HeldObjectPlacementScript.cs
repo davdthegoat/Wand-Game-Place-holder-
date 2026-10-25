@@ -30,7 +30,7 @@ public class HeldObjectPlacementScript : MonoBehaviour
         heldObject.transform.position = ItemPlacementPosition.position;
         heldObject.transform.rotation = ItemPlacementPosition.rotation;
 
-        heldObject.layer = LayerMask.NameToLayer("WorkStationDrag"); //Clears from layer holdLayer
+        SetLayerChildren(heldObject, LayerMask.NameToLayer("WorkStationDrag")); //Clears from layer holdLayer
 
         heldObjectRb.isKinematic = true; //prevents physics interactin so item can't be moved/nudged off table
 
@@ -55,4 +55,21 @@ public class HeldObjectPlacementScript : MonoBehaviour
             itemOnTable = null;
         }
     }
+
+    void SetLayerChildren( GameObject objparent, LayerMask layer)
+    {
+        if (objparent == null)
+        {
+            return;
+        }
+        
+        
+        objparent.layer = layer;
+        foreach (Transform child in objparent.transform)
+        {
+            child.gameObject.layer = layer;
+        }
+
+    }
+
 }

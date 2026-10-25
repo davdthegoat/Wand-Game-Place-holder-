@@ -267,7 +267,7 @@ public class PickUpScript : PlayerSystem
             child.gameObject.layer = layer;
         }
 
-    }
+    } //imma make this a public static if its used alot(pls dont use this i dont wanna do ts) 
 
     
 }
