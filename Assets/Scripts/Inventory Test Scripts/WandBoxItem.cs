@@ -14,7 +14,7 @@ public class WandBoxItem : MonoBehaviour
     }
 
 
-    [HideInInspector]
+    [Header("CopyDataItem")]
     public WandBox wandboxitem;
 
     
@@ -35,6 +35,8 @@ public class WandBoxItem : MonoBehaviour
         wandboxitem.id = id;
         
     }
+
+    
 
 
 

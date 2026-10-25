@@ -306,6 +306,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1280
   heldObjectPlacementScript: {fileID: 396702674}
+  currentWandinBox: {fileID: 0}
 --- !u!1 &396702658 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8707502996643971259, guid: 28ce48b2c6dad3d46b9373039ed74b07, type: 3}
@@ -1321,9 +1322,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WandBoxItem
   wandboxitem: {fileID: 0}
-  length: 12
-  WandBoxname: WandBox5
-  itemToInstantiate: {fileID: 0}
+  itemToInstantiate: {fileID: 11400000, guid: 499836c7123cfba4fb5e983f80798e4e, type: 2}
 --- !u!1 &1639338817 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6973963359921857790, guid: dc1de050d2b53b343bf6beba47c69990, type: 3}
@@ -1796,6 +1795,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 400193806}
     m_Modifications:
+    - target: {fileID: 6338268279640959506, guid: 822a9d5a8b3b57949b0577db711b9116, type: 3}
+      propertyPath: Workstationdragscript
+      value: 
+      objectReference: {fileID: 289240919}
+    - target: {fileID: 8367101253780297755, guid: 822a9d5a8b3b57949b0577db711b9116, type: 3}
+      propertyPath: Workstationdragscript
+      value: 
+      objectReference: {fileID: 289240919}
     - target: {fileID: 8413661551713265622, guid: 822a9d5a8b3b57949b0577db711b9116, type: 3}
       propertyPath: m_Name
       value: WandBox5

@@ -1,4 +1,5 @@
 //THIS IS ATTACHED TO A GAMEOBJECT WITHIN TABLE. THIS IS NOT ON THE PLAYER, BUT A EMPTY GAMEOBJECT.
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class WorkStationDragAndDrop : MonoBehaviour
@@ -26,6 +27,10 @@ public class WorkStationDragAndDrop : MonoBehaviour
 
     private bool wandInPlace = false;
     private bool boxPacked = false;
+
+    //INVENTORY
+    [HideInInspector]
+    public GameObject currentWandinBox;
 
 
     void Update()
@@ -248,22 +253,24 @@ public class WorkStationDragAndDrop : MonoBehaviour
                         releasedObject.transform.position = lidClosedPosition.transform.position;
                         releasedObject.transform.rotation = lidClosedPosition.transform.rotation;
 
+
+                        //INVENTORY
+                        currentWandinBox = WandinBox(selectedWand);
+
+
                         snapSystem.SetBoxClosed();
 
                         releasedObject.name = "WandboxLidClosed";
 
                         box.tag = "canPickUp";
+                        box.gameObject.layer = LayerMask.NameToLayer("storeLayer");
                         releasedObject.tag = "Untagged";
                         
-                        //Deleting and Storing Wand in WandBox // INVENTORY
-                        var BoxItemData = box.transform.GetComponent<WandBoxItem>().wandboxitem;
-                        // BoxItemData.wandinBox = releasedObject.GetComponent<DroppedItem>().item; //Gets Wand Data from wand in box and stores it in the box
-                        // BoxItemData.Wandprefab = releasedObject;
                         
-                        //END DELETE + STORE
 
                         boxPacked = true; //Use this for Inventory/destroying stored item. //INVENTORY
-                        //STORE WAND IN BOX ITEM DATA
+                        
+                        
 
                         Rigidbody lidRb = releasedObject.GetComponent<Rigidbody>();
                         if (lidRb != null)
@@ -302,27 +309,26 @@ public class WorkStationDragAndDrop : MonoBehaviour
     }
         
 
-        //Idk why this has weird indentation
-        //INVETORY ASSISTANCE 
-        //Trying to help with inventory work.
-        public bool IsBoxFullyClosed()
-        {
-            return boxPacked;
-        }
-        //Unless I'm wrong you just need the name in string of the gameObject being stored right? This should do it.
-        public string GetStoredItemsName()
-        {
-            if (selectedWand == null)
-            {
-                //no wand. Player sat -> didn't grab a wand -> nothing to store. Just doing this to avoid null errors.
-                return ""; //Just make sure your inventory can handle null strings. If not, change this to run on != null.
-            }
-            else
-            {
-                return selectedWand.name;
 
-                //INVENTORY//
-            }
-        }
+
+    //Idk why this has weird indentation
+    //INVETORY ASSISTANCE 
+    //Trying to help with inventory work.
+    public bool IsBoxFullyClosed()
+    {
+        return boxPacked;
     }
+    //Unless I'm wrong you just need the name in string of the gameObject being stored right? This should do it.
+    
+    public GameObject WandinBox(GameObject selectedWand)
+    {
+        
+        return selectedWand;
+         
+        
+        
+    }
+
+        
+}
 
