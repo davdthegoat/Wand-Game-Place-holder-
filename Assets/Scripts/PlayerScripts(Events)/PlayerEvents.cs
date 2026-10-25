@@ -5,7 +5,10 @@ using System;
 
 public struct PlayerEvents
 {
-    public Action BimbimBamBam;
+    public Action CannotStoreInShelf;
+
+    public Action CannotAddItem;
+    public Action CannotRemoveItem;
 
     public Action<GameObject> RemoveItemInventory;
     public Action<GameObject> AddItemInventory;

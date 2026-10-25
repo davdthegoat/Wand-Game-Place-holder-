@@ -15,55 +15,94 @@ public class PlayerInventoryManager : PlayerSystem
 
     void RemoveItem(GameObject item)
     {
-        if (item.GetComponent<DroppedItem>() != null)
+        var wandData = item.GetComponent<DroppedItem>();
+        var BoxwandData = item.GetComponent<WandBoxItem>();
+
+        if (BoxwandData != null)
         {
-            string wandItem = item.GetComponent<DroppedItem>().item.id;
+            string wandBoxItem = BoxwandData.wandboxitem.id;
+            playerInventory.RemoveItemBox(wandBoxItem);
+        }
+        else if (wandData != null)
+        {
+            string wandItem = wandData.item.id;
             playerInventory.RemoveItem(wandItem);
         }
+        else{ playerIdentification.Playerdata.Events.CannotRemoveItem?.Invoke();}//Cant remove from inv if its not a WandBox or wand
     }
 
     void AddItem(GameObject item)
     {
-        if (item.GetComponent<DroppedItem>() != null)
+        var wandData = item.GetComponent<DroppedItem>();
+        var BoxwandData = item.GetComponent<WandBoxItem>();
+
+        if ( wandData != null)
         {
-            Wand wandItem = item.GetComponent<DroppedItem>().item;
+            Wand wandItem = wandData.item;
             playerInventory.AddItem(wandItem);
         }
+        else if ( BoxwandData != null)
+        {
+            WandBox wandBoxItem = BoxwandData.wandboxitem;
+            playerInventory.AddItemBox(wandBoxItem);
+        }
+        else{ playerIdentification.Playerdata.Events.CannotAddItem?.Invoke();} //cant add item to inv if its not Wand or WandBox
+        
     }
 
     void AddItemGroundInventory(GameObject item)
     {
-          if (item.GetComponent<DroppedItem>() != null)
+        var wandData = item.GetComponent<DroppedItem>();
+        var BoxwandData = item.GetComponent<WandBoxItem>();
+        if (wandData != null)
         {
-            Wand wandItem = item.GetComponent<DroppedItem>().item;
+            Wand wandItem = wandData.item;
             GroundInventory.AddItem(wandItem);
         }
+        else if (BoxwandData != null)
+        {
+            WandBox wandBoxItem = BoxwandData.wandboxitem;
+            GroundInventory.AddItemBox(wandBoxItem);
+        }
+        else{ playerIdentification.Playerdata.Events.CannotAddItem?.Invoke();}
     }
 
     void RemoveItemGroundInventory(GameObject item)
     {
-          if (item.GetComponent<DroppedItem>() != null)
+        var wandData = item.GetComponent<DroppedItem>();
+        var BoxwandData = item.GetComponent<WandBoxItem>();
+        if (wandData != null)
         {
-            string wandItem = item.GetComponent<DroppedItem>().item.id;
+            string wandItem = wandData.item.id;
             GroundInventory.RemoveItem(wandItem);
         }
+        else if (BoxwandData != null)
+        {
+            string wandBoxItem = BoxwandData.wandboxitem.id;
+            GroundInventory.RemoveItemBox(wandBoxItem);
+        }
+        else{ playerIdentification.Playerdata.Events.CannotRemoveItem?.Invoke();} 
     }
 
     void AddItemShelfInventory(GameObject item, Inventory GridInventory)
     {
-        if (item.GetComponent<DroppedItem>() != null)
+        //Only allow WandBox to be stored in the shelf
+        var wandBoxData = item.GetComponent<WandBoxItem>();
+        if (wandBoxData != null)
         {
-            var wandItem = item.GetComponent<DroppedItem>().item;
-            GridInventory.AddItem(wandItem);
+            var wandBoxItem = wandBoxData.wandboxitem;
+            GridInventory.AddItemBox(wandBoxItem);
         }
+        else{ playerIdentification.Playerdata.Events.CannotStoreInShelf?.Invoke();} //Cannot store anything other than the WandBox in a shelf
     }
 
     void RemoveItemShelfInventory(GameObject item, Inventory GridInventory)
     {
-        if (item.GetComponent<DroppedItem>() != null)
+        var wandBoxData = item.GetComponent<WandBoxItem>();
+        if (wandBoxData != null)
         {
-            var wandItemid = item.GetComponent<DroppedItem>().item.id;
-            GridInventory.RemoveItem(wandItemid);
+            var wandBoxItemid = wandBoxData.wandboxitem.id;
+            GridInventory.RemoveItemBox(wandBoxItemid);
         }
     }
 
