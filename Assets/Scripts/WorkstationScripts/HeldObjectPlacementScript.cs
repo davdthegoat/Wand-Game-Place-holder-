@@ -6,6 +6,7 @@ public class HeldObjectPlacementScript : MonoBehaviour
     [SerializeField] Transform ItemPlacementPosition; //Empty gameobject in the scene used to determine where placed items spawn on the workstation.
     [Header ("Powerups")]
     [SerializeField] FloatPowerup floatPowerup;
+    [SerializeField] GameObject readableParchment;
 
 
     private GameObject itemOnTable; //Could've used boolean too but I saw similar method on stack overflow.
@@ -21,6 +22,7 @@ public class HeldObjectPlacementScript : MonoBehaviour
         {
             Debug.Log("PowerUp brought to workstation");
             floatPowerup.enabled = true;
+            readableParchment.SetActive(true);
             //Possibly destroy the gameobject. Unsure, gameplay choice.
             return;
         }
@@ -80,4 +82,8 @@ public class HeldObjectPlacementScript : MonoBehaviour
 
     }
 
+    public void DisableReadableParchment()
+    {
+        readableParchment.SetActive(false);
+    }
 }

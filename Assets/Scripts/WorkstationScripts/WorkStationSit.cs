@@ -86,6 +86,9 @@ public class WorkStationSit : MonoBehaviour
 
         sitPositionCamera.enabled = false;
         playerCamera.enabled = true;
+
+        //Makes parchment invisible when player tries to stand back up.
+        heldObjectPlacementScript.DisableReadableParchment();
     }
 
     void Update()
