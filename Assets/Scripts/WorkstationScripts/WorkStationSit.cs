@@ -8,7 +8,7 @@ public class WorkStationSit : MonoBehaviour
     [SerializeField] private HeldObjectPlacementScript heldObjectPlacementScript; //Linking both scripts to one another.
     [SerializeField] private PickUpScript pickUpScript; //Need to disable the script when sitting, it's causing issues imo.
     [SerializeField] private GameObject player;
-    [SerializeField] private Transform playerSitPosition;
+    //[SerializeField] private Transform playerSitPosition; No longer used. Player location is kept when seated.
     [SerializeField] private float interactRange = 3f;
     [SerializeField] private Camera sitPositionCamera;
     //[SerializeField] private Camera mainCamera; Perhaps Mr. Beans camera is enough.
