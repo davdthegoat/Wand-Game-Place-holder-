@@ -134,15 +134,7 @@ public class WorkStationSnap : MonoBehaviour
         wandBoxLidCollider.enabled = false;
         wandBoxContainerCollider.enabled = false;
 
-        //INVENTORY
-        var workstationscript = Workstationdragscript;
-        var selectedWand = workstationscript.currentWandinBox;
-        // Deleting and Storing Wand in WandBox // INVENTORY
-        var BoxItemData = wandBoxCollider.transform.GetComponent<WandBoxItem>().wandboxitem;
-        BoxItemData.wandinBox = selectedWand.GetComponent<DroppedItem>().item; //Gets Wand Data from wand in box and stores it in the box
-        BoxItemData.Wandprefab = selectedWand;
         
-        //END DELETE + STORE
     }
     
 }
