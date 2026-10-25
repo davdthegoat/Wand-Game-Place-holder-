@@ -270,6 +270,11 @@ public class WorkStationDragAndDrop : MonoBehaviour
                         WandBox wandboxref = box.GetComponent<WandBoxItem>().wandboxitem;
                         Wand wandDataref = selectedWand.GetComponent<DroppedItem>().item;
                         wandboxref.wandinBox = wandDataref;
+                        
+                        
+                        //DELETE WAND
+                        Destroy(selectedWand);
+                        
                         boxPacked = true; //Use this for Inventory/destroying stored item. //INVENTORY
                         
                         

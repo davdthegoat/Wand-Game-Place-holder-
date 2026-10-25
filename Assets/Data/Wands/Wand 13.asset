@@ -18,4 +18,5 @@ MonoBehaviour:
   wood: 3
   CorrectStorageLocation: 
   AttributeText: 
-  prefab: {fileID: 0}
+  foundGround: 0
+  prefab: {fileID: 7216303546038980342, guid: 61fd46c4ec333804caa7980a261f9677, type: 3}

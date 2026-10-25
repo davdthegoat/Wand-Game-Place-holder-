@@ -15,6 +15,6 @@ public class WandBox : ScriptableObject
     
     
 
-    public GameObject Wandprefab;
+    
 }
 
