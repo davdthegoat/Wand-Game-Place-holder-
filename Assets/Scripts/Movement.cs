@@ -13,6 +13,7 @@ public class Movement : MonoBehaviour
     [SerializeField] float gravity = -30f;
     [SerializeField] Transform groundCheck;
     [SerializeField] LayerMask ground;
+    [SerializeField] float flightSpeed = 6f;
 
     public float jumpHeight = 6f;
     float velocityY;
@@ -20,6 +21,7 @@ public class Movement : MonoBehaviour
     float cameraCap;
     bool cameraLocked;
     bool movementLocked;
+    bool isFlying;
     Vector2 currentMouseDelta;
     Vector2 currentMouseDeltaVelocity;
     CharacterController controller;
@@ -77,15 +79,33 @@ public class Movement : MonoBehaviour
 
         velocityY += gravity * 2f * Time.deltaTime;
 
+
+        //For flight powerup
+        float verticalInput = 0f;
+        if (isFlying == true)
+        {
+            if (Input.GetKey(KeyCode.Space))
+            {
+                verticalInput = 1f;
+            }
+            else if (Input.GetKey(KeyCode.LeftControl))
+            {
+                verticalInput = -1f;
+            }
+            velocityY = verticalInput * flightSpeed; //Flight speed gives us easily tweakable access to flight speed for when we revamp/tweak the values of this script for the final game.
+        }
         Vector3 velocity = (transform.forward * currentDir.y + transform.right * currentDir.x) * Speed + Vector3.up * velocityY;
+
+
+
 
         controller.Move(velocity * Time.deltaTime);
 
-        if (isGrounded && Input.GetButtonDown("Jump"))
+        if (!isFlying && isGrounded && Input.GetButtonDown("Jump"))
         {
             velocityY = Mathf.Sqrt(jumpHeight * -2f * gravity);
         }
-        if (!isGrounded && controller.velocity.y < -1f)
+        if (!isFlying && !isGrounded && controller.velocity.y < -1f)
         {
             velocityY = -8f;
         }
@@ -100,5 +120,33 @@ public class Movement : MonoBehaviour
     public void SetMovementLocked(bool locked)
     {
         movementLocked = locked;
+    }
+
+    //Wingardium Leviosa powerup - Flight
+    //Will add a "quick cancel" to this later.
+    //Found a tutorial
+    public void StartFlight(float duration)
+    {
+        if (isFlying)
+        {
+            //Probably should start a cooldown timer from here.
+            return;
+        }
+        StartCoroutine(FlightRoutine(duration));
+    }
+
+    IEnumerator FlightRoutine(float duration)
+    {
+        isFlying = true;
+        float originalGravity = gravity; //Storing it here, so that it can be restored once flight powerup ends.
+
+        gravity = 0f; //Reassigning so that we can fly
+        velocityY = 0f;
+
+        yield return new WaitForSeconds(duration); //Waits for the duration of the ability.
+
+        gravity = originalGravity;
+
+        isFlying = false;
     }
 }

@@ -4750,6 +4750,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 3722208846254453762, guid: 28ce48b2c6dad3d46b9373039ed74b07, type: 3}
+      propertyPath: flightSpeed
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 3931311953761861099, guid: 28ce48b2c6dad3d46b9373039ed74b07, type: 3}
       propertyPath: m_Layer
       value: 10
@@ -4996,6 +5000,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc56784ea1146c94881c2d4ae97e5577, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FloatPowerup
+  movement: {fileID: 30686074597218298}
+  flightDuration: 10
 --- !u!4 &3594742703325271214 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8484189227265311541, guid: ac3557a0acb5ac8479f596547d6d6f9f, type: 3}
