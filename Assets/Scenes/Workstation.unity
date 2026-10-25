@@ -1414,10 +1414,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 3202223312977977585, guid: 112f03effd3f0f4468a574c1dcb4f8f3, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2079548551}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 112f03effd3f0f4468a574c1dcb4f8f3, type: 3}
 --- !u!1 &1662115009
 GameObject:
@@ -1791,27 +1788,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5083124e74e78c94bb54e371edb56782, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PickUpScript
---- !u!1 &2079548545 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3202223312977977585, guid: 112f03effd3f0f4468a574c1dcb4f8f3, type: 3}
-  m_PrefabInstance: {fileID: 1640955418}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &2079548551
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2079548545}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 29009e01030e5b54eb5c4ad6890c7178, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::WandBoxItem
-  wandboxitem: {fileID: 0}
-  length: 0
-  WandBoxname: 
-  itemToInstantiate: {fileID: 0}
 --- !u!1001 &4569506477109935809
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -254,6 +254,13 @@ public class WorkStationDragAndDrop : MonoBehaviour
 
                         box.tag = "canPickUp";
                         releasedObject.tag = "Untagged";
+                        
+                        //Deleting and Storing Wand in WandBox // INVENTORY
+                        var BoxItemData = box.transform.GetComponent<WandBoxItem>().wandboxitem;
+                        // BoxItemData.wandinBox = releasedObject.GetComponent<DroppedItem>().item; //Gets Wand Data from wand in box and stores it in the box
+                        // BoxItemData.Wandprefab = releasedObject;
+                        
+                        //END DELETE + STORE
 
                         boxPacked = true; //Use this for Inventory/destroying stored item. //INVENTORY
                         //STORE WAND IN BOX ITEM DATA
