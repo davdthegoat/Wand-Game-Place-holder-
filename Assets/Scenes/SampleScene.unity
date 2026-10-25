@@ -4356,6 +4356,10 @@ PrefabInstance:
       propertyPath: removeInventory
       value: 
       objectReference: {fileID: 1566928315}
+    - target: {fileID: 4193431201714661888, guid: 28ce48b2c6dad3d46b9373039ed74b07, type: 3}
+      propertyPath: heldObjectPlacementScript
+      value: 
+      objectReference: {fileID: 30686074597218301}
     - target: {fileID: 4269084305278181802, guid: 28ce48b2c6dad3d46b9373039ed74b07, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.43
