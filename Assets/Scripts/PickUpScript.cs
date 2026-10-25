@@ -1,4 +1,5 @@
 
+using System.Collections.Generic;
 using UnityEngine;
 
 
@@ -88,7 +89,7 @@ public class PickUpScript : PlayerSystem
             heldObjRb.isKinematic = true;
             heldObjRb.useGravity = false;
             heldObjRb.transform.parent = holdPos.transform; //parent object to holdposition
-            heldObj.layer = LayerNumber; //change the object layer to the holdLayer
+            SetLayerChildren(heldObj, LayerNumber); //change the object layer to the holdLayer //LAYER
 
             //make sure object doesnt collide with player, it can cause weird bugs
             Physics.IgnoreCollision(heldObj.GetComponent<Collider>(), player.GetComponent<Collider>(), true);
@@ -125,7 +126,7 @@ public class PickUpScript : PlayerSystem
         Debug.Log("DROP OBJECT WAS CALLED");
         //re-enable collision with player
         Physics.IgnoreCollision(heldObj.GetComponent<Collider>(), player.GetComponent<Collider>(), false);
-        heldObj.layer = 0; //object assigned back to default layer
+        SetLayerChildren(heldObj, 0); //object assigned back to default layer
         
         //DROPINVENTROY
         var dropitem = heldObj;
@@ -179,7 +180,7 @@ public class PickUpScript : PlayerSystem
         Debug.Log("ThrowObject was called");
         //same as drop function, but add force to object before undefining it
         Physics.IgnoreCollision(heldObj.GetComponent<Collider>(), player.GetComponent<Collider>(), false);
-        heldObj.layer = 0;
+        SetLayerChildren(heldObj, 0);
         heldObjRb.isKinematic = false;
         heldObjRb.useGravity = true;
         heldObj.transform.parent = null;
@@ -251,4 +252,22 @@ public class PickUpScript : PlayerSystem
         heldObj = null;
         heldObjRb = null;
     }
+
+    void SetLayerChildren( GameObject objparent, LayerMask layer)
+    {
+        if (objparent == null)
+        {
+            return;
+        }
+        
+        
+        objparent.layer = layer;
+        foreach (Transform child in objparent.transform)
+        {
+            child.gameObject.layer = layer;
+        }
+
+    }
+
+    
 }

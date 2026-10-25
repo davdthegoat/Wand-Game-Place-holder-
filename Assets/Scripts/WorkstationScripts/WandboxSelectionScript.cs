@@ -79,6 +79,8 @@ public class WandboxSelectionScript : MonoBehaviour
 
                         duplicatedBox = Instantiate(hit.collider.gameObject, wandSpawnLocation.position, wandSpawnLocation.rotation); //Destroys previously summoned box and replaces it with the newly clicked box-type.
 
+                        
+
                         //Reseting packing state to avoid invalid box and thus wand deletions
                         workStationDragAndDrop.ResetPackingState();
 

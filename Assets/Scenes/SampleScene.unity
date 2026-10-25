@@ -4400,6 +4400,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6295452991940378061, guid: 28ce48b2c6dad3d46b9373039ed74b07, type: 3}
+      propertyPath: m_CullingMask.m_Bits
+      value: 2807
+      objectReference: {fileID: 0}
     - target: {fileID: 7108556316494594470, guid: 28ce48b2c6dad3d46b9373039ed74b07, type: 3}
       propertyPath: storeRange
       value: 10
@@ -4587,6 +4591,10 @@ PrefabInstance:
       propertyPath: heldObjectPlacementScript
       value: 
       objectReference: {fileID: 30686074597218301}
+    - target: {fileID: 4276153033979383910, guid: de2d0d7feb4ee3e4387ca7d145e5d206, type: 3}
+      propertyPath: m_CullingMask.m_Bits
+      value: 2807
+      objectReference: {fileID: 0}
     - target: {fileID: 8216965975534752555, guid: de2d0d7feb4ee3e4387ca7d145e5d206, type: 3}
       propertyPath: m_LocalPosition.x
       value: 16.01

@@ -86,7 +86,7 @@ public class WorkStationDragAndDrop : MonoBehaviour
 
         if (Physics.Raycast(ray, out RaycastHit hit, dragRange, ~layersToIgnore))
         {
-            if (hit.collider.CompareTag("WorkStationItem") || hit.collider.CompareTag("canPickUp")) //Makes it so that wandboxes are un-draggable.
+            if (hit.collider.CompareTag("WorkStationItem") || (/*--------*/hit.collider.CompareTag("canPickUp") && hit.transform.gameObject.layer == LayerMask.NameToLayer("WorkStationDrag")/*-------*/ )) //Makes it so that wandboxes are un-draggable.
             {
 
                 draggedObject = hit.collider.gameObject;

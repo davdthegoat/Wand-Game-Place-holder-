@@ -30,7 +30,7 @@ public class HeldObjectPlacementScript : MonoBehaviour
         heldObject.transform.position = ItemPlacementPosition.position;
         heldObject.transform.rotation = ItemPlacementPosition.rotation;
 
-        heldObject.layer = 0; //Clears from layer holdLayer
+        heldObject.layer = LayerMask.NameToLayer("WorkStationDrag"); //Clears from layer holdLayer
 
         heldObjectRb.isKinematic = true; //prevents physics interactin so item can't be moved/nudged off table
 
