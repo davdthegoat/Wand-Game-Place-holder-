@@ -7,6 +7,7 @@ using UnityEngine;
 public class PickUpScript : PlayerSystem
 {
     [SerializeField] private HeldObjectPlacementScript heldObjectPlacementScript;
+    [SerializeField] private ItemHighlightManager itemHighlightManager;
     public GameObject player;
     public Transform holdPos;
     //if you copy from below this point, you are legally required to like the video
@@ -91,6 +92,11 @@ public class PickUpScript : PlayerSystem
             heldObjRb.transform.parent = holdPos.transform; //parent object to holdposition
             SetLayerChildren(heldObj, LayerNumber); //change the object layer to the holdLayer //LAYER
 
+
+            //Outline the object held in hand.
+            itemHighlightManager.DrawOutline(heldObj);
+
+
             //make sure object doesnt collide with player, it can cause weird bugs
             Physics.IgnoreCollision(heldObj.GetComponent<Collider>(), player.GetComponent<Collider>(), true);
             StoredGridItem storedGridItem = pickUpObj.GetComponent<StoredGridItem>();
@@ -111,13 +117,11 @@ public class PickUpScript : PlayerSystem
 
                 storedGridItem.testingGrid = null;
             }
-
            /*
             var droppedItem = heldObj;
             if (droppedItem != null) {playerIdentification.Playerdata.Events.AddItemInventory?.Invoke(droppedItem); //This line is causing problems. (null references)
             playerIdentification.Playerdata.Events.RemoveItemGroundInventory?.Invoke(droppedItem);}
            */
-           
         }
     }
 
@@ -136,6 +140,10 @@ public class PickUpScript : PlayerSystem
         //DROPINVENTORY
         playerIdentification.Playerdata.Events.AddItemGroundInventory?.Invoke(dropitem);
         }
+
+        //Clear outline from object.
+        itemHighlightManager.ClearOutline();
+
 
         heldObjRb.isKinematic = false;
         heldObjRb.useGravity = true;
@@ -185,9 +193,9 @@ public class PickUpScript : PlayerSystem
         heldObjRb.useGravity = true;
         heldObj.transform.parent = null;
         heldObjRb.AddForce(transform.forward * throwForce);
-        
 
-        //TESTING, REMOVING THIS.
+        //Clear outline
+        itemHighlightManager.ClearOutline();
         
         //INVENTORY
         var dropitem = heldObj;
