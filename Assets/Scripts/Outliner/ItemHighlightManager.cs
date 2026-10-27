@@ -25,7 +25,12 @@ public class ItemHighlightManager : MonoBehaviour
             return; //Nothing to highlight, nothing to do.
         }
         currentOutlinedObject = target;
-        Renderer targetRenderer = target.transform.GetChild(0).GetComponent<Renderer>(); //Shader outline drawer has to be first child.
+        Renderer targetRenderer = target.GetComponent<Renderer>();
+        if (targetRenderer == null)
+        {
+            Renderer targetRendererOfChild = target.transform.GetChild(0).GetComponent<Renderer>(); //If object doesn't have mesh renderer, get from (first) child.
+            targetRenderer = targetRendererOfChild;
+        }
         if (targetRenderer != null)
         {
             targetRenderer.enabled = true;
@@ -40,7 +45,11 @@ public class ItemHighlightManager : MonoBehaviour
             return; //Nothing highlighted, nothing to do.
         }
 
-        Renderer targetRenderer = currentOutlinedObject.transform.GetChild(0).GetComponent<Renderer>();
+        Renderer targetRenderer = currentOutlinedObject.GetComponent<Renderer>();
+        if (targetRenderer == null)
+        {
+            targetRenderer = currentOutlinedObject.transform.GetChild(0).GetComponent<Renderer>();
+        }
         if (targetRenderer != null)
         {
             targetRenderer.enabled = false; //Disable the shader outliner gameObject.
