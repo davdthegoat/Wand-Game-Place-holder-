@@ -154,8 +154,8 @@ public class WorkStationDragAndDrop : MonoBehaviour
             }
         }
 
-        //Highlight dragged object
-        itemHighlightManager.DrawOutline(draggedObject);
+        //Highlight dragged object - Temporarily disabled
+        //itemHighlightManager.DrawOutline(draggedObject);
     }
 
     void StopDragging()
@@ -180,8 +180,8 @@ public class WorkStationDragAndDrop : MonoBehaviour
         draggedObjectRb.isKinematic = false;
         draggedObjectRb.useGravity = true;
 
-        //Erase highlight on dragged item
-        itemHighlightManager.ClearOutline();
+        //Erase highlight on dragged item - Temporarily disabled
+        //itemHighlightManager.ClearOutline();
 
         //clear assignments
         draggedObject = null;
