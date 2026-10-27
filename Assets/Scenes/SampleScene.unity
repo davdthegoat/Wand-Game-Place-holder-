@@ -2873,11 +2873,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8029537137504015436, guid: 61fd46c4ec333804caa7980a261f9677, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.95
+      value: 1.2
       objectReference: {fileID: 0}
     - target: {fileID: 8029537137504015436, guid: 61fd46c4ec333804caa7980a261f9677, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.95
+      value: 0.92
       objectReference: {fileID: 0}
     - target: {fileID: 8029537137504015436, guid: 61fd46c4ec333804caa7980a261f9677, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2921,7 +2921,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8029537137504015436, guid: 61fd46c4ec333804caa7980a261f9677, type: 3}
       propertyPath: m_ConstrainProportionsScale
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9161880368845172515, guid: 61fd46c4ec333804caa7980a261f9677, type: 3}
       propertyPath: m_Materials.Array.size
@@ -4996,6 +4996,14 @@ PrefabInstance:
     - target: {fileID: 6295452991940378061, guid: 28ce48b2c6dad3d46b9373039ed74b07, type: 3}
       propertyPath: m_CullingMask.m_Bits
       value: 2807
+      objectReference: {fileID: 0}
+    - target: {fileID: 6671891743021588533, guid: 28ce48b2c6dad3d46b9373039ed74b07, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.241
+      objectReference: {fileID: 0}
+    - target: {fileID: 6671891743021588533, guid: 28ce48b2c6dad3d46b9373039ed74b07, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.908
       objectReference: {fileID: 0}
     - target: {fileID: 7108556316494594470, guid: 28ce48b2c6dad3d46b9373039ed74b07, type: 3}
       propertyPath: storeRange
