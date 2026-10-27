@@ -4763,6 +4763,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1566928315}
     - target: {fileID: 4193431201714661888, guid: 28ce48b2c6dad3d46b9373039ed74b07, type: 3}
+      propertyPath: itemHighlightManager
+      value: 
+      objectReference: {fileID: 30686074597218308}
+    - target: {fileID: 4193431201714661888, guid: 28ce48b2c6dad3d46b9373039ed74b07, type: 3}
       propertyPath: heldObjectPlacementScript
       value: 
       objectReference: {fileID: 30686074597218301}
@@ -4851,6 +4855,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8707502996643971259, guid: 28ce48b2c6dad3d46b9373039ed74b07, type: 3}
       insertIndex: -1
       addedObject: {fileID: 30686074597218306}
+    - targetCorrespondingSourceObject: {fileID: 8707502996643971259, guid: 28ce48b2c6dad3d46b9373039ed74b07, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 30686074597218308}
   m_SourcePrefab: {fileID: 100100000, guid: 28ce48b2c6dad3d46b9373039ed74b07, type: 3}
 --- !u!1 &30686074597218293 stripped
 GameObject:
@@ -5002,6 +5009,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::FloatPowerup
   movement: {fileID: 30686074597218298}
   flightDuration: 10
+--- !u!114 &30686074597218308
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 30686074597218293}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d34e9458308a7394cb78650ea7258aa2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ItemHighlightManager
+  outlineMaterial: {fileID: 2100000, guid: 97535c6e3c4cf7f46a7db247930e3d1e, type: 2}
 --- !u!4 &3594742703325271214 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8484189227265311541, guid: ac3557a0acb5ac8479f596547d6d6f9f, type: 3}
@@ -5023,10 +5043,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: WonkyTable
       objectReference: {fileID: 0}
+    - target: {fileID: 4018131129583576163, guid: de2d0d7feb4ee3e4387ca7d145e5d206, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4153055303408594517, guid: de2d0d7feb4ee3e4387ca7d145e5d206, type: 3}
       propertyPath: workStationSit
       value: 
       objectReference: {fileID: 30686074597218302}
+    - target: {fileID: 4153055303408594517, guid: de2d0d7feb4ee3e4387ca7d145e5d206, type: 3}
+      propertyPath: itemHighlightManager
+      value: 
+      objectReference: {fileID: 30686074597218308}
     - target: {fileID: 4153055303408594517, guid: de2d0d7feb4ee3e4387ca7d145e5d206, type: 3}
       propertyPath: heldObjectPlacementScript
       value: 

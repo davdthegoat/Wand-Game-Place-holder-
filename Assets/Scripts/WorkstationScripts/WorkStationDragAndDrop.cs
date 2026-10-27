@@ -12,6 +12,7 @@ public class WorkStationDragAndDrop : MonoBehaviour
     [SerializeField] private Transform wandLidPlacementPosition; //Same one from WandBoxSelectionScript, using same gameObject.
     [SerializeField] private LayerMask layersToIgnore;
     [SerializeField] private HeldObjectPlacementScript heldObjectPlacementScript;
+    [SerializeField] private ItemHighlightManager itemHighlightManager;
     private GameObject draggedObject;
     private Rigidbody draggedObjectRb;
     private float dragDepth; //if we want to freeze movement in one axis.
@@ -152,163 +153,169 @@ public class WorkStationDragAndDrop : MonoBehaviour
               draggedObjectRb.useGravity = false;
             }
         }
+
+        //Highlight dragged object
+        itemHighlightManager.DrawOutline(draggedObject);
     }
 
-        void StopDragging()
+    void StopDragging()
+    {
+        if (draggedObject == null) //Early exit, not all left clicks set "draggedObject".
         {
-            if (draggedObject == null) //Early exit, not all left clicks set "draggedObject".
-            {
-                return;
-            }
-
-            if (draggedObjectRb != null)
-            {
-                draggedObjectRb.isKinematic = wasKinematic;
-            }
-
-            Debug.Log("Stopped item dragging: " + draggedObject.name);
-
-            //return to OG position
-            //draggedObject.transform.position = originalPosition; //Doing in update.
-            //draggedObject.transform.rotation = originalRotation;
-
-            //Physics behavior
-            draggedObjectRb.isKinematic = false;
-            draggedObjectRb.useGravity = true;
-
-            //clear assignments
-            draggedObject = null;
-            draggedObjectRb = null;
+            return;
         }
 
-        private void ReturnObjectToPosition(GameObject selectedObject, Transform targetLocation)
+        if (draggedObjectRb != null)
         {
-            if (selectedObject == null || targetLocation == null)
-            {
-                return;
-            }
-
-            selectedObject.transform.position = targetLocation.position;
-            selectedObject.transform.rotation = targetLocation.rotation;
-
-            Rigidbody rb = selectedObject.GetComponent<Rigidbody>();
-
-            if (rb != null)
-            {
-                rb.linearVelocity = Vector3.zero;
-                rb.angularVelocity = Vector3.zero;
-                rb.useGravity = false;
-                rb.isKinematic = true;
-            }
+            draggedObjectRb.isKinematic = wasKinematic;
         }
 
-        private void TryToSnap()
+        Debug.Log("Stopped item dragging: " + draggedObject.name);
+
+        //return to OG position
+        //draggedObject.transform.position = originalPosition; //Doing in update.
+        //draggedObject.transform.rotation = originalRotation;
+
+        //Physics behavior
+        draggedObjectRb.isKinematic = false;
+        draggedObjectRb.useGravity = true;
+
+        //Erase highlight on dragged item
+        itemHighlightManager.ClearOutline();
+
+        //clear assignments
+        draggedObject = null;
+        draggedObjectRb = null;
+        }
+
+    private void ReturnObjectToPosition(GameObject selectedObject, Transform targetLocation)
+    {
+        if (selectedObject == null || targetLocation == null)
         {
-            GameObject releasedObject = draggedObject;
+            return;
+        }
 
-            StopDragging();
+        selectedObject.transform.position = targetLocation.position;
+        selectedObject.transform.rotation = targetLocation.rotation;
 
-            if (releasedObject == null || !releasedObject.CompareTag("WorkStationItem") && !releasedObject.CompareTag("canPickUp"))
+        Rigidbody rb = selectedObject.GetComponent<Rigidbody>();
+
+        if (rb != null)
+        {
+            rb.linearVelocity = Vector3.zero;
+            rb.angularVelocity = Vector3.zero;
+            rb.useGravity = false;
+            rb.isKinematic = true;
+        }
+    }
+
+    private void TryToSnap()
+    {
+        GameObject releasedObject = draggedObject;
+
+        StopDragging();
+
+        if (releasedObject == null || !releasedObject.CompareTag("WorkStationItem") && !releasedObject.CompareTag("canPickUp"))
+        {
+            return;
+        }
+
+        if (releasedObject.name == "WandboxLid")
+        {
+            if (wandInPlace == false) //Use this value to transfer item data to box inventory -DVD.
             {
+                Debug.Log("Snapping rejected, wand not in place");
                 return;
             }
 
-            if (releasedObject.name == "WandboxLid")
+            WorkStationSnap[] snapSystems = FindObjectsByType<WorkStationSnap>(FindObjectsSortMode.None);
+            foreach (WorkStationSnap snapSystem in snapSystems)
             {
-                if (wandInPlace == false) //Use this value to transfer item data to box inventory -DVD.
+                Transform box = snapSystem.transform.parent;
+
+                if (box == null)
                 {
-                    Debug.Log("Snapping rejected, wand not in place");
-                    return;
+                    continue;
                 }
 
-                WorkStationSnap[] snapSystems = FindObjectsByType<WorkStationSnap>(FindObjectsSortMode.None);
-                foreach (WorkStationSnap snapSystem in snapSystems)
+                Transform lidVolumeTransform = box.Find("WandboxLidPlacementVolume");
+
+                if (lidVolumeTransform == null)
                 {
-                    Transform box = snapSystem.transform.parent;
-
-                    if (box == null)
-                    {
-                        continue;
-                    }
-
-                    Transform lidVolumeTransform = box.Find("WandboxLidPlacementVolume");
-
-                    if (lidVolumeTransform == null)
-                    {
-                        continue;
-                    }
-
-                    Collider lidVolume = lidVolumeTransform.GetComponent<Collider>();
-                    Collider lidCollider = releasedObject.GetComponent<Collider>();
-
-                    if (lidVolume == null || lidCollider == null)
-                    {
-                        continue;   
-                    }
-                    if (lidVolume.bounds.Intersects(lidCollider.bounds))
-                    {
-                        Debug.Log("Lid snapped successfully");
-                        //Return lid to it's closed state.
-                        Transform lidClosedPosition = box.Find("WandboxLidClosed");
-                        releasedObject.transform.position = lidClosedPosition.transform.position;
-                        releasedObject.transform.rotation = lidClosedPosition.transform.rotation;
-
-
-                        //INVENTORY
-                        currentWandinBox = WandinBox(selectedWand);
-
-
-                        snapSystem.SetBoxClosed();
-
-                        releasedObject.name = "WandboxLidClosed";
-
-                        box.tag = "canPickUp";
-                        box.gameObject.layer = LayerMask.NameToLayer("storeLayer");
-                        releasedObject.tag = "Untagged";
-                        
-                        
-                        WandBox wandboxref = box.GetComponent<WandBoxItem>().wandboxitem;
-                        Wand wandDataref = selectedWand.GetComponent<DroppedItem>().item;
-                        wandboxref.wandinBox = wandDataref;
-                        
-                        
-                        //DELETE WAND
-                        Destroy(selectedWand);
-                        
-                        boxPacked = true; //Use this for Inventory/destroying stored item. //INVENTORY
-                        
-                        
-
-                        Rigidbody lidRb = releasedObject.GetComponent<Rigidbody>();
-                        if (lidRb != null)
-                        {
-                            Debug.Log("Item should no longer fall through world");
-                            lidRb.angularVelocity = Vector3.zero;
-                            lidRb.linearVelocity = Vector3.zero;
-                            lidRb.useGravity = false;
-                            lidRb.isKinematic = true;
-                        }
-                        break;
-                    }
+                    continue;
                 }
-                return;
-            }
-            WorkStationSnap[] systems = FindObjectsByType<WorkStationSnap>(FindObjectsSortMode.None);
 
-            foreach (WorkStationSnap snapSystem in systems)
-            {
-                if (snapSystem.TrySnap(releasedObject))
+                Collider lidVolume = lidVolumeTransform.GetComponent<Collider>();
+                Collider lidCollider = releasedObject.GetComponent<Collider>();
+
+                if (lidVolume == null || lidCollider == null)
                 {
-                    wandInPlace = true;
-                    if (releasedObject.name != "WandboxLid")
-                    {
-                        heldObjectPlacementScript?.ClearItemOnTable(releasedObject);
-                    }
+                    continue;   
+                }
+                if (lidVolume.bounds.Intersects(lidCollider.bounds))
+                {
+                    Debug.Log("Lid snapped successfully");
+                    //Return lid to it's closed state.
+                    Transform lidClosedPosition = box.Find("WandboxLidClosed");
+                    releasedObject.transform.position = lidClosedPosition.transform.position;
+                    releasedObject.transform.rotation = lidClosedPosition.transform.rotation;
 
+
+                    //INVENTORY
+                    currentWandinBox = WandinBox(selectedWand);
+
+
+                    snapSystem.SetBoxClosed();
+
+                    releasedObject.name = "WandboxLidClosed";
+
+                    box.tag = "canPickUp";
+                    box.gameObject.layer = LayerMask.NameToLayer("storeLayer");
+                    releasedObject.tag = "Untagged";
+                        
+                        
+                    WandBox wandboxref = box.GetComponent<WandBoxItem>().wandboxitem;
+                    Wand wandDataref = selectedWand.GetComponent<DroppedItem>().item;
+                    wandboxref.wandinBox = wandDataref;
+                        
+                        
+                    //DELETE WAND
+                    Destroy(selectedWand);
+                        
+                    boxPacked = true; //Use this for Inventory/destroying stored item. //INVENTORY
+                        
+                        
+
+                    Rigidbody lidRb = releasedObject.GetComponent<Rigidbody>();
+                    if (lidRb != null)
+                    {
+                        Debug.Log("Item should no longer fall through world");
+                        lidRb.angularVelocity = Vector3.zero;
+                        lidRb.linearVelocity = Vector3.zero;
+                        lidRb.useGravity = false;
+                        lidRb.isKinematic = true;
+                    }
                     break;
                 }
             }
+            return;
         }
+        WorkStationSnap[] systems = FindObjectsByType<WorkStationSnap>(FindObjectsSortMode.None);
+
+        foreach (WorkStationSnap snapSystem in systems)
+        {
+            if (snapSystem.TrySnap(releasedObject))
+            {
+                wandInPlace = true;
+                if (releasedObject.name != "WandboxLid")
+                {
+                    heldObjectPlacementScript?.ClearItemOnTable(releasedObject);
+                }
+
+                break;
+            }
+        }
+    }
     public void ResetPackingState()
     {
         wandInPlace = false;
