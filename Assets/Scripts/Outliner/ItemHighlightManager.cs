@@ -1,4 +1,3 @@
-using CodeMonkey.MonoBehaviours;
 using UnityEngine;
 //Found a good tutorial, going to drop the link in discord.
 
@@ -6,9 +5,11 @@ using UnityEngine;
 public class ItemHighlightManager : MonoBehaviour
 {
     [SerializeField] Material outlineMaterial;
+    [SerializeField] Material outlineMaterialForBoxes;
 
     GameObject currentOutlinedObject;
     Renderer currentOutlinedRenderer;
+    Renderer currentOutlinedChildRenderer;
     Material[] originalMaterials; //Making this an array because what if an object has loads of materials.
 
     public void DrawOutline(GameObject target)
@@ -26,15 +27,28 @@ public class ItemHighlightManager : MonoBehaviour
         }
         currentOutlinedObject = target;
         Renderer targetRenderer = target.GetComponent<Renderer>();
-        if (targetRenderer == null)
+
+        if (targetRenderer == null) //When item doesn't have it's own mesh renderer.    
         {
             Renderer targetRendererOfChild = target.transform.GetChild(0).GetComponent<Renderer>(); //If object doesn't have mesh renderer, get from (first) child.
-            targetRenderer = targetRendererOfChild;
+            targetRendererOfChild.material = outlineMaterialForBoxes; //This is a bandaid solution for a cheaply-made, low effort outline shader. I just made a duplicate, this one has slightly different values, more suited for the cuboid shaped wandboxes.
+            targetRendererOfChild.enabled = true;
+            currentOutlinedChildRenderer = targetRendererOfChild;
         }
-        if (targetRenderer != null)
+        if (targetRenderer != null) 
         {
-            targetRenderer.enabled = true;
-            targetRenderer.material = outlineMaterial;
+            currentOutlinedRenderer = targetRenderer;
+            originalMaterials = targetRenderer.materials; //Using this to restore any previous materials on the object which doesn't have children
+            Material[] outlinedMaterials = new Material[originalMaterials.Length + 1];
+
+            for (int i = 0; i < originalMaterials.Length; i++)
+            {
+                outlinedMaterials[i] = originalMaterials[i];
+            }
+
+            outlinedMaterials[outlinedMaterials.Length - 1] = outlineMaterial;
+
+            targetRenderer.materials = outlinedMaterials;
         }
     }
 
@@ -45,16 +59,21 @@ public class ItemHighlightManager : MonoBehaviour
             return; //Nothing highlighted, nothing to do.
         }
 
-        Renderer targetRenderer = currentOutlinedObject.GetComponent<Renderer>();
-        if (targetRenderer == null)
+        if (currentOutlinedObject != null && originalMaterials != null)
         {
-            targetRenderer = currentOutlinedObject.transform.GetChild(0).GetComponent<Renderer>();
+            currentOutlinedRenderer.materials = originalMaterials;
         }
-        if (targetRenderer != null)
+        else if (currentOutlinedChildRenderer != null)
         {
-            targetRenderer.enabled = false; //Disable the shader outliner gameObject.
+            currentOutlinedChildRenderer.enabled = false;
+
+            //Clearing reference.
+            currentOutlinedChildRenderer = null;
         }
 
+        //Clearing references so next time code is called it works.
         currentOutlinedObject = null;
+        currentOutlinedRenderer = null;
+        originalMaterials = null;
     }
 }
