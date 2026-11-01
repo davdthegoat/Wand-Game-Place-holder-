@@ -171,7 +171,7 @@ public class Movement : MonoBehaviour
         float elapsed = 0f;
         float previousEased = 0f;
 
-        while elapsed
+        
 
         yield return null;
     }
