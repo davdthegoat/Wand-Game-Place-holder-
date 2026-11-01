@@ -7,7 +7,7 @@ public class WorkStationSit : MonoBehaviour
     //This script is meant to seat Mr.Bean to the workstation. Depending on how things unfold, it might also be used for freezing the camera and letting go of Mr.Bean.
     [SerializeField] private HeldObjectPlacementScript heldObjectPlacementScript; //Linking both scripts to one another.
     [SerializeField] private PickUpScript pickUpScript; //Need to disable the script when sitting, it's causing issues imo.
-    [SerializeField] private PowerUpFunctions itemHighlightManager;
+    [SerializeField] private ItemHighlightManager itemHighlightManager;
     [SerializeField] private GameObject player;
     //[SerializeField] private Transform playerSitPosition; No longer used. Player location is kept when seated.
     [SerializeField] private float interactRange = 3f;

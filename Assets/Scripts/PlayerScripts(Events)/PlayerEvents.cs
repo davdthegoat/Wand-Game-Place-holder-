@@ -21,12 +21,4 @@ public struct PlayerEvents
 
     public Action HighlightObj;
     public Action unHighlightObj;
-    public Action leviosa;
-
-    public Action subHighlight;
-    public Action unsubHighlight;
-    public Action subLeviosa;
-    public Action unsubLeviosa;
-
-
 }
