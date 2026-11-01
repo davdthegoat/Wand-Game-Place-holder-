@@ -6,11 +6,12 @@ public class FloatPowerup : MonoBehaviour
 {
     [SerializeField] Movement movement;
     [SerializeField] float flightDuration;
+    [SerializeField] float cooldown;
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.B))
         {
-            movement.StartFlight(flightDuration);
+            movement.StartFlight(flightDuration, cooldown);
         }
     }
 }

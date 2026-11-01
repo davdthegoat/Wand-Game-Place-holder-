@@ -125,17 +125,20 @@ public class Movement : MonoBehaviour
     //Wingardium Leviosa powerup - Flight
     //Will add a "quick cancel" to this later.
     //Found a tutorial
-    public void StartFlight(float duration)
+    public void StartFlight(float duration, float cooldown)
     {
-        if (isFlying)
+        if (isFlying || Oncooldown)
         {
             //Probably should start a cooldown timer from here.
+            
             return;
         }
-        StartCoroutine(FlightRoutine(duration));
+        
+        StartCoroutine(FlightRoutine(duration, cooldown));
     }
 
-    IEnumerator FlightRoutine(float duration)
+    bool Oncooldown = false; //starts as true means its on cooldown false is its not on cooldown
+    IEnumerator FlightRoutine(float duration, float cooldown)
     {
         isFlying = true;
         float originalGravity = gravity; //Storing it here, so that it can be restored once flight powerup ends.
@@ -147,6 +150,18 @@ public class Movement : MonoBehaviour
 
         gravity = originalGravity;
 
+        isFlying = false;
+
+        Oncooldown = true; // refer to definition comments
+
+        yield return new WaitForSeconds(cooldown);
+
+        Oncooldown = false;
+    }
+
+    void OnDisable()
+    {
+        Oncooldown = false;
         isFlying = false;
     }
 }
