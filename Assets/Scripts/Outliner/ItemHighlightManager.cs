@@ -1,14 +1,11 @@
-using Unity.VisualScripting;
 using UnityEngine;
 //Found a good tutorial, going to drop the link in discord.
 
 //Going back to basics - using an empty gameObject instead of adding shader to children gameObjects.
-public class PowerUpFunctions : MonoBehaviour
+public class ItemHighlightManager : MonoBehaviour
 {
     [SerializeField] Material outlineMaterial;
     [SerializeField] Material outlineMaterialForBoxes;
-
-    
 
     GameObject currentOutlinedObject;
     Renderer currentOutlinedRenderer;
@@ -79,16 +76,4 @@ public class PowerUpFunctions : MonoBehaviour
         currentOutlinedRenderer = null;
         originalMaterials = null;
     }
-
-    public void Floatpowerup(Movement movement, float flightDuration)
-    {
-    
-        
-        movement.StartFlight(flightDuration);
-        
-        
-    }
-    //subscribe this method only on the condition it has been activated - do this for all of these power up methods
-    //ok this script calls the start flight function form the movement script. I can use this to just pass the data needed to call the function and actually link it up in like an inventory manager
-    // The button detection will also be in a power up management script
 }

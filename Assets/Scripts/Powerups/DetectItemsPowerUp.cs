@@ -6,11 +6,6 @@ using UnityEngine;
 
 public class DetectItemsPowerUp : MonoBehaviour
 {
-    
-
-    [SerializeField] Movement movement;
-    [SerializeField] float flightDuration;
-
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
     {
@@ -22,8 +17,4 @@ public class DetectItemsPowerUp : MonoBehaviour
     {
         
     }
-
-    //should handle subsciption of the powerup items
-    // should handle invoking of powerup items
-    
 }
