@@ -120,8 +120,8 @@ Material:
     - _Metallic: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.005
-    - _Pixel_Res: 250
-    - _Quantization_Res: 256
+    - _Pixel_Res: 1024
+    - _Quantization_Res: 200
     - _QueueControl: 0
     - _QueueOffset: 0
     - _ReceiveShadows: 1

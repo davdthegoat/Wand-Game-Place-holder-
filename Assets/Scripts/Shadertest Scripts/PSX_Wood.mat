@@ -55,8 +55,8 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Pixel_Res: 10
-    - _Quantization_Res: 64
+    - _Pixel_Res: 60.4
+    - _Quantization_Res: 63.4
     - _QueueControl: 0
     - _QueueOffset: 0
     - _Vertex_Res: 256

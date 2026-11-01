@@ -129,9 +129,9 @@
             },
             "m_InputSlot": {
                 "m_Node": {
-                    "m_Id": "9daaedfb0d39469e9a5090806d0fa41b"
+                    "m_Id": "7f485fe8c3f848899e0aad101176081c"
                 },
-                "m_SlotId": 2
+                "m_SlotId": 0
             }
         },
         {
@@ -160,6 +160,20 @@
                     "m_Id": "568d9672913747ddb767e34199ead012"
                 },
                 "m_SlotId": 0
+            }
+        },
+        {
+            "m_OutputSlot": {
+                "m_Node": {
+                    "m_Id": "3a4b7ac1ac554b65bb26435a43a7ca2f"
+                },
+                "m_SlotId": 2
+            },
+            "m_InputSlot": {
+                "m_Node": {
+                    "m_Id": "9daaedfb0d39469e9a5090806d0fa41b"
+                },
+                "m_SlotId": 2
             }
         },
         {
@@ -216,6 +230,20 @@
                     "m_Id": "06a03cdd0e234d2cbe9dba5aa128f36f"
                 },
                 "m_SlotId": 1
+            }
+        },
+        {
+            "m_OutputSlot": {
+                "m_Node": {
+                    "m_Id": "4f129ee6b60a48198269c588b61e08a1"
+                },
+                "m_SlotId": 2
+            },
+            "m_InputSlot": {
+                "m_Node": {
+                    "m_Id": "1950718b66234eca9b9bdf74b416e490"
+                },
+                "m_SlotId": 0
             }
         },
         {
@@ -465,7 +493,7 @@
             },
             "m_InputSlot": {
                 "m_Node": {
-                    "m_Id": "1950718b66234eca9b9bdf74b416e490"
+                    "m_Id": "72e6d0acca484df18515c0d415842082"
                 },
                 "m_SlotId": 0
             }
@@ -783,8 +811,8 @@
     "m_ObjectId": "1c2b70b0cbbc4ccc80da3e0f987c76bf",
     "m_Title": "pixelate",
     "m_Position": {
-        "x": -2281.599853515625,
-        "y": 497.5999755859375
+        "x": -2281.60009765625,
+        "y": 497.6002197265625
     }
 }
 
@@ -2476,8 +2504,8 @@
     "m_ObjectId": "c0ee24f80b9f40779e9b140cbb92baf5",
     "m_Title": "Quantization",
     "m_Position": {
-        "x": -709.599853515625,
-        "y": 653.5999755859375
+        "x": -709.5999755859375,
+        "y": 653.6002197265625
     }
 }
 
