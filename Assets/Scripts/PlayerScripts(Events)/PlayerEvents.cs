@@ -18,4 +18,7 @@ public struct PlayerEvents
 
     public Action<GameObject, Inventory> AddItemShelfInventory;
     public Action<GameObject, Inventory> RemoveItemShelfInventory;
+
+    public Action HighlightObj;
+    public Action unHighlightObj;
 }
