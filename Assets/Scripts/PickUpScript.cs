@@ -21,7 +21,7 @@ public class PickUpScript : PlayerSystem
     private int LayerNumStore;
 
     
-    
+    //Reference to either text mesh pro object or event system to manipulate TMP
 
     
     //Reference to script which includes mouse movement of player (looking around)
@@ -71,7 +71,9 @@ public class PickUpScript : PlayerSystem
         {
             MoveObject(); //keep object position at holdPos
             RotateObject();
-
+            //this is prob where you call the function that here will check for Interact Key and if found will extract the data to put onto text
+            //TMP Interaction
+            Interact();
             if (Input.GetKeyDown(KeyCode.Mouse0) && canDrop == true) //Mous0 (leftclick) is used to throw, change this if you want another button to be used)
             {
                 StopClipping();
@@ -183,6 +185,17 @@ public class PickUpScript : PlayerSystem
         }
     }
 
+    public void Interact()
+    {
+        if (Input.GetKey(KeyCode.I))
+        {
+            //Do the thing Zhu Li/Ju Li- ATLA korra reference
+            playerIdentification.Playerdata.Events.InteractionOccured.Invoke(heldObj);
+
+        }
+    }
+
+
     void ThrowObject()
     {
         Debug.Log("ThrowObject was called");
@@ -256,12 +269,14 @@ public class PickUpScript : PlayerSystem
         //This code above keeps giving null reference.
 
         itemHighlightManager.ClearOutline(); //To erase the outline of object held in hand.
-        SetLayerChildren(heldObj, LayerNumStore); //Change all children to storeLayer
 
         heldObj = null;
         heldObjRb = null;
+
+
     }
-    public void PlaceHeldObject()
+
+     public void PlaceHeldObject()
     {   
         //DVD here, disabling for testing purposes.
         /*
@@ -271,10 +286,6 @@ public class PickUpScript : PlayerSystem
         //INVENTORY
         */
         //This code above keeps giving null reference.
-
-        itemHighlightManager.ClearOutline(); //To erase the outline of object held in hand.
-        heldObj = null;
-        heldObjRb = null;
     }
 
     void SetLayerChildren( GameObject objparent, LayerMask layer)

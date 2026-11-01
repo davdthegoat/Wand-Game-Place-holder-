@@ -49,7 +49,7 @@ public class HeldObjectPlacementScript : MonoBehaviour
 
         itemOnTable = heldObject;
         pickUpScript.PlaceHeldObject(); //All prior steps necessary because ClearHeldObject only sets heldObj and heldObjRb to null.
-
+        //Mibsams Change
 
         //Giving it a tag, for workstation WorkStationDragAndDrop script.
         //Revoking tag. Item should be pick-up-able even after placed on table and cleared.

@@ -1,5 +1,7 @@
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerInventoryManager : PlayerSystem
 {
@@ -9,6 +11,11 @@ public class PlayerInventoryManager : PlayerSystem
     private Inventory playerInventory;
     [SerializeField]
     private Inventory GroundInventory;
+
+    [Header("TEXT REFERENCE")]
+    [SerializeField] private TextMeshProUGUI Coretext;
+    [SerializeField] private TextMeshProUGUI Woodtext;
+    [SerializeField] private TextMeshProUGUI Lengthtext;
 
     
 
@@ -110,34 +117,78 @@ public class PlayerInventoryManager : PlayerSystem
     {
         ;
     }
+    //The Text Mesh Displays
+    void DisplayCore(GameObject heldObj)
+    {   
+        var wandData = heldObj.GetComponent<DroppedItem>().item;
+        if (wandData == null){return;}
+        else
+        {
+            var coreEnum = wandData.core;
+            string core = coreEnum.ToString();
+
+            Coretext.text = core; 
+        }
+    }
+    void DisplayWood(GameObject heldObj)
+    {
+        var wandData = heldObj.GetComponent<DroppedItem>().item;
+        if (wandData == null){return;}
+        else
+        {
+            var woodEnum = wandData.wood;
+            string wood = woodEnum.ToString();
+
+            Woodtext.text = wood; 
+        }
+    }
+    void DisplayLength(GameObject heldObj)
+    {
+        var wandData = heldObj.GetComponent<DroppedItem>().item;
+        if (wandData == null){return;}
+        else
+        {
+            var lengthEnum = wandData.length;
+            string length = lengthEnum.ToString();
+
+            Lengthtext.text = length; 
+        }
+    }
 
 
 
-
-    /* DVD - Commenting out cuz of null error
+    //DVD - Commenting out cuz of null error
     void OnDisable()
     {
-        playerIdentification.Playerdata.Events.AddItemInventory -= AddItem;
-        playerIdentification.Playerdata.Events.RemoveItemInventory -= RemoveItem; 
+        // playerIdentification.Playerdata.Events.AddItemInventory -= AddItem;
+        // playerIdentification.Playerdata.Events.RemoveItemInventory -= RemoveItem; 
 
-        playerIdentification.Playerdata.Events.RemoveItemGroundInventory -= RemoveItemGroundInventory;
-        playerIdentification.Playerdata.Events.AddItemGroundInventory -= AddItemGroundInventory;
+        // playerIdentification.Playerdata.Events.RemoveItemGroundInventory -= RemoveItemGroundInventory;
+        // playerIdentification.Playerdata.Events.AddItemGroundInventory -= AddItemGroundInventory;
 
-        playerIdentification.Playerdata.Events.AddItemShelfInventory -= AddItemShelfInventory;
-        playerIdentification.Playerdata.Events.RemoveItemShelfInventory -= RemoveItemShelfInventory;
+        // playerIdentification.Playerdata.Events.AddItemShelfInventory -= AddItemShelfInventory;
+        // playerIdentification.Playerdata.Events.RemoveItemShelfInventory -= RemoveItemShelfInventory;
+
+        playerIdentification.Playerdata.Events.InteractionOccured -= DisplayCore;
+        playerIdentification.Playerdata.Events.InteractionOccured -= DisplayWood;
+        playerIdentification.Playerdata.Events.InteractionOccured -= DisplayLength;
 
     }
     void OnEnable()
     {
         //Subscribing these functions to neccassary actions triggered in pickup script rn
-        playerIdentification.Playerdata.Events.AddItemInventory += AddItem;
-        playerIdentification.Playerdata.Events.RemoveItemInventory += RemoveItem;
+        // playerIdentification.Playerdata.Events.AddItemInventory += AddItem;
+        // playerIdentification.Playerdata.Events.RemoveItemInventory += RemoveItem;
 
-        playerIdentification.Playerdata.Events.RemoveItemGroundInventory += RemoveItemGroundInventory;
-        playerIdentification.Playerdata.Events.AddItemGroundInventory += AddItemGroundInventory; 
+        // playerIdentification.Playerdata.Events.RemoveItemGroundInventory += RemoveItemGroundInventory;
+        // playerIdentification.Playerdata.Events.AddItemGroundInventory += AddItemGroundInventory; 
 
-        playerIdentification.Playerdata.Events.AddItemShelfInventory += AddItemShelfInventory;
-        playerIdentification.Playerdata.Events.RemoveItemShelfInventory += RemoveItemShelfInventory;
+        // playerIdentification.Playerdata.Events.AddItemShelfInventory += AddItemShelfInventory;
+        // playerIdentification.Playerdata.Events.RemoveItemShelfInventory += RemoveItemShelfInventory;
+
+        playerIdentification.Playerdata.Events.InteractionOccured += DisplayCore;
+        playerIdentification.Playerdata.Events.InteractionOccured += DisplayWood;
+        playerIdentification.Playerdata.Events.InteractionOccured += DisplayLength;
     }
-    */
+    
 }

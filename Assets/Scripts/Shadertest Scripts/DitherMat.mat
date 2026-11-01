@@ -37,7 +37,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _ColorRes: 20.8
+    - _ColorRes: 22.54
     - _DitherRes: 0.03
     - _Spread: 0
     - _ThresholdMap: 2
