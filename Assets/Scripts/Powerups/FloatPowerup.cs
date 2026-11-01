@@ -7,11 +7,16 @@ public class FloatPowerup : MonoBehaviour
     [SerializeField] Movement movement;
     [SerializeField] float flightDuration;
     [SerializeField] float cooldown;
+
+    [Header("StartFloatVars: ")]
+    [SerializeField]float hoverHeight = 3f; 
+    [SerializeField]float riseTime = 0.8f;
+    [SerializeField]float overshoot = 1.70158f;
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.B))
         {
-            movement.StartFlight(flightDuration, cooldown);
+            movement.StartFlight(flightDuration, cooldown, hoverHeight, riseTime, overshoot);
         }
     }
 }

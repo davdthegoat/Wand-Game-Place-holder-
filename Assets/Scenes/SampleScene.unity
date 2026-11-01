@@ -5205,6 +5205,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::FloatPowerup
   movement: {fileID: 30686074597218298}
   flightDuration: 10
+  cooldown: 5
+  hoverHeight: 5
+  riseTime: 1
+  overshoot: 1.70158
 --- !u!114 &30686074597218308
 MonoBehaviour:
   m_ObjectHideFlags: 0

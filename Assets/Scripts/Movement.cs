@@ -125,7 +125,7 @@ public class Movement : MonoBehaviour
     //Wingardium Leviosa powerup - Flight
     //Will add a "quick cancel" to this later.
     //Found a tutorial
-    public void StartFlight(float duration, float cooldown)
+    public void StartFlight(float duration, float cooldown,  float hoverHeight, float riseTime,float overshoot)
     {
         if (isFlying || Oncooldown)
         {
@@ -134,17 +134,19 @@ public class Movement : MonoBehaviour
             return;
         }
         
-        StartCoroutine(FlightRoutine(duration, cooldown));
+        StartCoroutine(FlightRoutine(duration, cooldown, hoverHeight, riseTime, overshoot));
     }
 
     bool Oncooldown = false; //starts as true means its on cooldown false is its not on cooldown
-    IEnumerator FlightRoutine(float duration, float cooldown)
+    IEnumerator FlightRoutine(float duration, float cooldown, float hoverHeight, float riseTime,float overshoot)
     {
         isFlying = true;
         float originalGravity = gravity; //Storing it here, so that it can be restored once flight powerup ends.
 
         gravity = 0f; //Reassigning so that we can fly
         velocityY = 0f;
+
+        // yield return StartCoroutine(FlyStartRoutine(hoverHeight, riseTime,overshoot));
 
         yield return new WaitForSeconds(duration); //Waits for the duration of the ability.
 
@@ -159,22 +161,38 @@ public class Movement : MonoBehaviour
         Oncooldown = false;
     }
 
-//Easing function 
-    float easeOutBack(float t, float s){/*t tis time and s is the overshoot value taken from easings.net*/
+// //Easing function 
+//     float easeOutBack(float t, float s){/*t tis time and s is the overshoot value taken from easings.net*/
 
-        float c = t-1f;
-        return 1 + s * Mathf.Pow(c, 3) + s * Mathf.Pow(c, 2);
-    }
+//         float c = t-1f;
+//         return 1 + (s + 1f) * (c*c*c) + s * (c*c);
+//     }
 
-    IEnumerator FlyStartRoutine()
-    {
-        float elapsed = 0f;
-        float previousEased = 0f;
+//     IEnumerator FlyStartRoutine(float hoverHeight, float riseTime,float overshoot)
+//     {
+//         Debug.Log("FlySTART.sTARTED");
+//         float elapsed = 0f;
+//         float previousEased = 0f;
 
-        
+//         while (elapsed < riseTime)
+//         {
+//             elapsed += Time.deltaTime;
+//             float t = Mathf.Clamp01(elapsed/ riseTime);
+//             float eased = easeOutBack(t, overshoot);
 
-        yield return null;
-    }
+//             //the height/y value for this update frame
+//             float deltaHeight = (eased - previousEased) * hoverHeight; //basically multiplying the 1 to 0 by required height values
+
+//             velocityY = deltaHeight / Time.deltaTime;
+            
+
+
+//             previousEased = eased;
+//             yield return null;
+//         }
+
+//         velocityY = 0f;
+//     }
 
 
     void OnDisable()
