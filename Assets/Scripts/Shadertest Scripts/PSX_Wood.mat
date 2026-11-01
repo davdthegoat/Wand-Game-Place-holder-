@@ -55,11 +55,11 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Pixel_Res: 250
+    - _Pixel_Res: 512
     - _Quantization_Res: 256
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _Vertex_Res: 250
+    - _Vertex_Res: 256
     m_Colors: []
   m_BuildTextureStacks: []
   m_AllowLocking: 1
