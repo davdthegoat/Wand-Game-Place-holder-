@@ -159,6 +159,24 @@ public class Movement : MonoBehaviour
         Oncooldown = false;
     }
 
+//Easing function 
+    float easeOutBack(float t, float s){/*t tis time and s is the overshoot value taken from easings.net*/
+
+        float c = t-1f;
+        return 1 + s * Mathf.Pow(c, 3) + s * Mathf.Pow(c, 2);
+    }
+
+    IEnumerator FlyStartRoutine()
+    {
+        float elapsed = 0f;
+        float previousEased = 0f;
+
+        while elapsed
+
+        yield return null;
+    }
+
+
     void OnDisable()
     {
         Oncooldown = false;
