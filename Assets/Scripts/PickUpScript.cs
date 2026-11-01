@@ -270,9 +270,10 @@ public class PickUpScript : PlayerSystem
 
         itemHighlightManager.ClearOutline(); //To erase the outline of object held in hand.
 
+        SetLayerChildren(heldObj, LayerNumStore);
         heldObj = null;
         heldObjRb = null;
-
+        
 
     }
 
@@ -286,6 +287,9 @@ public class PickUpScript : PlayerSystem
         //INVENTORY
         */
         //This code above keeps giving null reference.
+        itemHighlightManager.ClearOutline(); //To erase the outline of object held in hand.
+        heldObj = null;
+        heldObjRb = null;
     }
 
     void SetLayerChildren( GameObject objparent, LayerMask layer)
