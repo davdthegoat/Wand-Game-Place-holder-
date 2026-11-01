@@ -10,6 +10,7 @@ public class Grid
     [SerializeField] Vector3 originPositionOfGrid;
     private int[,] gridArray; //Apparently this is how to declare a 2D array
     //private TextMesh[,] gridDebuggingArray; No longer need debug, grid works.
+    private Quaternion gridRotation;
 
     private GridPlane gridPlane;
     //Enum will be used to seperate a grid which is on the X-Y axis from a grid placed on the Z-Y axis: This approach was suggested by Unity discord server.
@@ -19,13 +20,14 @@ public class Grid
         ZY
     }
 
-    public Grid(int width, int height, float cellSize, Vector3 originPositionOfGrid, GridPlane gridPlane) //"GridPlane gridPlane" is what always XY and ZY grids.
+    public Grid(int width, int height, float cellSize, Vector3 originPositionOfGrid, GridPlane gridPlane, Quaternion gridRotation) //"GridPlane gridPlane" is what always XY and ZY grids.
     {
         this.width = width;
         this.height = height;
         this.cellSize = cellSize;
         this.originPositionOfGrid = originPositionOfGrid;
         this.gridPlane = gridPlane;
+        this.gridRotation = gridRotation;
 
         // Debug.Log(width + " " + height); Array working (verified)
         gridArray = new int[width, height];
@@ -56,11 +58,11 @@ public class Grid
         //Parameter x is used to represent x in a 2D graph, as that makes it easier for me to mathematically visualize. I could make a variable called z but I'm too lazy, it would do the same thing.
         if (gridPlane == GridPlane.XY)
         {
-            return new Vector3(x, y, 0) * cellSize + originPositionOfGrid;
+            return originPositionOfGrid + gridRotation * (new Vector3(x, y, 0) * cellSize);
         }
         else
         {
-            return new Vector3(0, y,x) * cellSize + originPositionOfGrid;
+            return originPositionOfGrid + gridRotation * (new Vector3(0, y, x) * cellSize);
         } 
         //I believe if we want to change where the grid is, for example the grid should span x-y or z-y, we change this here, as Vector3 has (x,y,z). Or we could try rotating through inspector
         //Also, we could probably add slanted shelves like in the real olivander's store with this with 1,1,1.
@@ -84,7 +86,7 @@ public class Grid
     //Get's grid position from world position. 
     public void GetXYCoordinates(Vector3 worldPosition, out int x, out int y) //Get's the (x,y) cords of grid based on world position.
     {
-        Vector3 localPosition = worldPosition - originPositionOfGrid; //Calculates where raycast hits with respect to the origin of the grid.
+        Vector3 localPosition = Quaternion.Inverse(gridRotation) * (worldPosition - originPositionOfGrid); //Calculates where raycast hits with respect to the origin of the grid, including grids rotation
         if (gridPlane == GridPlane.XY)
         {
             x = Mathf.FloorToInt(localPosition.x / cellSize); //Calculates in which grid does the current cordinate lay.

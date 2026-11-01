@@ -20,7 +20,7 @@ public class TestingGrid : MonoBehaviour
     void Awake() //So that grid is initialized before StoreInShelfScript everytime.
     {
         //Use this to change size, shape, position of grid on the world
-        grid = new Grid(width, height, gridSize,new Vector3(xPos,yPos,zPos), gridPlane); //the third parameter here is cellSize, change it to change how many units apart each grid should be.
+        grid = new Grid(width, height, gridSize, transform.position, gridPlane, transform.rotation); //the third parameter here is cellSize, change it to change how many units apart each grid should be.
         //new Vector3 decides position of the grid, in GLOBAL coords.
     }
     public Grid GetGrid()
@@ -30,11 +30,12 @@ public class TestingGrid : MonoBehaviour
 
     public Quaternion GetItemRotation()
     {
+        Quaternion planeRotation = Quaternion.identity;
         if (gridPlane == Grid.GridPlane.ZY)
         {
             return Quaternion.Euler(itemRotation + new Vector3(0, 90f, 0));
         }
-        return Quaternion.Euler(itemRotation);
+        return transform.rotation * planeRotation * Quaternion.Euler(itemRotation);
     }
 
     private void Update()
@@ -61,5 +62,43 @@ public class TestingGrid : MonoBehaviour
         return hit.collider == gridCollider;
     }
 
-    
+    private void OnDrawGizmos()
+    {
+        Vector3 origin = transform.position;
+        for (int x  =0; x <= width; x++)
+        {
+            Vector3 start;
+            Vector3 end;
+
+            if (gridPlane == Grid.GridPlane.XY)
+            {
+                start = new Vector3(x * gridSize, 0, 0);
+                end = new Vector3(x * gridSize, height * gridSize, 0);
+            }
+            else
+            {
+                start = new Vector3(0, 0, x * gridSize);
+                end = new Vector3(0, height * gridSize, x * gridSize);
+            }
+            Gizmos.DrawLine(transform.TransformPoint(start), transform.TransformPoint(end));
+        }
+
+        for (int y =0; y <= height; y++)
+        {
+            Vector3 start;
+            Vector3 end;
+
+            if (gridPlane == Grid.GridPlane.XY)
+            {
+                start = new Vector3(0, y * gridSize, 0);
+                end = new Vector3(width * gridSize, y * gridSize, 0);
+            }
+            else
+            {
+                start = new Vector3(0, y * gridSize, 0);
+                end = new Vector3(0, y * gridSize, height * gridSize);
+            }
+            Gizmos.DrawLine(transform.TransformPoint(start), transform.TransformPoint(end));
+        }
+    }
 }
