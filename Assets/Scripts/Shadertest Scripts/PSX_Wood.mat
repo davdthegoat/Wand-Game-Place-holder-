@@ -33,13 +33,13 @@ Material:
   stringTagMap: {}
   disabledShaderPasses:
   - MOTIONVECTORS
-  m_LockedProperties: 
+  m_LockedProperties: _Vertex_Res
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
     - _Albedo:
-        m_Texture: {fileID: 2800000, guid: 91c777385166a98469b1b4731b888928, type: 3}
-        m_Scale: {x: 8, y: 4}
+        m_Texture: {fileID: 2800000, guid: 2640ef28499c41e4c8e0fdc8b311b2b5, type: 3}
+        m_Scale: {x: 3, y: 1}
         m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
         m_Texture: {fileID: 0}
@@ -55,8 +55,8 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Pixel_Res: 60.4
-    - _Quantization_Res: 63.4
+    - _Pixel_Res: 434.1
+    - _Quantization_Res: 239.4
     - _QueueControl: 0
     - _QueueOffset: 0
     - _Vertex_Res: 256
