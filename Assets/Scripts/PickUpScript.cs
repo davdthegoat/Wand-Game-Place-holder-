@@ -256,11 +256,25 @@ public class PickUpScript : PlayerSystem
         //This code above keeps giving null reference.
 
         itemHighlightManager.ClearOutline(); //To erase the outline of object held in hand.
+        SetLayerChildren(heldObj, LayerNumStore); //Change all children to storeLayer
 
         heldObj = null;
         heldObjRb = null;
+    }
+    public void PlaceHeldObject()
+    {   
+        //DVD here, disabling for testing purposes.
+        /*
+        //INVENTORY
+        var droppedItem = heldObj.GetComponent<DroppedItem>();
+        inventory.RemoveItem(droppedItem.item.id);
+        //INVENTORY
+        */
+        //This code above keeps giving null reference.
 
-
+        itemHighlightManager.ClearOutline(); //To erase the outline of object held in hand.
+        heldObj = null;
+        heldObjRb = null;
     }
 
     void SetLayerChildren( GameObject objparent, LayerMask layer)

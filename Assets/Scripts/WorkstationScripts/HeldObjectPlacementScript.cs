@@ -48,7 +48,7 @@ public class HeldObjectPlacementScript : MonoBehaviour
         heldObjectRb.isKinematic = true; //prevents physics interactin so item can't be moved/nudged off table
 
         itemOnTable = heldObject;
-        pickUpScript.ClearHeldObject(); //All prior steps necessary because ClearHeldObject only sets heldObj and heldObjRb to null.
+        pickUpScript.PlaceHeldObject(); //All prior steps necessary because ClearHeldObject only sets heldObj and heldObjRb to null.
 
 
         //Giving it a tag, for workstation WorkStationDragAndDrop script.
