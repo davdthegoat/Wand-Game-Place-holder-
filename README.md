@@ -57,3 +57,12 @@ https://lapse.hackclub.com/timelapse/AocoDqrLOYhF
 https://lapse.hackclub.com/timelapse/27kk1tq_0GZz
 https://lapse.hackclub.com/timelapse/COl98XwzXsIb
 Apologies in advance for failing to add lapse links in chronological order since week 4.
+
+Week 7:
+This week marks the completion of all back-end work, leaving only the following: textures, 3D models, map design, SFX + VFX, and minor additions to our existing power-ups/abilities. We made major progress our shaders, visuals, 3D models, procedurally generating 3D assets and importing them directly into Unity, and power-ups this week.
+Lapse links for week 7;
+https://lapse.hackclub.com/timelapse/HSuTtx5N6dLK
+https://lapse.hackclub.com/timelapse/Dk59O0BxZ_7S
+https://lapse.hackclub.com/timelapse/z65Ij4Ma0_vj
+https://lapse.hackclub.com/timelapse/L57EcF8ONg1o
+https://lapse.hackclub.com/timelapse/zdi1LrA_uvaS
