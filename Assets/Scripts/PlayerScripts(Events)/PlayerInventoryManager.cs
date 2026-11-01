@@ -125,7 +125,16 @@ public class PlayerInventoryManager : PlayerSystem
         else
         {
             var coreEnum = wandData.core;
-            string core = coreEnum.ToString();
+            string coreold = coreEnum.ToString();
+            string core = "";
+            foreach (char letter in coreold)
+            {
+                if (letter== '_')
+                {
+                    core += " ";
+                }
+                else{core+= letter;}
+            }
 
             Coretext.text = core; 
         }
