@@ -1,11 +1,11 @@
 using UnityEngine;
 
-public class HeldObjectPlacementScript : MonoBehaviour
+public class HeldObjectPlacementScript : PlayerSystem
 {
     [SerializeField] PickUpScript pickUpScript;
     [SerializeField] Transform ItemPlacementPosition; //Empty gameobject in the scene used to determine where placed items spawn on the workstation.
     [Header ("Powerups")]
-    [SerializeField] FloatPowerup floatPowerup;
+    
     [SerializeField] GameObject readableParchment;
 
 
@@ -21,7 +21,7 @@ public class HeldObjectPlacementScript : MonoBehaviour
         if (heldObject.name == "PowerupParchment-Float") //If the float powerup is brought to the workbench. We don't actually want to place it on the table.
         {
             Debug.Log("PowerUp brought to workstation");
-            floatPowerup.enabled = true;
+            playerIdentification.Playerdata.Events.subLeviosa();
             readableParchment.SetActive(true); //The parchment. Can go with two approaches. I like approach I more than II, but it comes down to time investment.
             // I: A differently modelled parchment for each powerup, to give it uniqueness. Perhaps instead of differently modelled, it can be differently textured, what I'm trying to say is that it should look different
             // II: Same parchment, but depending on which powerup is brought to the workstation, a different TMP (3D) is enabled. This is a temporary/cheap fix, but it'll get the job done. It'd look something like the following line:

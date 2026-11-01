@@ -12,7 +12,7 @@ public class WorkStationDragAndDrop : MonoBehaviour
     [SerializeField] private Transform wandLidPlacementPosition; //Same one from WandBoxSelectionScript, using same gameObject.
     [SerializeField] private LayerMask layersToIgnore;
     [SerializeField] private HeldObjectPlacementScript heldObjectPlacementScript;
-    [SerializeField] private ItemHighlightManager itemHighlightManager;
+    [SerializeField] private PowerUpFunctions itemHighlightManager;
     private GameObject draggedObject;
     private Rigidbody draggedObjectRb;
     private float dragDepth; //if we want to freeze movement in one axis.

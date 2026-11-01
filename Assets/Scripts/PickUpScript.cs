@@ -7,7 +7,7 @@ using UnityEngine;
 public class PickUpScript : PlayerSystem
 {
     [SerializeField] private HeldObjectPlacementScript heldObjectPlacementScript;
-    [SerializeField] private ItemHighlightManager itemHighlightManager;
+    [SerializeField] private PowerUpFunctions itemHighlightManager;
     public GameObject player;
     public Transform holdPos;
     //if you copy from below this point, you are legally required to like the video
