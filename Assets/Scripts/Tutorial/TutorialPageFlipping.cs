@@ -1,6 +1,7 @@
 //Attached to the tutorial-book.
 using System;
 using UnityEngine;
+using UnityEngine.InputSystem.Controls;
 
 public class TutorialPageFlipping : MonoBehaviour
 {
@@ -11,7 +12,10 @@ public class TutorialPageFlipping : MonoBehaviour
     [SerializeField] Transform leftPagePosition;
     [SerializeField] GameObject tutorialBook;
     [SerializeField] GameObject mrBean;
+    [SerializeField] int amountOfPages;
+    [SerializeField] Camera sitPositionCamera;
     private Boolean page; //True is left and false is right page. We start from left page
+    private int pageNum = 1;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -30,21 +34,30 @@ public class TutorialPageFlipping : MonoBehaviour
             tutorialBook.transform.position = rightPagePosition.position;
         }
         page = !page; //Flip value of page, preparing it for next instance of FlipPage();
+        pageNum += 1;
     }
 
     public void TurnPage() //Going to call this function to turn the page.
     {
-        FlipPage();
+        if (pageNum < amountOfPages)
+        {
+            FlipPage();
+        }
+        else if (pageNum == amountOfPages)
+        {
+            TutorialFinished();
+            return;
+        }
     }
 
+    private void TutorialFinished()
+    {
+        tutorialBook.gameObject.SetActive(false);
+        mrBean.GetComponent<Movement>().enabled = true; //re-enable movement.
+        sitPositionCamera.enabled = false;
+    }
     void OnMouseDown()
     {
         TurnPage();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
