@@ -135,7 +135,7 @@ public class PlayerInventoryManager : PlayerSystem
                 }
                 else{core+= letter;}
             }
-
+            core = "Core: "+core;
             Coretext.text = core; 
         }
     }
@@ -147,7 +147,7 @@ public class PlayerInventoryManager : PlayerSystem
         {
             var woodEnum = wandData.wood;
             string wood = woodEnum.ToString();
-
+            wood = "Wood: " + wood;
             Woodtext.text = wood; 
         }
     }
@@ -159,12 +159,17 @@ public class PlayerInventoryManager : PlayerSystem
         {
             var lengthEnum = wandData.length;
             string length = lengthEnum.ToString();
-
+            length = "Length: " + length;
             Lengthtext.text = length; 
         }
     }
 
-
+    void ClearTextcorewoodlen()
+    {
+        Coretext.text = "";
+        Woodtext.text = "";
+        Lengthtext.text = "";
+    }
 
     //DVD - Commenting out cuz of null error
     void OnDisable()
@@ -182,6 +187,8 @@ public class PlayerInventoryManager : PlayerSystem
         playerIdentification.Playerdata.Events.InteractionOccured -= DisplayWood;
         playerIdentification.Playerdata.Events.InteractionOccured -= DisplayLength;
 
+        playerIdentification.Playerdata.Events.InteractionEnded -= ClearTextcorewoodlen;
+
     }
     void OnEnable()
     {
@@ -198,6 +205,9 @@ public class PlayerInventoryManager : PlayerSystem
         playerIdentification.Playerdata.Events.InteractionOccured += DisplayCore;
         playerIdentification.Playerdata.Events.InteractionOccured += DisplayWood;
         playerIdentification.Playerdata.Events.InteractionOccured += DisplayLength;
+
+        playerIdentification.Playerdata.Events.InteractionEnded += ClearTextcorewoodlen;
     }
+
     
 }

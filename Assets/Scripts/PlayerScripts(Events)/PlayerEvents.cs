@@ -20,4 +20,5 @@ public struct PlayerEvents
     public Action<GameObject, Inventory> RemoveItemShelfInventory;
 
     public Action<GameObject> InteractionOccured;
+    public Action InteractionEnded;
 }

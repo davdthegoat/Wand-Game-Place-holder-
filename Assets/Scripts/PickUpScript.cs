@@ -35,6 +35,8 @@ public class PickUpScript : PlayerSystem
         LayerNumStore = LayerMask.NameToLayer("storeLayer");
         //mouseLookScript = player.GetComponent<MouseLookScript>();
         movement = player.GetComponent<Movement>();
+
+        
         
         
     }
@@ -152,6 +154,9 @@ public class PickUpScript : PlayerSystem
         heldObj.transform.parent = null; //unparent object
         heldObj = null; //undefine game object
         heldObjRb = null;
+
+        //INTERACT
+        playerIdentification.Playerdata.Events.InteractionEnded.Invoke();
        
     }
 
@@ -182,6 +187,7 @@ public class PickUpScript : PlayerSystem
             //re-enable player being able to look around
             movement.SetCameraLocked(false);
             canDrop = true;
+            playerIdentification.Playerdata.Events.InteractionEnded.Invoke();
         }
     }
 
@@ -223,7 +229,8 @@ public class PickUpScript : PlayerSystem
 
         heldObj = null;
         heldObjRb = null;
-
+        //INTERACT
+        playerIdentification.Playerdata.Events.InteractionEnded.Invoke();
        
     }
 
