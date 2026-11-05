@@ -25,10 +25,16 @@ public class ItemHighlightManager : MonoBehaviour
         {
             return; //Nothing to highlight, nothing to do.
         }
+
         currentOutlinedObject = target;
         Renderer targetRenderer = target.GetComponent<Renderer>();
 
-        if (targetRenderer == null) //When item doesn't have it's own mesh renderer.    
+        if (target.name == "PowerupParchment-Float") //Create one for every future powerup name, bandaid fix to longterm problem.
+        {
+            return; //We don't want to highlight these.
+        }
+
+            if (targetRenderer == null) //When item doesn't have it's own mesh renderer.    
         {
             Renderer targetRendererOfChild = target.transform.GetChild(0).GetComponent<Renderer>(); //If object doesn't have mesh renderer, get from (first) child.
             targetRendererOfChild.material = outlineMaterialForBoxes; //This is a bandaid solution for a cheaply-made, low effort outline shader. I just made a duplicate, this one has slightly different values, more suited for the cuboid shaped wandboxes.
