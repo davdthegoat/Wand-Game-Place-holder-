@@ -1,3 +1,4 @@
+//Attached to the tutorial-book.
 using System;
 using UnityEngine;
 
@@ -10,10 +11,35 @@ public class TutorialPageFlipping : MonoBehaviour
     [SerializeField] Transform leftPagePosition;
     [SerializeField] GameObject tutorialBook;
     [SerializeField] GameObject mrBean;
+    private Boolean page; //True is left and false is right page. We start from left page
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         mrBean.GetComponent<Movement>().enabled = false; //Disable player movement on start.
+        page = true;
+    }
+
+    void FlipPage()
+    {
+        if (page == false)
+        {
+            tutorialBook.transform.position = leftPagePosition.position; //Move the book so that left page is visible
+        }
+        else
+        {
+            tutorialBook.transform.position = rightPagePosition.position;
+        }
+        page = !page; //Flip value of page, preparing it for next instance of FlipPage();
+    }
+
+    public void TurnPage() //Going to call this function to turn the page.
+    {
+        FlipPage();
+    }
+
+    void OnMouseDown()
+    {
+        TurnPage();
     }
 
     // Update is called once per frame

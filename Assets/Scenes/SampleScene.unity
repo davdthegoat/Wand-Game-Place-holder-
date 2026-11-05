@@ -1960,7 +1960,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -3910990755373119420, guid: 2f5cd917f65893d48b938e747293a42a, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1.016
+      value: -1.87245
       objectReference: {fileID: 0}
     - target: {fileID: -3910990755373119420, guid: 2f5cd917f65893d48b938e747293a42a, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1997,7 +1997,13 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8771091787928289351, guid: 2f5cd917f65893d48b938e747293a42a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1414996886}
+    - targetCorrespondingSourceObject: {fileID: 8771091787928289351, guid: 2f5cd917f65893d48b938e747293a42a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1414996887}
   m_SourcePrefab: {fileID: -4161369568681901532, guid: 2f5cd917f65893d48b938e747293a42a, type: 3}
 --- !u!4 &353635021 stripped
 Transform:
@@ -8036,7 +8042,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1287387531
 Transform:
   m_ObjectHideFlags: 0
@@ -9158,6 +9164,48 @@ MonoBehaviour:
   gridPlane: 0
   gridCollider: {fileID: 1398785058}
   itemRotation: {x: 0, y: 0, z: 0}
+--- !u!1 &1414996885 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8771091787928289351, guid: 2f5cd917f65893d48b938e747293a42a, type: 3}
+  m_PrefabInstance: {fileID: 353635020}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1414996886
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1414996885}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3f667298a2fb3d48af7f52b4b464f6c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TutorialPageFlipping
+  rightPagePosition: {fileID: 1978121049}
+  leftPagePosition: {fileID: 1253208178}
+  tutorialBook: {fileID: 1414996885}
+  mrBean: {fileID: 30686074597218293}
+--- !u!65 &1414996887
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1414996885}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.33, y: 0.19, z: 0.79}
+  m_Center: {x: 0, y: 0.06, z: -0.09}
 --- !u!1 &1442650742
 GameObject:
   m_ObjectHideFlags: 0
