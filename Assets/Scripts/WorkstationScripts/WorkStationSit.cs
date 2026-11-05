@@ -30,7 +30,9 @@ public class WorkStationSit : MonoBehaviour
     void Start()
     {
         playerCamera = Camera.main; //Makes the main camera linked with var playerCamera.
-        sitPositionCamera.enabled = false;
+
+        //Testing for tutorial, as it'll use sitposition camera.
+        //sitPositionCamera.enabled = false;
     }
 
     private void TrySit()
