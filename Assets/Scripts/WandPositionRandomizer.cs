@@ -19,7 +19,7 @@ public class WandPositionRandomizer : MonoBehaviour
             //Change scale of wands
             int randomScale = Random.Range(10, 19);
             float scale = randomScale / 10f;
-            wand.localScale *= scale;
+            wand.localScale = new Vector3(wand.localScale.x, wand.localScale.y * scale, wand.localScale.z); //Change only LENGTH of the wand, instead of all proportions.
         }
     }
 }
