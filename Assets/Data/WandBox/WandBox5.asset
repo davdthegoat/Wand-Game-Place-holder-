@@ -13,6 +13,5 @@ MonoBehaviour:
   m_Name: WandBox5
   m_EditorClassIdentifier: Assembly-CSharp::WandBox
   id: Wandbox5
-  length: 12
+  length: 10
   wandinBox: {fileID: 0}
-  Wandprefab: {fileID: 0}

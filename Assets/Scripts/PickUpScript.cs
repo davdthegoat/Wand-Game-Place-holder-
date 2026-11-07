@@ -75,7 +75,7 @@ public class PickUpScript : PlayerSystem
             RotateObject();
             //this is prob where you call the function that here will check for Interact Key and if found will extract the data to put onto text
             //TMP Interaction
-            Interact();
+            //Interact();
             if (Input.GetKeyDown(KeyCode.Mouse0) && canDrop == true) //Mous0 (leftclick) is used to throw, change this if you want another button to be used)
             {
                 StopClipping();
@@ -181,6 +181,7 @@ public class PickUpScript : PlayerSystem
             //rotate the object depending on mouse X-Y Axis
             heldObj.transform.Rotate(Vector3.down, XaxisRotation);
             heldObj.transform.Rotate(Vector3.right, YaxisRotation);
+            playerIdentification.Playerdata.Events.InteractionOccured.Invoke(heldObj);
         }
         else
         {
@@ -191,15 +192,15 @@ public class PickUpScript : PlayerSystem
         }
     }
 
-    public void Interact()
-    {
-        if (Input.GetKey(KeyCode.I))
-        {
-            //Do the thing Zhu Li/Ju Li- ATLA korra reference
-            playerIdentification.Playerdata.Events.InteractionOccured.Invoke(heldObj);
+    // public void Interact()
+    // {
+    //     if (Input.GetKey(KeyCode.I))
+    //     {
+    //         //Do the thing Zhu Li/Ju Li- ATLA korra reference
+    //         playerIdentification.Playerdata.Events.InteractionOccured.Invoke(heldObj);
 
-        }
-    }
+    //     }
+    // }
 
 
     void ThrowObject()
