@@ -9,19 +9,25 @@ public class Movement : MonoBehaviour
     [SerializeField] bool cursorLock = true;
     [SerializeField] float mouseSensitivity = 3.5f;
     [SerializeField] float Speed = 6.0f;
+    [SerializeField] float crouchSpeed = 2.0f;
+    [SerializeField] float jumpHeight = 6f;
+    [SerializeField] float crouchJumpHeight = 2.5f;
     [SerializeField][Range(0.0f, 0.5f)] float moveSmoothTime = 0.3f;
     [SerializeField] float gravity = -30f;
     [SerializeField] Transform groundCheck;
     [SerializeField] LayerMask ground;
     [SerializeField] float flightSpeed = 6f;
+    [SerializeField] Transform crouchPosition;
+    [SerializeField] Transform standingPosition;
+    [SerializeField] Transform eyeBALLs;
 
-    public float jumpHeight = 6f;
     float velocityY;
     bool isGrounded;
     float cameraCap;
     bool cameraLocked;
     bool movementLocked;
     bool isFlying;
+    bool isCrouching = false;
     Vector2 currentMouseDelta;
     Vector2 currentMouseDeltaVelocity;
     CharacterController controller;
@@ -49,6 +55,7 @@ public class Movement : MonoBehaviour
     void Update()
     {
         UpdateMouse();
+        Crouch();
         UpdateMove();
     }
     void UpdateMouse()
@@ -94,7 +101,9 @@ public class Movement : MonoBehaviour
             }
             velocityY = verticalInput * flightSpeed; //Flight speed gives us easily tweakable access to flight speed for when we revamp/tweak the values of this script for the final game.
         }
-        Vector3 velocity = (transform.forward * currentDir.y + transform.right * currentDir.x) * Speed + Vector3.up * velocityY;
+
+        float currentSpeed = isCrouching ? crouchSpeed : Speed;
+        Vector3 velocity = (transform.forward * currentDir.y + transform.right * currentDir.x) * currentSpeed + Vector3.up * velocityY;
 
 
 
@@ -103,7 +112,9 @@ public class Movement : MonoBehaviour
 
         if (!isFlying && isGrounded && Input.GetButtonDown("Jump"))
         {
-            velocityY = Mathf.Sqrt(jumpHeight * -2f * gravity);
+            float currentJumpHeight = isCrouching ? crouchJumpHeight : jumpHeight;
+
+            velocityY = Mathf.Sqrt(currentJumpHeight * -2f * gravity);
         }
         if (!isFlying && !isGrounded && controller.velocity.y < -1f)
         {
@@ -194,10 +205,25 @@ public class Movement : MonoBehaviour
 //         velocityY = 0f;
 //     }
 
-
     void OnDisable()
     {
         Oncooldown = false;
         isFlying = false;
+    }
+
+    private void Crouch() //Maybe setting rotation here will causes problems, let's try.
+    {
+        if (Input.GetKey(KeyCode.C))
+        {
+            eyeBALLs.localPosition = crouchPosition.localPosition;
+            //eyeBALLs.localRotation = crouchPosition.localRotation; Perhaps the clamp is messing something up.
+            isCrouching = true;
+        }
+        else
+        {
+            eyeBALLs.localPosition = standingPosition.localPosition;
+            //eyeBALLs.localRotation = standingPosition.localRotation;
+            isCrouching = false;
+        }
     }
 }
