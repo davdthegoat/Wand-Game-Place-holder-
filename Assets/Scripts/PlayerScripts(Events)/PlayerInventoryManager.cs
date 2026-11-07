@@ -120,8 +120,8 @@ public class PlayerInventoryManager : PlayerSystem
     //The Text Mesh Displays
     void DisplayCore(GameObject heldObj)
     {   
-        
-        if (heldObj.GetComponent<DroppedItem>().item == null){return;}
+        if (heldObj.GetComponent<DroppedItem>() == null){return;}
+        //if (heldObj.GetComponent<DroppedItem>().item != null)
         else
         {
             var wandData = heldObj.GetComponent<DroppedItem>().item;
@@ -139,11 +139,14 @@ public class PlayerInventoryManager : PlayerSystem
             core = "Core: "+core;
             Coretext.text = core; 
         }
+
+        
+        
     }
     void DisplayWood(GameObject heldObj)
     {
         
-        if (heldObj.GetComponent<DroppedItem>().item == null){return;}
+        if (heldObj.GetComponent<DroppedItem>() == null){return;}
         else
         {
             var wandData = heldObj.GetComponent<DroppedItem>().item;
@@ -152,19 +155,22 @@ public class PlayerInventoryManager : PlayerSystem
             wood = "Wood: " + wood;
             Woodtext.text = wood; 
         }
+        
+        
     }
     void DisplayLength(GameObject heldObj)
     {
        
-        if ( heldObj.GetComponent<DroppedItem>().item == null){return;}
+        if ( heldObj.GetComponent<DroppedItem>() == null){return;}
         else
         {
-             var wandData = heldObj.GetComponent<DroppedItem>().item;
+            var wandData = heldObj.GetComponent<DroppedItem>().item;
             var lengthEnum = wandData.length;
             string length = lengthEnum.ToString();
             length = "Length: " + length;
             Lengthtext.text = length; 
         }
+        
     }
 
     void ClearTextcorewoodlen()

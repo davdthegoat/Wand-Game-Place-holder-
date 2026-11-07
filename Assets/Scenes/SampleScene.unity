@@ -7156,9 +7156,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Length
-
-'
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -29657,25 +29655,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DroppedItem
   item: {fileID: 11400000, guid: e47e60f7fabac6941adaccfd52683a57, type: 2}
---- !u!1 &387230533 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 238520223157174472, guid: de2d0d7feb4ee3e4387ca7d145e5d206, type: 3}
-  m_PrefabInstance: {fileID: 5003514368425289473}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &387230538
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 387230533}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 29009e01030e5b54eb5c4ad6890c7178, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::WandBoxItem
-  wandboxitem: {fileID: 0}
-  itemToInstantiate: {fileID: 0}
 --- !u!1 &387777178 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -2893296612305218625, guid: b8e591d33158a544d9b9e9f2e0e90d71, type: 3}
@@ -55869,25 +55848,6 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1492248759}
   m_SourcePrefab: {fileID: -4161369568681901532, guid: 4b1191a0a343eb44a87caeaaba5883f8, type: 3}
---- !u!1 &730315178 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 59759339612756631, guid: 822a9d5a8b3b57949b0577db711b9116, type: 3}
-  m_PrefabInstance: {fileID: 2099636074}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &730315184
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 730315178}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 29009e01030e5b54eb5c4ad6890c7178, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::WandBoxItem
-  wandboxitem: {fileID: 0}
-  itemToInstantiate: {fileID: 0}
 --- !u!1 &730634152 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -2893296612305218625, guid: 94c0c7be7720ac3418131e68c61c7e6a, type: 3}
@@ -66996,7 +66956,8 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2739492668412310567, guid: 822a9d5a8b3b57949b0577db711b9116, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 9189740407255956844, guid: 822a9d5a8b3b57949b0577db711b9116, type: 3}
@@ -73124,9 +73085,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'wood
-
-'
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -107175,9 +107134,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'core
-
-'
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -167917,7 +167874,8 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2739492668412310567, guid: 822a9d5a8b3b57949b0577db711b9116, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 9189740407255956844, guid: 822a9d5a8b3b57949b0577db711b9116, type: 3}
@@ -167930,9 +167888,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8413661551713265622, guid: 822a9d5a8b3b57949b0577db711b9116, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2057811406}
-    - targetCorrespondingSourceObject: {fileID: 59759339612756631, guid: 822a9d5a8b3b57949b0577db711b9116, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 730315184}
   m_SourcePrefab: {fileID: 100100000, guid: 822a9d5a8b3b57949b0577db711b9116, type: 3}
 --- !u!1 &2102397055 stripped
 GameObject:
@@ -171885,15 +171840,15 @@ PrefabInstance:
       objectReference: {fileID: 30686074597218301}
     - target: {fileID: 4269084305278181802, guid: 28ce48b2c6dad3d46b9373039ed74b07, type: 3}
       propertyPath: m_LocalScale.x
-      value: 1
+      value: 1.2
       objectReference: {fileID: 0}
     - target: {fileID: 4269084305278181802, guid: 28ce48b2c6dad3d46b9373039ed74b07, type: 3}
       propertyPath: m_LocalScale.y
-      value: 1
+      value: 1.2
       objectReference: {fileID: 0}
     - target: {fileID: 4269084305278181802, guid: 28ce48b2c6dad3d46b9373039ed74b07, type: 3}
       propertyPath: m_LocalScale.z
-      value: 1
+      value: 1.2
       objectReference: {fileID: 0}
     - target: {fileID: 4269084305278181802, guid: 28ce48b2c6dad3d46b9373039ed74b07, type: 3}
       propertyPath: m_LocalPosition.x
@@ -172412,7 +172367,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6252571020254993420, guid: de2d0d7feb4ee3e4387ca7d145e5d206, type: 3}
     m_RemovedGameObjects:
     - {fileID: 1681574620915471596, guid: de2d0d7feb4ee3e4387ca7d145e5d206, type: 3}
     - {fileID: 7443911880376036910, guid: de2d0d7feb4ee3e4387ca7d145e5d206, type: 3}
@@ -172426,10 +172382,7 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1101620561646753095, guid: de2d0d7feb4ee3e4387ca7d145e5d206, type: 3}
       insertIndex: 0
       addedObject: {fileID: 622348600}
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 238520223157174472, guid: de2d0d7feb4ee3e4387ca7d145e5d206, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 387230538}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: de2d0d7feb4ee3e4387ca7d145e5d206, type: 3}
 --- !u!23 &7132739087319204499
 MeshRenderer:

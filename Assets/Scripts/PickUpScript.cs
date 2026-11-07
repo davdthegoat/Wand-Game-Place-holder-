@@ -19,6 +19,7 @@ public class PickUpScript : PlayerSystem
     private bool canDrop = true; //this is needed so we don't throw/drop object when rotating the object
     private int LayerNumber; //layer index
     private int LayerNumStore;
+    private int LayerToDrop;
 
     
     //Reference to either text mesh pro object or event system to manipulate TMP
@@ -33,6 +34,7 @@ public class PickUpScript : PlayerSystem
     {
         LayerNumber = LayerMask.NameToLayer("holdLayer"); //if your holdLayer is named differently make sure to change this ""
         LayerNumStore = LayerMask.NameToLayer("storeLayer");
+        LayerToDrop = LayerMask.NameToLayer("Wand");
         //mouseLookScript = player.GetComponent<MouseLookScript>();
         movement = player.GetComponent<Movement>();
 
@@ -134,7 +136,7 @@ public class PickUpScript : PlayerSystem
         Debug.Log("DROP OBJECT WAS CALLED");
         //re-enable collision with player
         Physics.IgnoreCollision(heldObj.GetComponent<Collider>(), player.GetComponent<Collider>(), false);
-        SetLayerChildren(heldObj, 0); //object assigned back to default layer
+        SetLayerChildren(heldObj, LayerToDrop); //object assigned back to default layer
         
         //DROPINVENTROY
         var dropitem = heldObj;
@@ -208,7 +210,7 @@ public class PickUpScript : PlayerSystem
         Debug.Log("ThrowObject was called");
         //same as drop function, but add force to object before undefining it
         Physics.IgnoreCollision(heldObj.GetComponent<Collider>(), player.GetComponent<Collider>(), false);
-        SetLayerChildren(heldObj, 0);
+        SetLayerChildren(heldObj, LayerToDrop);
         heldObjRb.isKinematic = false;
         heldObjRb.useGravity = true;
         heldObj.transform.parent = null;
