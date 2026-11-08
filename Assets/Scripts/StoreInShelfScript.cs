@@ -90,8 +90,8 @@ public class StoreInShelfScript : PlayerSystem
                 Debug.Log("Hit Object: " + hit.transform.gameObject.name);
                 Debug.Log("Tag: " + hit.transform.gameObject.tag + "Layer: " + LayerMask.NameToLayer("storeLayer"));
 
-
-                if (hit.transform.gameObject.tag == "canStore" && hit.transform.gameObject.layer == LayerMask.NameToLayer("storeLayer")) //Verifies if the object is being placed in a "storable" area (BOTH REQUIRED)
+                
+                if (hit.transform.gameObject.tag == "canStore" && hit.transform.gameObject.layer == LayerMask.NameToLayer("storeLayer") /*&& (hit.transform.name.Contains("WandBox1") || hit.transform.name.Contains("WandBox2") || hit.transform.name.Contains("WandBox3"))*/) //Verifies if the object is being placed in a "storable" area (BOTH REQUIRED)
                 //&& hit.transform.gameObject.layer == LayerMask.NameToLayer("storeLayer"), trying without tag. Future DVD here, tag removed for redundancy. Futuremost DVD here, tag re-added.
                 {
                     int lowestFreeY = grid.GetLowestFreeGrid(gridX);

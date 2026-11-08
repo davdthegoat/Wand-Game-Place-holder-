@@ -7,7 +7,7 @@ public class WandBoxItem : MonoBehaviour
 
 {
 
-     WandBox CreateInstance()
+    WandBox CreateInstance()
     {
         WandBox item = Instantiate(itemToInstantiate);
         return item;
