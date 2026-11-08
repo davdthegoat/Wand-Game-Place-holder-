@@ -1,7 +1,7 @@
 Hello Hackclub staff!
-We're excited to present to you "Wandgame"! (title subject to change). 
+This is team Bombocat Productions (Placeholder)'s submission take on the concept “Thirdspace”, we hope you enjoy.
 
-In our game the protagonist decides to tidy up and organize a long-abandoned shop of a dying trade as a hobby, uncovering the secrets and trivia left behind by the previous shop owner, Mr. Ollivander.
+Our setting is simple: a shop that has been long since abandoned due to the passing of it's owner and the slow fade to obsolescence of it's trade. The protagonist sees this shop, a humble shop with rich history and decides to honour it's legacy by tidying it up according to the journal he finds within the shop. The game is a simple, and relaxing experience in an atmospheric and homely environment where the goal is to organize the shop by returning everything to it's original position.
 
 Week 1:
 The game is in very early stages of development right now as we are trying to figure out some basics of working as a group and using group tools such as github as well as learning Blender and Krita.
@@ -67,4 +67,9 @@ https://lapse.hackclub.com/timelapse/z65Ij4Ma0_vj
 https://lapse.hackclub.com/timelapse/L57EcF8ONg1o
 https://lapse.hackclub.com/timelapse/zdi1LrA_uvaS
 https://lapse.hackclub.com/timelapse/EmZg6W7ref1-  -By netherporta 
+
+Week 8:
+This week we completed everything. We're quite proud of our project, and hope that the Hackclub team appreciates it as much as we do. We added sound effects, worked on level design, 3D assets, materials, textures, post processing, refining movement, improving performance by optimizing our existing 3D assets, and integrated all of our existing features into the main scene to create an enjoyable game experience: a cozy Thirdspace where you can put the worries of modern life aside and enjoy the simple task of rearranging an old shop. 
+https://pastes.io/w7xFoCaH -Pastebin, as we had a lot of links.
+
 
