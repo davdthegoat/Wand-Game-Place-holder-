@@ -136,16 +136,16 @@ public class Movement : MonoBehaviour
     //Wingardium Leviosa powerup - Flight
     //Will add a "quick cancel" to this later.
     //Found a tutorial
-    public void StartFlight(float duration, float cooldown,  float hoverHeight, float riseTime,float overshoot)
+    public bool StartFlight(float duration, float cooldown,  float hoverHeight, float riseTime,float overshoot)
     {
-        if (isFlying || Oncooldown)
+        if (isFlying || Oncooldown) //Return false if already flying or ability on cooldown.
         {
             //Probably should start a cooldown timer from here.
-            
-            return;
+            return false;
         }
-        
         StartCoroutine(FlightRoutine(duration, cooldown, hoverHeight, riseTime, overshoot));
+        Debug.Log("SFX should've played by now");
+        return true;
     }
 
     bool Oncooldown = false; //starts as true means its on cooldown false is its not on cooldown

@@ -16,10 +16,13 @@ public class FloatPowerup : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.B))
         {
-            movement.StartFlight(flightDuration, cooldown, hoverHeight, riseTime, overshoot);
-
             //Play SFX
-            SFXmanager.FlightPowerup();
+            bool flightStarted = movement.StartFlight(flightDuration, cooldown, hoverHeight, riseTime, overshoot); 
+            
+            if (flightStarted == true)
+            {
+                SFXmanager.FlightPowerup();
+            }
         }
     }
 }

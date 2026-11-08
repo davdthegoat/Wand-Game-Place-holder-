@@ -7,7 +7,7 @@ public class ItemPositionReset : MonoBehaviour
 
     private Rigidbody rb;
 
-    private void Start()
+    private void Awake()
     {
         startingPos = transform.position;
         startingRotation = transform.rotation;

@@ -13,13 +13,16 @@ public class WandPositionRandomizer : MonoBehaviour
         {
             //Change positions of wands
             wand.localPosition = new Vector3(Random.Range(-positionRange.x, positionRange.x)
-                                            ,Random.Range(-positionRange.y, positionRange.y)
-                                            ,Random.Range(-positionRange.z, positionRange.z));
+                                            , Random.Range(-positionRange.y, positionRange.y)
+                                            , Random.Range(-positionRange.z, positionRange.z));
 
             //Change scale of wands
             int randomScale = Random.Range(10, 19);
             float scale = randomScale / 10f;
             wand.localScale = new Vector3(wand.localScale.x, wand.localScale.y * scale, wand.localScale.z); //Change only LENGTH of the wand, instead of all proportions.
+            //Expirement
+            wand.localRotation = Random.rotation;
         }
+
     }
 }
