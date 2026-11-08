@@ -13,6 +13,7 @@ public class WorkStationDragAndDrop : MonoBehaviour
     [SerializeField] private LayerMask layersToIgnore;
     [SerializeField] private HeldObjectPlacementScript heldObjectPlacementScript;
     [SerializeField] private ItemHighlightManager itemHighlightManager;
+    [SerializeField] SoundEffectsManager SFXmanager;
     private GameObject draggedObject;
     private Rigidbody draggedObjectRb;
     private float dragDepth; //if we want to freeze movement in one axis.
@@ -266,6 +267,10 @@ public class WorkStationDragAndDrop : MonoBehaviour
 
 
                     snapSystem.SetBoxClosed();
+
+
+                    //SFX
+                    SFXmanager.CloseLidSFX();
 
                     releasedObject.name = "WandboxLidClosed";
 

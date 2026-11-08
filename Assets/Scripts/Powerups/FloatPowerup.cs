@@ -7,7 +7,7 @@ public class FloatPowerup : MonoBehaviour
     [SerializeField] Movement movement;
     [SerializeField] float flightDuration;
     [SerializeField] float cooldown;
-
+    [SerializeField] SoundEffectsManager SFXmanager;
     [Header("StartFloatVars: ")]
     [SerializeField]float hoverHeight = 3f; 
     [SerializeField]float riseTime = 0.8f;
@@ -17,6 +17,9 @@ public class FloatPowerup : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.B))
         {
             movement.StartFlight(flightDuration, cooldown, hoverHeight, riseTime, overshoot);
+
+            //Play SFX
+            SFXmanager.FlightPowerup();
         }
     }
 }

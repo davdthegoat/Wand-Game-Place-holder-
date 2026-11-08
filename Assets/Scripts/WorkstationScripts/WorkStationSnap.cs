@@ -20,7 +20,7 @@ public class WorkStationSnap : MonoBehaviour
     [SerializeField] private Collider wandBoxCollider;
     [SerializeField] private Collider wandBoxLidCollider;
     [SerializeField] private Collider wandBoxContainerCollider;
-    [SerializeField] private WorkStationDragAndDrop Workstationdragscript;
+    //public AudioSource lidCloseSound; Going in a new script cuz I don't want to clutter the inspector of everything
     
 
 
@@ -134,7 +134,8 @@ public class WorkStationSnap : MonoBehaviour
         wandBoxLidCollider.enabled = false;
         wandBoxContainerCollider.enabled = false;
 
-        
+        //Could add sound effects to either this or WorkStationDragAndDrop, I think here makes more sense tho.
+        //Actually, I'll just make a new script. lidCloseSound.Play();
     }
     
 }
